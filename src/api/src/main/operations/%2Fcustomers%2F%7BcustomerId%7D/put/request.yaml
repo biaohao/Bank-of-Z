@@ -71,6 +71,10 @@ mappings:
                 required: false
                 nullable: false
                 template: "{{$body.address.country}}"
+        - COMM-EMAIL:
+            required: false
+            nullable: true
+            template: "{{$body.email}}"
         - COMM-STATUS:
             required: false
             nullable: false

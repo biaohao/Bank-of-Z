@@ -82,6 +82,7 @@
           03 HV-CUSTOMER-CREATE-DATE    PIC S9(9) COMP.
           03 HV-CUSTOMER-CREDIT-SCORE   PIC S9(4) COMP.
           03 HV-CUSTOMER-CS-REVIEW-DATE PIC S9(9) COMP.
+          03 HV-CUSTOMER-EMAIL          PIC X(50).
 
       * PROCTRAN DB2 copybook
            EXEC SQL
@@ -1196,6 +1197,9 @@
               (COMM-CS-REVIEW-MONTH OF COMM-CS-REVIEW-DATE * 100) +
               COMM-CS-REVIEW-DAY OF COMM-CS-REVIEW-DATE.
 
+           MOVE SPACES TO HV-CUSTOMER-EMAIL.
+           MOVE COMM-EMAIL TO HV-CUSTOMER-EMAIL.
+
            DISPLAY 'CUSTOMER-EYECATCHER: ' CUSTOMER-EYECATCHER
            DISPLAY 'CUSTOMER-SORTCODE: ' CUSTOMER-SORTCODE
            DISPLAY 'CUSTOMER-NUMBER: ' CUSTOMER-NUMBER
@@ -1234,7 +1238,8 @@
                   CUSTOMER_STATUS,
                   CUSTOMER_CREATED_DATE,
                   CUSTOMER_CREDIT_SCORE,
-                  CUSTOMER_CS_REVIEW_DATE)
+                  CUSTOMER_CS_REVIEW_DATE,
+                  CUSTOMER_EMAIL)
               VALUES
                  (:HV-CUSTOMER-EYECATCHER,
                   :HV-CUSTOMER-SORTCODE,
@@ -1252,7 +1257,8 @@
                   :HV-CUSTOMER-STATUS,
                   :HV-CUSTOMER-CREATE-DATE,
                   :HV-CUSTOMER-CREDIT-SCORE,
-                  :HV-CUSTOMER-CS-REVIEW-DATE)
+                  :HV-CUSTOMER-CS-REVIEW-DATE,
+                  :HV-CUSTOMER-EMAIL)
            END-EXEC.
 
       *

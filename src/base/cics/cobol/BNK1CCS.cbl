@@ -129,6 +129,7 @@
              05 SUBPGM-CS-REVIEW-DAY           PIC 99 DISPLAY.
              05 SUBPGM-CS-REVIEW-MONTH         PIC 99 DISPLAY.
              05 SUBPGM-CS-REVIEW-YEAR          PIC 9999 DISPLAY.
+          03 SUBPGM-EMAIL                      PIC X(50).
           03 SUBPGM-SUCCESS                    PIC X.
           03 SUBPGM-FAIL-CODE                  PIC X.
 
@@ -512,6 +513,7 @@
            MOVE 0 TO SCRDTDDI.
            MOVE 0 TO SCRDTMMI.
            MOVE 0 TO SCRDTYYI.
+           MOVE SPACES TO EMAILI.
            MOVE SPACES TO MESSAGEI.
 
            EXEC CICS
@@ -957,6 +959,7 @@
       *    Set up the fields required by CRECUST then link to it
       *
            INITIALIZE SUBPGM-PARMS.
+           MOVE SPACES TO SUBPGM-EMAIL.
            MOVE 'CUST' TO SUBPGM-EYECATCHER.
            MOVE 'N' TO SUBPGM-SUCCESS.
 
@@ -993,6 +996,7 @@
            MOVE DOBDDI TO SUBPGM-BIRTH-DAY.
            MOVE DOBMMI TO SUBPGM-BIRTH-MONTH.
            MOVE DOBYYI TO SUBPGM-BIRTH-YEAR.
+           MOVE EMAILI OF BNK1CCI TO SUBPGM-EMAIL.
 
            EXEC CICS LINK
               PROGRAM('CRECUST')

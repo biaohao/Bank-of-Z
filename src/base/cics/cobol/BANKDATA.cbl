@@ -691,7 +691,8 @@
                           CUSTOMER_STATUS,
                           CUSTOMER_CREATED_DATE,
                           CUSTOMER_CREDIT_SCORE,
-                          CUSTOMER_CS_REVIEW_DATE)
+                          CUSTOMER_CS_REVIEW_DATE,
+                          CUSTOMER_EMAIL)
                   VALUES(:HV-CUSTOMER-EYECATCHER,
                           :HV-CUSTOMER-SORTCODE,
                           :HV-CUSTOMER-NUMBER,
@@ -708,7 +709,8 @@
                           :HV-CUSTOMER-STATUS,
                           :HV-CUSTOMER-CREATE-DATE,
                           :HV-CUSTOMER-CREDIT-SCORE,
-                          :HV-CUSTOMER-CS-REVIEW-DATE)
+                          :HV-CUSTOMER-CS-REVIEW-DATE,
+                          'test@bankofz.example.com')
                END-EXEC
 
                    IF SQLCODE NOT = 0

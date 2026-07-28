@@ -71,6 +71,7 @@
           03 HV-CUSTOMER-CREATE-DATE    PIC S9(9) COMP.
           03 HV-CUSTOMER-CREDIT-SCORE   PIC S9(4) COMP.
           03 HV-CUSTOMER-CS-REVIEW-DATE PIC S9(9) COMP.
+          03 HV-CUSTOMER-EMAIL          PIC X(50).
 
       * Pull in the SQL COMMAREA
        EXEC SQL
@@ -360,6 +361,9 @@
       *
       *    Update the customer record in DB2
       *
+           MOVE SPACES TO HV-CUSTOMER-EMAIL.
+           MOVE COMM-EMAIL TO HV-CUSTOMER-EMAIL.
+
            EXEC SQL
               UPDATE CUSTOMER
                  SET CUSTOMER_TITLE = :HV-CUSTOMER-TITLE,
@@ -372,7 +376,8 @@
                      CUSTOMER_CITY = :HV-CUSTOMER-CITY,
                      CUSTOMER_POSTCODE = :HV-CUSTOMER-POSTCODE,
                      CUSTOMER_COUNTRY = :HV-CUSTOMER-COUNTRY,
-                     CUSTOMER_STATUS = :HV-CUSTOMER-STATUS
+                     CUSTOMER_STATUS = :HV-CUSTOMER-STATUS,
+                     CUSTOMER_EMAIL = :HV-CUSTOMER-EMAIL
                WHERE CUSTOMER_SORTCODE = :HV-CUSTOMER-SORTCODE
                  AND CUSTOMER_NUMBER = :HV-CUSTOMER-NUMBER
            END-EXEC.
@@ -422,6 +427,7 @@
               FUNCTION MOD(HV-CUSTOMER-DOB, 100).
            MOVE HV-CUSTOMER-CREDIT-SCORE TO COMM-CREDIT-SCORE.
            MOVE HV-CUSTOMER-CS-REVIEW-DATE TO COMM-CS-REVIEW-DATE.
+           MOVE HV-CUSTOMER-EMAIL TO COMM-EMAIL.
 
            MOVE 'Y' TO COMM-UPD-SUCCESS.
 

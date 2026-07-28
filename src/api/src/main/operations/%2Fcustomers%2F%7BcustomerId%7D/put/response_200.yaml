@@ -72,3 +72,7 @@ mappings:
           }}-{{$zosAssetResponse.commarea.UPDCUST.\"COMM-CREATED-DATE\".\"COMM-CREATED-MONTH\"\
           }}-{{$zosAssetResponse.commarea.UPDCUST.\"COMM-CREATED-DATE\".\"COMM-CREATED-DAY\"\
           }}T00:00:00Z"
+    - email:
+        required: false
+        nullable: true
+        template: "{{$zosAssetResponse.commarea.UPDCUST.\"COMM-EMAIL\"}}"

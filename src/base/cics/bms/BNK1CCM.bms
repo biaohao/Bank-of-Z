@@ -130,6 +130,12 @@ SCRDTMM  DFHMDF POS=(20,23),LENGTH=2,ATTRB=(NORM,PROT,FSET,NUM),       *
 SCRDTYY  DFHMDF POS=(20,28),LENGTH=4,ATTRB=(NORM,PROT,FSET,NUM),       *
                COLOR=NEUTRAL
 ***********************************************************************
+         DFHMDF POS=(21,1),LENGTH=16,ATTRB=(NORM,PROT),              *
+               COLOR=NEUTRAL,INITIAL=' Email Address  '
+EMAIL    DFHMDF POS=(21,18),LENGTH=50,ATTRB=(UNPROT,FSET,NORM),      *
+               COLOR=GREEN,HILIGHT=UNDERLINE
+         DFHMDF POS=(21,69),LENGTH=0,ATTRB=(PROT,ASKIP),COLOR=GREEN
+***********************************************************************
 MESSAGE  DFHMDF POS=(23,1),LENGTH=79,COLOR=YELLOW,ATTRB=(BRT,PROT)
          DFHMDF POS=(24,1),LENGTH=20,ATTRB=(NORM,PROT),COLOR=BLUE,     *
                INITIAL='F3=Exit   F12=Cancel'

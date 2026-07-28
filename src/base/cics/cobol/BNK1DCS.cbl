@@ -144,6 +144,7 @@
           03 WS-COMM-CREATED-DATE     PIC 9(8).
           03 WS-COMM-CREDIT-SCORE     PIC 9(3).
           03 WS-COMM-CS-REVIEW-DATE   PIC 9(8).
+          03 WS-COMM-EMAIL             PIC X(50).
           03 WS-COMM-DEL-SUCCESS      PIC X.
           03 WS-COMM-DEL-FAIL-CD      PIC X.
           03 WS-COMM-UPDATE           PIC X.
@@ -207,6 +208,7 @@
           03 COMM-CREATED-DATE        PIC 9(8).
           03 COMM-CREDIT-SCORE        PIC 9(3).
           03 COMM-CS-REVIEW-DATE      PIC 9(8).
+          03 COMM-EMAIL               PIC X(50).
           03 COMM-DEL-SUCCESS         PIC X.
           03 COMM-DEL-FAIL-CD         PIC X.
           03 COMM-UPD                 PIC X.
@@ -358,6 +360,7 @@
                  TO WS-COMM-CREDIT-SCORE
               MOVE COMM-CS-REVIEW-DATE OF DFHCOMMAREA
                  TO WS-COMM-CS-REVIEW-DATE
+              MOVE COMM-EMAIL OF DFHCOMMAREA TO WS-COMM-EMAIL
               MOVE COMM-UPD OF DFHCOMMAREA TO WS-COMM-UPDATE
            END-IF.
 
@@ -983,6 +986,9 @@
            MOVE INQCUST-CS-REVIEW-YYYY TO
               SCRDTYYO.
 
+           MOVE INQCUST-EMAIL OF INQCUST-COMMAREA
+                               TO CUSTEMLO OF BNK1DCO.
+
            MOVE SPACES TO MESSAGEO.
            IF CUSTNOI = ZERO OR CUSTNOI = '9999999999'
               MOVE 'Customer lookup successful.'
@@ -1209,6 +1215,8 @@
            MOVE SCRDTYYI TO COMM-CS-REVIEWX-YYYY.
            MOVE COMM-CS-REVIEW-UPD-9
               TO COMM-CS-REVIEW-DATE OF UPDCUST-COMMAREA.
+
+           MOVE WS-COMM-EMAIL TO COMM-EMAIL OF UPDCUST-COMMAREA.
 
            MOVE SPACE TO COMM-UPD-SUCCESS.
            MOVE SPACE TO COMM-UPD-FAIL-CD.

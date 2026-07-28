@@ -763,6 +763,12 @@ components:
           format: date-time
           description: Date when customer account was created
           example: "2020-01-15T10:30:00Z"
+        email:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: Customer email address
+          example: "customer@example.com"
 
     Address:
       type: object
@@ -838,6 +844,12 @@ components:
           enum: [ACTIVE, INACTIVE, SUSPENDED]
           description: Current status of the customer
           example: "ACTIVE"
+        email:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: Customer email address
+          example: "customer@example.com"
 
 
     AccountList:

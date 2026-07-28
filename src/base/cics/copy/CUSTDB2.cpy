@@ -22,6 +22,7 @@
                 CUSTOMER_STATUS                CHAR(10),
                 CUSTOMER_CREATED_DATE          INTEGER,
                 CUSTOMER_CREDIT_SCORE          SMALLINT,
-                CUSTOMER_CS_REVIEW_DATE        INTEGER )
-           END-EXEC.
+                CUSTOMER_CS_REVIEW_DATE        INTEGER,
+                CUSTOMER_EMAIL                 CHAR(50) )
+          END-EXEC.
 

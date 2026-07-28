@@ -73,3 +73,7 @@ mappings:
           .\"INQCUST-CREATED-YYYY\"}}-{{$zosAssetResponse.commarea.INQCUSTZ.\"INQCUST-CREATED-DATE\"\
           .\"INQCUST-CREATED-MM\"}}-{{$zosAssetResponse.commarea.INQCUSTZ.\"INQCUST-CREATED-DATE\"\
           .\"INQCUST-CREATED-DD\"}}T00:00:00Z"
+    - email:
+        required: false
+        nullable: true
+        template: "{{$zosAssetResponse.commarea.INQCUSTZ.\"INQCUST-EMAIL\"}}"
