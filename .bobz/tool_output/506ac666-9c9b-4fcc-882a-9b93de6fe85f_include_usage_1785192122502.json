@@ -1,0 +1,5281 @@
+{
+  "resourceType": "include",
+  "filters": {
+    "program": "all",
+    "resource": "all",
+    "statement": "all"
+  },
+  "totalResults": 170,
+  "results": [
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 38,
+          "startColumn": 12,
+          "endRow": 38,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/ABNDPROC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 1,
+        "progName": "ABNDPROC",
+        "ancestor": "",
+        "fullName": "ABNDPROC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 17,
+          "startColumn": 20,
+          "endRow": 17,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/ABNDPROC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 78,
+          "startColumn": 8,
+          "endRow": 78,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 279,
+          "startColumn": 8,
+          "endRow": 279,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 7,
+      "iName": "CUSTCTRL",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 374,
+          "startColumn": 11,
+          "endRow": 374,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 8,
+      "iName": "ACCTCTRL",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 377,
+          "startColumn": 11,
+          "endRow": 377,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 10,
+      "iName": "BNK1CAM",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 65,
+          "startColumn": 8,
+          "endRow": 65,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 5,
+        "progName": "BNK1CAC",
+        "ancestor": "",
+        "fullName": "BNK1CAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 11,
+      "iName": "DFHAID",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 67,
+          "startColumn": 8,
+          "endRow": 67,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 5,
+        "progName": "BNK1CAC",
+        "ancestor": "",
+        "fullName": "BNK1CAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 150,
+          "startColumn": 12,
+          "endRow": 150,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 5,
+        "progName": "BNK1CAC",
+        "ancestor": "",
+        "fullName": "BNK1CAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 14,
+      "iName": "BNK1ACC",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 64,
+          "startColumn": 8,
+          "endRow": 64,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 8,
+        "progName": "BNK1CCA",
+        "ancestor": "",
+        "fullName": "BNK1CCA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 11,
+      "iName": "DFHAID",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 66,
+          "startColumn": 8,
+          "endRow": 66,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 8,
+        "progName": "BNK1CCA",
+        "ancestor": "",
+        "fullName": "BNK1CCA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 15,
+      "iName": "INQACCCU",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 110,
+          "startColumn": 11,
+          "endRow": 110,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 8,
+        "progName": "BNK1CCA",
+        "ancestor": "",
+        "fullName": "BNK1CCA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 151,
+          "startColumn": 12,
+          "endRow": 151,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 8,
+        "progName": "BNK1CCA",
+        "ancestor": "",
+        "fullName": "BNK1CCA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 17,
+      "iName": "BNK1CCM",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 66,
+          "startColumn": 8,
+          "endRow": 66,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 10,
+        "progName": "BNK1CCS",
+        "ancestor": "",
+        "fullName": "BNK1CCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 11,
+      "iName": "DFHAID",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 68,
+          "startColumn": 8,
+          "endRow": 68,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 10,
+        "progName": "BNK1CCS",
+        "ancestor": "",
+        "fullName": "BNK1CCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 165,
+          "startColumn": 12,
+          "endRow": 165,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 10,
+        "progName": "BNK1CCS",
+        "ancestor": "",
+        "fullName": "BNK1CCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 19,
+      "iName": "BNK1CDM",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 66,
+          "startColumn": 8,
+          "endRow": 66,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CRA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 12,
+        "progName": "BNK1CRA",
+        "ancestor": "",
+        "fullName": "BNK1CRA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CRA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 11,
+      "iName": "DFHAID",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 68,
+          "startColumn": 8,
+          "endRow": 68,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CRA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 12,
+        "progName": "BNK1CRA",
+        "ancestor": "",
+        "fullName": "BNK1CRA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CRA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 167,
+          "startColumn": 12,
+          "endRow": 167,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CRA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 12,
+        "progName": "BNK1CRA",
+        "ancestor": "",
+        "fullName": "BNK1CRA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1CRA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 21,
+      "iName": "BNK1DAM",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 64,
+          "startColumn": 8,
+          "endRow": 64,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 14,
+        "progName": "BNK1DAC",
+        "ancestor": "",
+        "fullName": "BNK1DAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 11,
+      "iName": "DFHAID",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 66,
+          "startColumn": 8,
+          "endRow": 66,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 14,
+        "progName": "BNK1DAC",
+        "ancestor": "",
+        "fullName": "BNK1DAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 22,
+      "iName": "INQACC",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 106,
+          "startColumn": 8,
+          "endRow": 106,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 14,
+        "progName": "BNK1DAC",
+        "ancestor": "",
+        "fullName": "BNK1DAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 164,
+          "startColumn": 12,
+          "endRow": 164,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 14,
+        "progName": "BNK1DAC",
+        "ancestor": "",
+        "fullName": "BNK1DAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 24,
+      "iName": "BNK1DCM",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 69,
+          "startColumn": 8,
+          "endRow": 69,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 17,
+        "progName": "BNK1DCS",
+        "ancestor": "",
+        "fullName": "BNK1DCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 11,
+      "iName": "DFHAID",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 71,
+          "startColumn": 8,
+          "endRow": 71,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 17,
+        "progName": "BNK1DCS",
+        "ancestor": "",
+        "fullName": "BNK1DCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 25,
+      "iName": "INQCUSTZ",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 120,
+          "startColumn": 12,
+          "endRow": 120,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 17,
+        "progName": "BNK1DCS",
+        "ancestor": "",
+        "fullName": "BNK1DCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 26,
+      "iName": "DELCUS",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 123,
+          "startColumn": 12,
+          "endRow": 123,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 17,
+        "progName": "BNK1DCS",
+        "ancestor": "",
+        "fullName": "BNK1DCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 27,
+      "iName": "UPDCUST",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 126,
+          "startColumn": 12,
+          "endRow": 126,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 17,
+        "progName": "BNK1DCS",
+        "ancestor": "",
+        "fullName": "BNK1DCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 28,
+      "iName": "DFHBMSCA",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 159,
+          "startColumn": 8,
+          "endRow": 159,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 17,
+        "progName": "BNK1DCS",
+        "ancestor": "",
+        "fullName": "BNK1DCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 187,
+          "startColumn": 12,
+          "endRow": 187,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 17,
+        "progName": "BNK1DCS",
+        "ancestor": "",
+        "fullName": "BNK1DCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1DCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 30,
+      "iName": "BNK1TFM",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 68,
+          "startColumn": 8,
+          "endRow": 68,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1TFN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 21,
+        "progName": "BNK1TFN",
+        "ancestor": "",
+        "fullName": "BNK1TFN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1TFN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 11,
+      "iName": "DFHAID",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 70,
+          "startColumn": 8,
+          "endRow": 70,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1TFN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 21,
+        "progName": "BNK1TFN",
+        "ancestor": "",
+        "fullName": "BNK1TFN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1TFN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 163,
+          "startColumn": 12,
+          "endRow": 163,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1TFN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 21,
+        "progName": "BNK1TFN",
+        "ancestor": "",
+        "fullName": "BNK1TFN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1TFN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 32,
+      "iName": "BNK1UAM",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 66,
+          "startColumn": 8,
+          "endRow": 66,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1UAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 23,
+        "progName": "BNK1UAC",
+        "ancestor": "",
+        "fullName": "BNK1UAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1UAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 11,
+      "iName": "DFHAID",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 68,
+          "startColumn": 8,
+          "endRow": 68,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1UAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 23,
+        "progName": "BNK1UAC",
+        "ancestor": "",
+        "fullName": "BNK1UAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1UAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 175,
+          "startColumn": 12,
+          "endRow": 175,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1UAC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 23,
+        "progName": "BNK1UAC",
+        "ancestor": "",
+        "fullName": "BNK1UAC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNK1UAC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 34,
+      "iName": "BNK1MAI",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 68,
+          "startColumn": 8,
+          "endRow": 68,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNKMENU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 25,
+        "progName": "BNKMENU",
+        "ancestor": "",
+        "fullName": "BNKMENU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 18,
+          "startColumn": 20,
+          "endRow": 18,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNKMENU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 11,
+      "iName": "DFHAID",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 70,
+          "startColumn": 8,
+          "endRow": 70,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNKMENU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 25,
+        "progName": "BNKMENU",
+        "ancestor": "",
+        "fullName": "BNKMENU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 18,
+          "startColumn": 20,
+          "endRow": 18,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNKMENU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 99,
+          "startColumn": 12,
+          "endRow": 99,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNKMENU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 25,
+        "progName": "BNKMENU",
+        "ancestor": "",
+        "fullName": "BNKMENU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 18,
+          "startColumn": 20,
+          "endRow": 18,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BNKMENU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 41,
+          "startColumn": 8,
+          "endRow": 41,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY1.cbl"
+        }
+      },
+      "prog": {
+        "progId": 26,
+        "progName": "CRDTAGY1",
+        "ancestor": "",
+        "fullName": "CRDTAGY1",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY1.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 45,
+          "startColumn": 11,
+          "endRow": 45,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY1.cbl"
+        }
+      },
+      "prog": {
+        "progId": 26,
+        "progName": "CRDTAGY1",
+        "ancestor": "",
+        "fullName": "CRDTAGY1",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY1.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 93,
+          "startColumn": 12,
+          "endRow": 93,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY1.cbl"
+        }
+      },
+      "prog": {
+        "progId": 26,
+        "progName": "CRDTAGY1",
+        "ancestor": "",
+        "fullName": "CRDTAGY1",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY1.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 41,
+          "startColumn": 8,
+          "endRow": 41,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY2.cbl"
+        }
+      },
+      "prog": {
+        "progId": 27,
+        "progName": "CRDTAGY2",
+        "ancestor": "",
+        "fullName": "CRDTAGY2",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY2.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 45,
+          "startColumn": 11,
+          "endRow": 45,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY2.cbl"
+        }
+      },
+      "prog": {
+        "progId": 27,
+        "progName": "CRDTAGY2",
+        "ancestor": "",
+        "fullName": "CRDTAGY2",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY2.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 92,
+          "startColumn": 12,
+          "endRow": 92,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY2.cbl"
+        }
+      },
+      "prog": {
+        "progId": 27,
+        "progName": "CRDTAGY2",
+        "ancestor": "",
+        "fullName": "CRDTAGY2",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY2.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 41,
+          "startColumn": 8,
+          "endRow": 41,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY3.cbl"
+        }
+      },
+      "prog": {
+        "progId": 28,
+        "progName": "CRDTAGY3",
+        "ancestor": "",
+        "fullName": "CRDTAGY3",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY3.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 45,
+          "startColumn": 11,
+          "endRow": 45,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY3.cbl"
+        }
+      },
+      "prog": {
+        "progId": 28,
+        "progName": "CRDTAGY3",
+        "ancestor": "",
+        "fullName": "CRDTAGY3",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY3.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 92,
+          "startColumn": 12,
+          "endRow": 92,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY3.cbl"
+        }
+      },
+      "prog": {
+        "progId": 28,
+        "progName": "CRDTAGY3",
+        "ancestor": "",
+        "fullName": "CRDTAGY3",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY3.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 42,
+          "startColumn": 8,
+          "endRow": 42,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY4.cbl"
+        }
+      },
+      "prog": {
+        "progId": 29,
+        "progName": "CRDTAGY4",
+        "ancestor": "",
+        "fullName": "CRDTAGY4",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY4.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 46,
+          "startColumn": 11,
+          "endRow": 46,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY4.cbl"
+        }
+      },
+      "prog": {
+        "progId": 29,
+        "progName": "CRDTAGY4",
+        "ancestor": "",
+        "fullName": "CRDTAGY4",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY4.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 92,
+          "startColumn": 12,
+          "endRow": 92,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY4.cbl"
+        }
+      },
+      "prog": {
+        "progId": 29,
+        "progName": "CRDTAGY4",
+        "ancestor": "",
+        "fullName": "CRDTAGY4",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY4.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 41,
+          "startColumn": 8,
+          "endRow": 41,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY5.cbl"
+        }
+      },
+      "prog": {
+        "progId": 30,
+        "progName": "CRDTAGY5",
+        "ancestor": "",
+        "fullName": "CRDTAGY5",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY5.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 45,
+          "startColumn": 11,
+          "endRow": 45,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY5.cbl"
+        }
+      },
+      "prog": {
+        "progId": 30,
+        "progName": "CRDTAGY5",
+        "ancestor": "",
+        "fullName": "CRDTAGY5",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY5.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 91,
+          "startColumn": 12,
+          "endRow": 91,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY5.cbl"
+        }
+      },
+      "prog": {
+        "progId": 30,
+        "progName": "CRDTAGY5",
+        "ancestor": "",
+        "fullName": "CRDTAGY5",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRDTAGY5.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 42,
+          "startColumn": 8,
+          "endRow": 42,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 36,
+      "iName": "PROCTRAN",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 134,
+          "startColumn": 11,
+          "endRow": 134,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 37,
+      "iName": "ACCOUNT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 153,
+          "startColumn": 12,
+          "endRow": 153,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 156,
+          "startColumn": 12,
+          "endRow": 156,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 25,
+      "iName": "INQCUSTZ",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 272,
+          "startColumn": 11,
+          "endRow": 272,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 15,
+      "iName": "INQACCCU",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 275,
+          "startColumn": 12,
+          "endRow": 276,
+          "endColumn": 60,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 8,
+      "iName": "ACCTCTRL",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 281,
+          "startColumn": 11,
+          "endRow": 281,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 294,
+          "startColumn": 12,
+          "endRow": 294,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 38,
+      "iName": "CREACC",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 298,
+          "startColumn": 12,
+          "endRow": 298,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 55,
+          "startColumn": 8,
+          "endRow": 55,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 36,
+      "iName": "PROCTRAN",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 120,
+          "startColumn": 11,
+          "endRow": 120,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 139,
+          "startColumn": 12,
+          "endRow": 139,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 146,
+          "startColumn": 12,
+          "endRow": 146,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 39,
+      "iName": "CEEIGZCT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 351,
+          "startColumn": 12,
+          "endRow": 351,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 7,
+      "iName": "CUSTCTRL",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 393,
+          "startColumn": 12,
+          "endRow": 393,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 40,
+      "iName": "CRECUST",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 402,
+          "startColumn": 12,
+          "endRow": 402,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 48,
+          "startColumn": 8,
+          "endRow": 48,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 37,
+      "iName": "ACCOUNT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 119,
+          "startColumn": 11,
+          "endRow": 119,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 36,
+      "iName": "PROCTRAN",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 150,
+          "startColumn": 11,
+          "endRow": 150,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 188,
+          "startColumn": 12,
+          "endRow": 188,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 42,
+      "iName": "PAYDBCR",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 195,
+          "startColumn": 11,
+          "endRow": 195,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 41,
+          "startColumn": 8,
+          "endRow": 41,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 37,
+      "iName": "ACCOUNT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 105,
+          "startColumn": 12,
+          "endRow": 105,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 36,
+      "iName": "PROCTRAN",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 108,
+          "startColumn": 11,
+          "endRow": 108,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 8,
+      "iName": "ACCTCTRL",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 184,
+          "startColumn": 12,
+          "endRow": 184,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 196,
+          "startColumn": 12,
+          "endRow": 196,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 43,
+      "iName": "DELACC",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 200,
+          "startColumn": 8,
+          "endRow": 200,
+          "endColumn": 61,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 44,
+          "startColumn": 8,
+          "endRow": 44,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 37,
+      "iName": "ACCOUNT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 109,
+          "startColumn": 12,
+          "endRow": 109,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 112,
+          "startColumn": 12,
+          "endRow": 112,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 36,
+      "iName": "PROCTRAN",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 115,
+          "startColumn": 12,
+          "endRow": 115,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 15,
+      "iName": "INQACCCU",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 253,
+          "startColumn": 11,
+          "endRow": 253,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 25,
+      "iName": "INQCUSTZ",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 258,
+          "startColumn": 11,
+          "endRow": 258,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 270,
+          "startColumn": 12,
+          "endRow": 270,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 26,
+      "iName": "DELCUS",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 274,
+          "startColumn": 12,
+          "endRow": 274,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 44,
+      "iName": "GETCOMPY",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 31,
+          "startColumn": 12,
+          "endRow": 31,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/GETCOMPY.cbl"
+        }
+      },
+      "prog": {
+        "progId": 35,
+        "progName": "GETCOMPY",
+        "ancestor": "",
+        "fullName": "GETCOMPY",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 9,
+          "startColumn": 20,
+          "endRow": 9,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/GETCOMPY.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 28,
+          "startColumn": 8,
+          "endRow": 28,
+          "endColumn": 69,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/GETSCODE.cbl"
+        }
+      },
+      "prog": {
+        "progId": 36,
+        "progName": "GETSCODE",
+        "ancestor": "",
+        "fullName": "GETSCODE",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 8,
+          "startColumn": 20,
+          "endRow": 8,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/GETSCODE.cbl"
+        }
+      }
+    },
+    {
+      "iId": 45,
+      "iName": "GETSCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 33,
+          "startColumn": 12,
+          "endRow": 33,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/GETSCODE.cbl"
+        }
+      },
+      "prog": {
+        "progId": 36,
+        "progName": "GETSCODE",
+        "ancestor": "",
+        "fullName": "GETSCODE",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 8,
+          "startColumn": 20,
+          "endRow": 8,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/GETSCODE.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 37,
+          "startColumn": 8,
+          "endRow": 37,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 37,
+      "iName": "ACCOUNT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 94,
+          "startColumn": 12,
+          "endRow": 94,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 196,
+          "startColumn": 12,
+          "endRow": 196,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 22,
+      "iName": "INQACC",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 199,
+          "startColumn": 8,
+          "endRow": 199,
+          "endColumn": 61,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 33,
+          "startColumn": 8,
+          "endRow": 33,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 37,
+      "iName": "ACCOUNT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 104,
+          "startColumn": 12,
+          "endRow": 104,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 155,
+          "startColumn": 8,
+          "endRow": 155,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 25,
+      "iName": "INQCUSTZ",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 158,
+          "startColumn": 11,
+          "endRow": 158,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 187,
+          "startColumn": 12,
+          "endRow": 187,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 15,
+      "iName": "INQACCCU",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 191,
+          "startColumn": 11,
+          "endRow": 191,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 31,
+          "startColumn": 8,
+          "endRow": 31,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 37,
+        "progName": "INQACCS",
+        "ancestor": "",
+        "fullName": "INQACCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 130,
+          "startColumn": 12,
+          "endRow": 130,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 37,
+        "progName": "INQACCS",
+        "ancestor": "",
+        "fullName": "INQACCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 46,
+      "iName": "INQACCS",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 134,
+          "startColumn": 11,
+          "endRow": 134,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 37,
+        "progName": "INQACCS",
+        "ancestor": "",
+        "fullName": "INQACCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 80,
+          "startColumn": 8,
+          "endRow": 80,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 18,
+        "progName": "INQCUST",
+        "ancestor": "",
+        "fullName": "INQCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 85,
+          "startColumn": 12,
+          "endRow": 85,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 18,
+        "progName": "INQCUST",
+        "ancestor": "",
+        "fullName": "INQCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 188,
+          "startColumn": 12,
+          "endRow": 188,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 18,
+        "progName": "INQCUST",
+        "ancestor": "",
+        "fullName": "INQCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 25,
+      "iName": "INQCUSTZ",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 193,
+          "startColumn": 12,
+          "endRow": 193,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 18,
+        "progName": "INQCUST",
+        "ancestor": "",
+        "fullName": "INQCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 39,
+          "startColumn": 8,
+          "endRow": 39,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      },
+      "prog": {
+        "progId": 38,
+        "progName": "INQTRAND",
+        "ancestor": "",
+        "fullName": "INQTRAND",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 93,
+          "startColumn": 12,
+          "endRow": 93,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      },
+      "prog": {
+        "progId": 38,
+        "progName": "INQTRAND",
+        "ancestor": "",
+        "fullName": "INQTRAND",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      }
+    },
+    {
+      "iId": 47,
+      "iName": "INQTRAND",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 139,
+          "startColumn": 8,
+          "endRow": 139,
+          "endColumn": 65,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      },
+      "prog": {
+        "progId": 38,
+        "progName": "INQTRAND",
+        "ancestor": "",
+        "fullName": "INQTRAND",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 40,
+          "startColumn": 8,
+          "endRow": 40,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 120,
+          "startColumn": 12,
+          "endRow": 120,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "iId": 48,
+      "iName": "INQTRANL",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 170,
+          "startColumn": 8,
+          "endRow": 170,
+          "endColumn": 65,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 49,
+          "startColumn": 8,
+          "endRow": 49,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 24,
+        "progName": "UPDACC",
+        "ancestor": "",
+        "fullName": "UPDACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 35,
+          "startColumn": 20,
+          "endRow": 35,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 37,
+      "iName": "ACCOUNT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 100,
+          "startColumn": 11,
+          "endRow": 100,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 24,
+        "progName": "UPDACC",
+        "ancestor": "",
+        "fullName": "UPDACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 35,
+          "startColumn": 20,
+          "endRow": 35,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 151,
+          "startColumn": 12,
+          "endRow": 151,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 24,
+        "progName": "UPDACC",
+        "ancestor": "",
+        "fullName": "UPDACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 35,
+          "startColumn": 20,
+          "endRow": 35,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 49,
+      "iName": "UPDACC",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 155,
+          "startColumn": 12,
+          "endRow": 155,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 24,
+        "progName": "UPDACC",
+        "ancestor": "",
+        "fullName": "UPDACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 35,
+          "startColumn": 20,
+          "endRow": 35,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 44,
+          "startColumn": 8,
+          "endRow": 44,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 20,
+        "progName": "UPDCUST",
+        "ancestor": "",
+        "fullName": "UPDCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 3,
+      "iName": "CUSTOMER",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 98,
+          "startColumn": 11,
+          "endRow": 98,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 20,
+        "progName": "UPDCUST",
+        "ancestor": "",
+        "fullName": "UPDCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 163,
+          "startColumn": 12,
+          "endRow": 163,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 20,
+        "progName": "UPDCUST",
+        "ancestor": "",
+        "fullName": "UPDCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 27,
+      "iName": "UPDCUST",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 167,
+          "startColumn": 12,
+          "endRow": 167,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 20,
+        "progName": "UPDCUST",
+        "ancestor": "",
+        "fullName": "UPDCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 6,
+      "iName": "SORTCODE",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 56,
+          "startColumn": 8,
+          "endRow": 56,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 37,
+      "iName": "ACCOUNT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 125,
+          "startColumn": 11,
+          "endRow": 125,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 37,
+      "iName": "ACCOUNT",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 128,
+          "startColumn": 11,
+          "endRow": 128,
+          "endColumn": 58,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 36,
+      "iName": "PROCTRAN",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 175,
+          "startColumn": 11,
+          "endRow": 175,
+          "endColumn": 25,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 1,
+      "iName": "ABNDINFO",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 260,
+          "startColumn": 12,
+          "endRow": 260,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 51,
+      "iName": "XFRFUN",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 265,
+          "startColumn": 12,
+          "endRow": 265,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 56,
+      "iName": "JNI",
+      "usage": {
+        "type": "COBOL: COPY",
+        "read": true,
+        "location": {
+          "startRow": 208,
+          "startColumn": 8,
+          "endRow": 208,
+          "endColumn": 17,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/IBTRAN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 45,
+        "progName": "IBTRAN",
+        "ancestor": "",
+        "fullName": "IBTRAN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 3,
+          "startColumn": 20,
+          "endRow": 3,
+          "endColumn": 30,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/IBTRAN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 2,
+      "iName": "CUSTDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 52,
+          "startColumn": 12,
+          "endRow": 54,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 4,
+      "iName": "ACCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 81,
+          "startColumn": 12,
+          "endRow": 83,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 148,
+          "startColumn": 12,
+          "endRow": 150,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 9,
+      "iName": "CONTDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 380,
+          "startColumn": 12,
+          "endRow": 382,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "iId": 4,
+      "iName": "ACCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 49,
+          "startColumn": 12,
+          "endRow": 51,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 35,
+      "iName": "PROCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 105,
+          "startColumn": 12,
+          "endRow": 107,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 129,
+          "startColumn": 12,
+          "endRow": 131,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 2,
+      "iName": "CUSTDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 62,
+          "startColumn": 12,
+          "endRow": 64,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 35,
+      "iName": "PROCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 87,
+          "startColumn": 12,
+          "endRow": 89,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 9,
+      "iName": "CONTDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 104,
+          "startColumn": 12,
+          "endRow": 106,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 115,
+          "startColumn": 12,
+          "endRow": 117,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 4,
+      "iName": "ACCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 55,
+          "startColumn": 12,
+          "endRow": 57,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 35,
+      "iName": "PROCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 76,
+          "startColumn": 11,
+          "endRow": 78,
+          "endColumn": 19,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 93,
+          "startColumn": 9,
+          "endRow": 95,
+          "endColumn": 17,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 4,
+      "iName": "ACCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 50,
+          "startColumn": 12,
+          "endRow": 52,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 35,
+      "iName": "PROCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 70,
+          "startColumn": 12,
+          "endRow": 72,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 87,
+          "startColumn": 12,
+          "endRow": 89,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 2,
+      "iName": "CUSTDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 53,
+          "startColumn": 12,
+          "endRow": 55,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 35,
+      "iName": "PROCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 78,
+          "startColumn": 12,
+          "endRow": 80,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 95,
+          "startColumn": 12,
+          "endRow": 97,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 4,
+      "iName": "ACCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 41,
+          "startColumn": 12,
+          "endRow": 43,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 61,
+          "startColumn": 9,
+          "endRow": 63,
+          "endColumn": 17,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 4,
+      "iName": "ACCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 40,
+          "startColumn": 12,
+          "endRow": 42,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 68,
+          "startColumn": 9,
+          "endRow": 70,
+          "endColumn": 17,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "iId": 4,
+      "iName": "ACCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 37,
+          "startColumn": 12,
+          "endRow": 39,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 37,
+        "progName": "INQACCS",
+        "ancestor": "",
+        "fullName": "INQACCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 65,
+          "startColumn": 9,
+          "endRow": 67,
+          "endColumn": 17,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 37,
+        "progName": "INQACCS",
+        "ancestor": "",
+        "fullName": "INQACCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      }
+    },
+    {
+      "iId": 2,
+      "iName": "CUSTDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 43,
+          "startColumn": 11,
+          "endRow": 45,
+          "endColumn": 19,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 18,
+        "progName": "INQCUST",
+        "ancestor": "",
+        "fullName": "INQCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 68,
+          "startColumn": 8,
+          "endRow": 70,
+          "endColumn": 16,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 18,
+        "progName": "INQCUST",
+        "ancestor": "",
+        "fullName": "INQCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 35,
+      "iName": "PROCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 42,
+          "startColumn": 12,
+          "endRow": 44,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      },
+      "prog": {
+        "progId": 38,
+        "progName": "INQTRAND",
+        "ancestor": "",
+        "fullName": "INQTRAND",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 59,
+          "startColumn": 12,
+          "endRow": 61,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      },
+      "prog": {
+        "progId": 38,
+        "progName": "INQTRAND",
+        "ancestor": "",
+        "fullName": "INQTRAND",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      }
+    },
+    {
+      "iId": 35,
+      "iName": "PROCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 43,
+          "startColumn": 12,
+          "endRow": 45,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 68,
+          "startColumn": 12,
+          "endRow": 70,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "iId": 4,
+      "iName": "ACCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 56,
+          "startColumn": 12,
+          "endRow": 58,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 24,
+        "progName": "UPDACC",
+        "ancestor": "",
+        "fullName": "UPDACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 35,
+          "startColumn": 20,
+          "endRow": 35,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 78,
+          "startColumn": 9,
+          "endRow": 80,
+          "endColumn": 17,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 24,
+        "progName": "UPDACC",
+        "ancestor": "",
+        "fullName": "UPDACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 35,
+          "startColumn": 20,
+          "endRow": 35,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      }
+    },
+    {
+      "iId": 2,
+      "iName": "CUSTDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 51,
+          "startColumn": 11,
+          "endRow": 53,
+          "endColumn": 19,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 20,
+        "progName": "UPDCUST",
+        "ancestor": "",
+        "fullName": "UPDCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 76,
+          "startColumn": 8,
+          "endRow": 78,
+          "endColumn": 16,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 20,
+        "progName": "UPDCUST",
+        "ancestor": "",
+        "fullName": "UPDCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      }
+    },
+    {
+      "iId": 4,
+      "iName": "ACCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 60,
+          "startColumn": 12,
+          "endRow": 62,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 35,
+      "iName": "PROCDB2",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 81,
+          "startColumn": 11,
+          "endRow": 83,
+          "endColumn": 19,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 5,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 98,
+          "startColumn": 9,
+          "endRow": 100,
+          "endColumn": 17,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 50,
+      "iName": "SQLDA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 202,
+          "startColumn": 8,
+          "endRow": 202,
+          "endColumn": 39,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "iId": 58,
+      "iName": "SQLCA",
+      "usage": {
+        "type": "SQL: INCLUDE",
+        "read": true,
+        "location": {
+          "startRow": 32,
+          "startColumn": 3,
+          "endRow": 32,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    }
+  ]
+}

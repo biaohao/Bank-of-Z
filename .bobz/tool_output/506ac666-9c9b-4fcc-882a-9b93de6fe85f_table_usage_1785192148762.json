@@ -1,0 +1,631 @@
+{
+  "resourceType": "table",
+  "filters": {
+    "program": "all",
+    "resource": "STTESTER.CONTROL",
+    "statement": "all"
+  },
+  "totalResults": 20,
+  "results": [
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1657,
+          "startColumn": 12,
+          "endRow": 1665,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 808,
+          "startColumn": 12,
+          "endRow": 812,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: DELETE",
+        "read": true,
+        "location": {
+          "startRow": 1534,
+          "startColumn": 12,
+          "endRow": 1536,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1717,
+          "startColumn": 12,
+          "endRow": 1725,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 777,
+          "startColumn": 14,
+          "endRow": 781,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 772,
+          "startColumn": 15,
+          "endRow": 780,
+          "endColumn": 23,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 495,
+          "startColumn": 12,
+          "endRow": 504,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 686,
+          "startColumn": 12,
+          "endRow": 695,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 1524,
+          "startColumn": 12,
+          "endRow": 1528,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1677,
+          "startColumn": 12,
+          "endRow": 1685,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1737,
+          "startColumn": 12,
+          "endRow": 1745,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 760,
+          "startColumn": 12,
+          "endRow": 764,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1767,
+          "startColumn": 12,
+          "endRow": 1775,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 835,
+          "startColumn": 12,
+          "endRow": 839,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: DECLARE_TABLE",
+        "read": true,
+        "location": {
+          "startRow": 7,
+          "startColumn": 12,
+          "endRow": 11,
+          "endColumn": 12,
+          "path": "/bobz-understand/projects/BankofZ/Cobol Include/CONTDB2.cpy"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1697,
+          "startColumn": 12,
+          "endRow": 1705,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 593,
+          "startColumn": 14,
+          "endRow": 597,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1793,
+          "startColumn": 12,
+          "endRow": 1801,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 1496,
+          "startColumn": 12,
+          "endRow": 1501,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1630,
+          "startColumn": 12,
+          "endRow": 1638,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    }
+  ]
+}

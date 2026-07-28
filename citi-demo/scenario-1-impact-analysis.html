@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Scenario 1 — Impact Analysis: Add Email Field to Customer Data Model</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; font-size: 14px; line-height: 1.65; color: #1f2328; background: #fff; padding: 32px 16px 48px; }
+  .page { max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  h2 { font-size: 16px; font-weight: 700; margin: 28px 0 10px; color: #1f2328; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; }
+  h3 { font-size: 14px; font-weight: 700; margin: 16px 0 6px; color: #1f2328; }
+  .subtitle { font-size: 13px; color: #57606a; margin-bottom: 24px; }
+  p { margin-bottom: 8px; }
+  ul, ol { padding-left: 20px; margin-bottom: 8px; }
+  li { margin-bottom: 4px; }
+  .prompt-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 14px 18px; margin-bottom: 24px; }
+  .prompt-box .label { font-size: 11px; font-weight: 700; color: #15803d; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .prompt-box p { font-style: italic; font-size: 14.5px; margin: 0; }
+  .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
+  .stat-card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px 10px; text-align: center; }
+  .stat-card .num { font-size: 22px; font-weight: 700; color: #3b82d4; display: block; }
+  .stat-card .lbl { font-size: 11px; color: #57606a; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+  th { background: #f7f8fa; border-bottom: 2px solid #e5e7eb; text-align: left; padding: 7px 10px; font-weight: 600; color: #57606a; font-size: 12px; }
+  td { border-bottom: 1px solid #f0f0f0; padding: 7px 10px; vertical-align: top; }
+  tr:hover td { background: #fafafa; }
+  code { font-family: "SF Mono","Fira Code",Menlo,monospace; background: #f0f4f8; border-radius: 3px; padding: 1px 5px; font-size: 12px; }
+  pre { background: #f6f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px 16px; font-size: 12px; overflow-x: auto; margin-bottom: 12px; font-family: "SF Mono","Fira Code",Menlo,monospace; line-height: 1.7; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .badge-red    { background: #fee2e2; color: #991b1b; }
+  .badge-orange { background: #fef3c7; color: #92400e; }
+  .badge-blue   { background: #dbeafe; color: #1e40af; }
+  .badge-gray   { background: #f3f4f6; color: #374151; }
+  .callout { border-radius: 6px; padding: 12px 16px; font-size: 13px; margin-bottom: 12px; }
+  .callout-blue  { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .callout-amber { background: #fffbeb; border: 1px solid #fde68a; }
+  .section { margin-bottom: 36px; }
+  .checklist td:first-child { width: 30px; font-family: monospace; color: #6b7280; }
+  .checklist td:nth-child(2) { width: 28px; font-weight: 700; color: #374151; font-size: 12px; }
+  td.needs-change { color: #991b1b; font-weight: 600; }
+  td.no-change    { color: #6b7280; }
+  td.recompile    { color: #92400e; font-weight: 600; }
+  hr { border: none; border-top: 1px solid #e5e7eb; margin: 32px 0; }
+  footer { text-align: center; font-size: 12px; color: #57606a; padding-top: 16px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Scenario 1 — Impact Analysis</h1>
+  <div class="subtitle">Add Email Address Field to Customer Data Model &middot; Bank of Z &middot; Real codebase analysis</div>
+
+  <div class="prompt-box">
+    <div class="label">Question</div>
+    <p>"I need to add an email address field to the customer data model. What is the full impact across the Bank of Z application?"</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><span class="num">5</span><span class="lbl">Copybooks to update</span></div>
+    <div class="stat-card"><span class="num">16</span><span class="lbl">COBOL programs affected</span></div>
+    <div class="stat-card"><span class="num">2</span><span class="lbl">BMS screens to update</span></div>
+    <div class="stat-card"><span class="num">5</span><span class="lbl">API YAML files to update</span></div>
+    <div class="stat-card"><span class="num">31</span><span class="lbl">Total files affected</span></div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <h2>Summary of Findings</h2>
+    <div class="callout callout-blue" style="margin-bottom:12px">
+      <strong>Scope:</strong> Adding <code>CUSTOMER-EMAIL PIC X(100)</code> touches <strong>31 files across 7 architectural layers</strong> &mdash; 5 copybooks, 13 CICS COBOL programs, 3 IMS COBOL programs, 2 BMS screens, 1 Db2 DDL file, 5 z/OS Connect YAML files, and 1 batch JCL for review.
+    </div>
+    <div class="callout callout-blue" style="margin-bottom:12px">
+      <strong>The change starts in the copybooks, not the programs.</strong> Five shared copybooks (<code>CUSTOMER.cpy</code>, <code>CUSTDB2.cpy</code>, <code>CRECUST.cpy</code>, <code>UPDCUST.cpy</code>, <code>INQCUSTZ.cpy</code>) must be updated first. Every COBOL program inherits the new field automatically via <code>COPY</code>, but the 100-byte record length increase means <em>all consumers must be recompiled</em> &mdash; even those that never touch the email field.
+    </div>
+    <div class="callout callout-amber" style="margin-bottom:12px">
+      <strong>The non-obvious risk &mdash; the 5 credit agency programs:</strong> <code>CRDTAGY1.cbl</code> through <code>CRDTAGY5.cbl</code> each COPY <code>CUSTOMER.cpy</code> but only read the credit score fields. They never use email. A keyword search for "email" would never find them. Yet they must all be recompiled, because the copybook record length has changed. A stale load module operating against an updated copybook produces a COMMAREA length mismatch at runtime &mdash; one that surfaces only when an async credit check fires during customer creation.
+    </div>
+    <div class="callout callout-amber" style="margin-bottom:12px">
+      <strong>The Db2 host variable alignment rule:</strong> <code>CUSTDB2.cpy</code> declares Db2 host variables whose column order and length must exactly match the DDL in <code>.setup/jcl/cics/Db2-create.jcl</code>. Both must change together. Getting the order wrong causes a silent data corruption or a runtime SQL error that only appears in production.
+    </div>
+    <div class="callout callout-amber" style="margin-bottom:12px">
+      <strong>The IMS path is separate:</strong> The IMS programs (<code>IBGCUDAT.cbl</code>, <code>IBSCUDAT.cbl</code>, <code>LOADCUST.cbl</code>) define their own customer segment structure inline &mdash; they do not share the CICS copybooks. They must be updated independently. The IMS phone field is <code>PIC X(12)</code>, shorter than the CICS <code>PIC X(20)</code>; a consistent email field size must be decided before implementation.
+    </div>
+    <div class="callout callout-blue" style="margin-bottom:12px">
+      <strong>The z/OS Connect response mapping requires a manual step:</strong> The API schema JSON files auto-regenerate from the updated copybooks, but the <code>response_200.yaml</code> template mapping (which maps COMMAREA fields to JSON field names) is a separate file that must be edited by hand. It will not update itself.
+    </div>
+    <div class="callout callout-blue">
+      <strong>Ordering matters:</strong> The Db2 schema change must be applied before any updated program is deployed. Copybooks must be updated before programs are compiled. BMS maps must be assembled before <code>CUSTMAP.cpy</code> is regenerated. The 23-step checklist at the bottom of this document captures the safe deployment order.
+    </div>
+  </div>
+
+
+
+  <div class="section">
+    <h2>Layer 1 &mdash; Copybooks <span class="badge badge-red" style="margin-left:8px">Change first &mdash; everything depends on these</span></h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:12px">These five copybooks define the shared data structures that all COBOL programs inherit via COPY. They must be updated before any program changes. The new field follows the existing phone field in each one.</p>
+    <table>
+      <thead><tr><th>File</th><th>Insert after</th><th>Field to add</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>src/base/cics/copy/CUSTOMER.cpy</code></td>
+          <td>Line 21 &mdash; <code>CUSTOMER-PHONE PIC X(20)</code></td>
+          <td><code>CUSTOMER-EMAIL PIC X(100)</code></td>
+          <td>Master customer record layout. Every program that COPYs this picks up the new field; the record length increases by 100 bytes, requiring a recompile of all consumers.</td>
+        </tr>
+        <tr>
+          <td><code>src/base/cics/copy/CUSTDB2.cpy</code></td>
+          <td>Line 16 &mdash; <code>CUSTOMER_PHONE CHAR(20)</code></td>
+          <td><code>CUSTOMER_EMAIL CHAR(100)</code></td>
+          <td>Db2 host variable declarations. Column order and length must exactly match the DDL &mdash; a mismatch silently corrupts data or causes a runtime SQL error.</td>
+        </tr>
+        <tr>
+          <td><code>src/base/cics/copy/CRECUST.cpy</code></td>
+          <td>Line 19 &mdash; <code>COMM-PHONE PIC X(20)</code></td>
+          <td><code>COMM-EMAIL PIC X(100)</code></td>
+          <td>COMMAREA for Create Customer &mdash; the API request payload boundary between the REST caller and the COBOL program.</td>
+        </tr>
+        <tr>
+          <td><code>src/base/cics/copy/UPDCUST.cpy</code></td>
+          <td>Line 18 &mdash; <code>COMM-PHONE PIC X(20)</code></td>
+          <td><code>COMM-EMAIL PIC X(100)</code></td>
+          <td>COMMAREA for Update Customer. Any caller passing the old COMMAREA length after this change will trigger a CICS length mismatch abend.</td>
+        </tr>
+        <tr>
+          <td><code>src/base/cics/copy/INQCUSTZ.cpy</code></td>
+          <td>Line 17 &mdash; <code>INQCUST-PHONE PIC X(20)</code></td>
+          <td><code>INQCUST-EMAIL PIC X(100)</code></td>
+          <td>Response structure for Inquiry Customer. Used by the CICS path, the IMS path, and the z/OS Connect GET API &mdash; all three consumers see this structure.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout callout-amber">
+      <strong>Note on CUSTMAP.cpy</strong> (<code>src/base/cics/copy/CUSTMAP.cpy</code>) &mdash; this copybook is auto-generated from the BMS map source. Do not edit it by hand; it regenerates when the BMS maps are assembled in Layer 5.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Layer 2 &mdash; Db2 DDL <span class="badge badge-red" style="margin-left:8px">Deploy to database before programs</span></h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:12px">The schema change must land in Db2 before any updated program is deployed. The current <code>CREATE TABLE BANKZ.CUSTOMER</code> in <code>.setup/jcl/cics/Db2-create.jcl</code> defines 17 columns across lines 85&ndash;103; email becomes the 18th.</p>
+    <table>
+      <thead><tr><th>File</th><th>Location</th><th>Change</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>.setup/jcl/cics/Db2-create.jcl</code></td>
+          <td>Line 93 &mdash; after <code>CUSTOMER_PHONE CHAR(20)</code></td>
+          <td>Add: <code>CUSTOMER_EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHAR(100),</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout callout-amber">
+      <strong>Existing environment:</strong> If the CUSTOMER table already exists, run:<br>
+      <pre style="margin-top:8px">ALTER TABLE BANKZ.CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(100);</pre>
+      The IMS <code>.setup/jcl/ims/Db2-create.jcl</code> creates only the HISTORY table &mdash; no change needed there.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Layer 3 &mdash; CICS COBOL Programs <span class="badge badge-orange" style="margin-left:8px">13 programs</span></h2>
+
+    <h3>Programs with active logic &mdash; code changes required</h3>
+    <table>
+      <thead><tr><th>Program</th><th>COPY statements (line #)</th><th>Required change</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>CRECUST.cbl</code></td>
+          <td>COPY CUSTOMER (146)<br>COPY CRECUST (402)</td>
+          <td class="needs-change">Move COMM-EMAIL from COMMAREA to CUSTOMER-EMAIL host variable; include in the Db2 INSERT statement.</td>
+        </tr>
+        <tr>
+          <td><code>UPDCUST.cbl</code></td>
+          <td>COPY CUSTOMER (98)<br>COPY UPDCUST (167)</td>
+          <td class="needs-change">Accept COMM-EMAIL from COMMAREA; add to Db2 UPDATE SET clause.</td>
+        </tr>
+        <tr>
+          <td><code>INQCUST.cbl</code></td>
+          <td>COPY CUSTOMER (85)<br>COPY INQCUSTZ (193)</td>
+          <td class="needs-change">Add CUSTOMER_EMAIL to the SELECT column list; move result to INQCUST-EMAIL in the response COMMAREA.</td>
+        </tr>
+        <tr>
+          <td><code>BANKDATA.cbl</code></td>
+          <td>COPY CUSTOMER (78)</td>
+          <td class="needs-change">Batch data initialiser &mdash; every INSERT INTO BANKZ.CUSTOMER must include the new column (spaces or default value acceptable).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Programs that COPY the changed copybooks but do not use email &mdash; recompile only</h3>
+    <p style="color:#57606a;font-size:13px;margin-bottom:8px">The copybook record length increases by 100 bytes. These programs must be recompiled even though they pass the customer record through unchanged. A stale load module operating against an updated copybook will produce a COMMAREA length mismatch abend at runtime.</p>
+    <table>
+      <thead><tr><th>Program</th><th>COPY statements (line #)</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><code>DELCUS.cbl</code></td><td>COPY CUSTOMER (112), COPY INQCUSTZ (258)</td><td class="recompile">Recompile &mdash; reads customer record before delete; INQCUSTZ response length changes</td></tr>
+        <tr><td><code>CREACC.cbl</code></td><td>COPY CUSTOMER (156), COPY INQCUSTZ (272)</td><td class="recompile">Recompile &mdash; verifies customer exists before creating account</td></tr>
+        <tr><td><code>INQACCCU.cbl</code></td><td>COPY CUSTOMER (155), COPY INQCUSTZ (158)</td><td class="recompile">Recompile &mdash; account inquiry by customer; passes INQCUSTZ COMMAREA</td></tr>
+        <tr><td><code>BNK1DCS.cbl</code></td><td>COPY INQCUSTZ (120), COPY UPDCUST (126)</td><td class="recompile">Recompile &mdash; display/update screen handler; both COMMAREAs change length</td></tr>
+        <tr><td><code>CRDTAGY1.cbl</code></td><td>COPY CUSTOMER (45)</td><td class="recompile">Recompile &mdash; async credit agency call; only reads credit score fields but record length changes</td></tr>
+        <tr><td><code>CRDTAGY2.cbl</code></td><td>COPY CUSTOMER (45)</td><td class="recompile">Recompile &mdash; same as CRDTAGY1</td></tr>
+        <tr><td><code>CRDTAGY3.cbl</code></td><td>COPY CUSTOMER (45)</td><td class="recompile">Recompile &mdash; same as CRDTAGY1</td></tr>
+        <tr><td><code>CRDTAGY4.cbl</code></td><td>COPY CUSTOMER (46)</td><td class="recompile">Recompile &mdash; same as CRDTAGY1</td></tr>
+        <tr><td><code>CRDTAGY5.cbl</code></td><td>COPY CUSTOMER (45)</td><td class="recompile">Recompile &mdash; same as CRDTAGY1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Layer 4 &mdash; IMS COBOL Programs <span class="badge badge-orange" style="margin-left:8px">3 programs</span></h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:12px">The IMS path defines its own customer segment structure (<code>CUSTOMER-SEG</code>) inline in each program &mdash; it does not use the shared CICS copybooks. Each program has a phone field (<code>PIC X(12)</code>); email must be added after it in every relevant structure.</p>
+    <table>
+      <thead><tr><th>Program</th><th>Structures to update</th><th>Phone field location</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>src/base/ims/cobol/IBGCUDAT.cbl</code><br><small>Get Customer Data</small></td>
+          <td>CUSTOMER-SEG (lines 62&ndash;74)<br>OUTPUT-AREA (lines 90&ndash;96)</td>
+          <td>PHONE-CD PIC X(12) at line 70<br>PHONE-OUT PIC X(12) at line 96</td>
+        </tr>
+        <tr>
+          <td><code>src/base/ims/cobol/IBSCUDAT.cbl</code><br><small>Set Customer Data</small></td>
+          <td>CUSTOMER-SEG (lines 66&ndash;79)<br>INPUT-AREA.CUSTOMER-IN (lines 88&ndash;96)</td>
+          <td>PHONE-CD PIC X(12) at line 74<br>PHONE-IN PIC X(12) at line 96</td>
+        </tr>
+        <tr>
+          <td><code>src/base/ims/cobol/LOADCUST.cbl</code><br><small>Batch customer loader</small></td>
+          <td>CUSTOMER-SEG (lines 64&ndash;76)<br>Text input fields (lines 78&ndash;89)</td>
+          <td>PHONE PIC X(12) at line 72<br>TXT-PHONE PIC X(12) at line 85</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout callout-blue">
+      The IMS customer segment uses PIC X(12) for phone, shorter than the CICS side's PIC X(20). Decide on a consistent email field size before implementation &mdash; PIC X(100) is recommended to match the CICS convention and accommodate most email addresses.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Layer 5 &mdash; BMS Maps / CICS Screens <span class="badge badge-orange" style="margin-left:8px">2 of 10 screens</span></h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:12px">Ten BMS map files exist in <code>src/base/cics/bms/</code>. Two contain customer-facing data entry or display fields that need an email addition. The remaining eight are account-focused, menu, or transfer screens with no customer fields.</p>
+    <table>
+      <thead><tr><th>BMS File</th><th>Screen purpose</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>src/base/cics/bms/BNK1CCM.bms</code></td>
+          <td>Create Customer input screen (~140 lines). Current fields: CUSTTIT, CHRISTN, CUSTSN, CUSTAD1/2, CITY, POSTCODE, COUNTRY, DOBDD/MM/YY, CREDSC.</td>
+          <td class="needs-change">Add EMAIL input field after COUNTRY (~line 108). Attributes: ATTRB=(UNPROT,NORM), LENGTH=100, PICIN=X(100). Add a label field alongside it.</td>
+        </tr>
+        <tr>
+          <td><code>src/base/cics/bms/BNK1DCM.bms</code></td>
+          <td>Display Customer screen (~135 lines). Current fields: CUSTNO, SORTC, CUSTTITL, CUSTFNAM, CUSTLNAM, CUSTAD1/2, CUSTCITY, CUSTPOST, CUSTCTRY, DOBDD/MM/YY, CREDSC, SCRDTDD/MM/YY.</td>
+          <td class="needs-change">Add read-only EMAIL display field after CUSTCTRY (~line 120). Attributes: ATTRB=(PROT,NORM).</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="color:#57606a;font-size:13px">Screens with no changes required: BNK1ACC, BNK1CAM, BNK1CDM, BNK1DAM, BNK1MAI, BNK1TFM, BNK1UAM, BNK1B2M.</p>
+  </div>
+
+  <div class="section">
+    <h2>Layer 6 &mdash; z/OS Connect API Mappings <span class="badge badge-blue" style="margin-left:8px">5 YAML files</span></h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:12px">The z/OS Connect layer maps between the REST API JSON body and the COBOL COMMAREA fields. These YAML files must be updated to route the email field through the API. The <code>response_mapping.yaml</code> files (routing logic only) require no changes.</p>
+
+    <h3>Request mappings &mdash; where email comes in</h3>
+    <table>
+      <thead><tr><th>File</th><th>Insert after</th><th>Mapping to add</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>src/api/src/main/operations/%2Fcustomers/post/request.yaml</code></td>
+          <td>COMM-PHONE mapping (lines 48&ndash;51)</td>
+          <td>Map JSON field <code>email</code> to COMMAREA field <code>COMM-EMAIL</code></td>
+        </tr>
+        <tr>
+          <td><code>src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/put/request.yaml</code></td>
+          <td>COMM-PHONE mapping (lines 46&ndash;49)</td>
+          <td>Map JSON field <code>email</code> to COMMAREA field <code>COMM-EMAIL</code></td>
+        </tr>
+        <tr>
+          <td><code>src/api/src/main/operations/%2Fims%2Fcustomers%2F%7BcustomerId%7D/put/request.yaml</code></td>
+          <td>PHONE-IN mapping (lines 46&ndash;49)</td>
+          <td>Map JSON field <code>email</code> to IMS field <code>EMAIL-IN</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Response mappings &mdash; where email comes out</h3>
+    <table>
+      <thead><tr><th>File</th><th>Insert after</th><th>Mapping to add</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/get/response_200.yaml</code></td>
+          <td>phoneNumber mapping (lines 32&ndash;35)</td>
+          <td>Map COMMAREA field <code>INQCUST-EMAIL</code> to JSON field <code>email</code></td>
+        </tr>
+        <tr>
+          <td><code>src/api/src/main/operations/%2Fims%2Fcustomers%2F%7BcustomerId%7D/get/response_200.yaml</code></td>
+          <td>phoneNumber mapping (lines 18&ndash;21)</td>
+          <td>Map IMS field <code>EMAIL-OUT</code> to JSON field <code>email</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Layer 7 &mdash; Batch / PL/I <span class="badge badge-gray" style="margin-left:8px">Review required</span></h2>
+    <table>
+      <thead><tr><th>File</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>src/base/batch/jcl/BNKSTMT.jcl</code></td>
+          <td>Runs the <code>BNKSTMT</code> PL/I program (29,750 bytes) to generate monthly bank statements from Db2, parameterised on DATECARD and SORTCODE. If BNKSTMT.pli issues a SELECT that includes the CUSTOMER table, it must be updated to handle the new column. Review is required before deployment.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Ordered Implementation Checklist</h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:12px">Each phase must complete before the next begins.</p>
+    <table class="checklist">
+      <tbody>
+        <tr><td>[ ]</td><td>1.</td><td>Update <code>src/base/cics/copy/CUSTOMER.cpy</code> &mdash; add <code>CUSTOMER-EMAIL PIC X(100)</code> after line 21</td></tr>
+        <tr><td>[ ]</td><td>2.</td><td>Update <code>src/base/cics/copy/CUSTDB2.cpy</code> &mdash; add <code>CUSTOMER_EMAIL CHAR(100)</code> after line 16</td></tr>
+        <tr><td>[ ]</td><td>3.</td><td>Update <code>src/base/cics/copy/CRECUST.cpy</code> &mdash; add <code>COMM-EMAIL PIC X(100)</code> after line 19</td></tr>
+        <tr><td>[ ]</td><td>4.</td><td>Update <code>src/base/cics/copy/UPDCUST.cpy</code> &mdash; add <code>COMM-EMAIL PIC X(100)</code> after line 18</td></tr>
+        <tr><td>[ ]</td><td>5.</td><td>Update <code>src/base/cics/copy/INQCUSTZ.cpy</code> &mdash; add <code>INQCUST-EMAIL PIC X(100)</code> after line 17</td></tr>
+        <tr><td>[ ]</td><td>6.</td><td>Apply Db2 schema change: <code>ALTER TABLE BANKZ.CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(100)</code> (or update <code>.setup/jcl/cics/Db2-create.jcl</code> line 93 for fresh deployments)</td></tr>
+        <tr><td>[ ]</td><td>7.</td><td>Update <code>CRECUST.cbl</code> &mdash; move COMM-EMAIL to host variable; add to INSERT statement</td></tr>
+        <tr><td>[ ]</td><td>8.</td><td>Update <code>UPDCUST.cbl</code> &mdash; accept COMM-EMAIL; add to UPDATE SET clause</td></tr>
+        <tr><td>[ ]</td><td>9.</td><td>Update <code>INQCUST.cbl</code> &mdash; add CUSTOMER_EMAIL to SELECT; move to INQCUST-EMAIL in response</td></tr>
+        <tr><td>[ ]</td><td>10.</td><td>Update <code>BANKDATA.cbl</code> &mdash; add email column to all CUSTOMER INSERT statements</td></tr>
+        <tr><td>[ ]</td><td>11.</td><td>Recompile (no logic change): DELCUS, CREACC, INQACCCU, BNK1DCS, CRDTAGY1&ndash;CRDTAGY5</td></tr>
+        <tr><td>[ ]</td><td>12.</td><td>Update IMS programs: add EMAIL-CD/EMAIL-IN/EMAIL-OUT fields to IBGCUDAT.cbl, IBSCUDAT.cbl, LOADCUST.cbl</td></tr>
+        <tr><td>[ ]</td><td>13.</td><td>Update <code>BNK1CCM.bms</code> &mdash; add EMAIL input field after COUNTRY (~line 108); reassemble</td></tr>
+        <tr><td>[ ]</td><td>14.</td><td>Update <code>BNK1DCM.bms</code> &mdash; add EMAIL display field after CUSTCTRY (~line 120); reassemble</td></tr>
+        <tr><td>[ ]</td><td>15.</td><td>Regenerate <code>CUSTMAP.cpy</code> from the assembled BMS output &mdash; do not hand-edit</td></tr>
+        <tr><td>[ ]</td><td>16.</td><td>Update API request YAML (CICS POST): add <code>email &rarr; COMM-EMAIL</code> mapping</td></tr>
+        <tr><td>[ ]</td><td>17.</td><td>Update API request YAML (CICS PUT): add <code>email &rarr; COMM-EMAIL</code> mapping</td></tr>
+        <tr><td>[ ]</td><td>18.</td><td>Update API request YAML (IMS PUT): add <code>email &rarr; EMAIL-IN</code> mapping</td></tr>
+        <tr><td>[ ]</td><td>19.</td><td>Update API response YAML (CICS GET): add <code>INQCUST-EMAIL &rarr; email</code> mapping</td></tr>
+        <tr><td>[ ]</td><td>20.</td><td>Update API response YAML (IMS GET): add <code>EMAIL-OUT &rarr; email</code> mapping</td></tr>
+        <tr><td>[ ]</td><td>21.</td><td>Review BNKSTMT.pli &mdash; check whether it queries the CUSTOMER table; update if so</td></tr>
+        <tr><td>[ ]</td><td>22.</td><td>Trigger DBB incremental build via <code>dbb-app.yaml</code></td></tr>
+        <tr><td>[ ]</td><td>23.</td><td>Validate end-to-end: create a customer with email via Bank of Z UI, inquire, update, delete</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+  <footer>Bank of Z &middot; Scenario 1 Impact Analysis &middot; Generated by IBM Bob</footer>
+
+</div>
+</body>
+</html>

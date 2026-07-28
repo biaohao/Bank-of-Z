@@ -1,0 +1,2677 @@
+{
+  "resourceType": "table",
+  "filters": {
+    "program": "all",
+    "resource": "all",
+    "statement": "all"
+  },
+  "totalResults": 86,
+  "results": [
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 248,
+          "startColumn": 12,
+          "endRow": 276,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 676,
+          "startColumn": 16,
+          "endRow": 712,
+          "endColumn": 24,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: DELETE",
+        "read": true,
+        "location": {
+          "startRow": 1534,
+          "startColumn": 12,
+          "endRow": 1536,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1717,
+          "startColumn": 12,
+          "endRow": 1725,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 777,
+          "startColumn": 14,
+          "endRow": 781,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 96,
+          "startColumn": 15,
+          "endRow": 101,
+          "endColumn": 62,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: DELETE",
+        "read": true,
+        "location": {
+          "startRow": 438,
+          "startColumn": 12,
+          "endRow": 442,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: DECLARE_TABLE",
+        "read": true,
+        "location": {
+          "startRow": 8,
+          "startColumn": 12,
+          "endRow": 26,
+          "endColumn": 12,
+          "path": "/bobz-understand/projects/BankofZ/Cobol Include/CUSTDB2.cpy"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: OPEN",
+        "read": true,
+        "location": {
+          "startRow": 339,
+          "startColumn": 5,
+          "endRow": 339,
+          "endColumn": 31,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1737,
+          "startColumn": 12,
+          "endRow": 1745,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 760,
+          "startColumn": 12,
+          "endRow": 764,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 191,
+          "startColumn": 12,
+          "endRow": 219,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 24,
+        "progName": "UPDACC",
+        "ancestor": "",
+        "fullName": "UPDACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 35,
+          "startColumn": 20,
+          "endRow": 35,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: OPEN",
+        "read": true,
+        "location": {
+          "startRow": 385,
+          "startColumn": 12,
+          "endRow": 386,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: CLOSE",
+        "read": true,
+        "location": {
+          "startRow": 356,
+          "startColumn": 5,
+          "endRow": 356,
+          "endColumn": 32,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 1496,
+          "startColumn": 12,
+          "endRow": 1501,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: CLOSE",
+        "read": true,
+        "location": {
+          "startRow": 184,
+          "startColumn": 12,
+          "endRow": 186,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 37,
+        "progName": "INQACCS",
+        "ancestor": "",
+        "fullName": "INQACCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: OPEN",
+        "read": true,
+        "location": {
+          "startRow": 159,
+          "startColumn": 12,
+          "endRow": 161,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 37,
+        "progName": "INQACCS",
+        "ancestor": "",
+        "fullName": "INQACCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 363,
+          "startColumn": 12,
+          "endRow": 378,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 20,
+        "progName": "UPDCUST",
+        "ancestor": "",
+        "fullName": "UPDCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 392,
+          "startColumn": 12,
+          "endRow": 408,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 310,
+          "startColumn": 12,
+          "endRow": 348,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 18,
+        "progName": "INQCUST",
+        "ancestor": "",
+        "fullName": "INQCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: CLOSE",
+        "read": true,
+        "location": {
+          "startRow": 350,
+          "startColumn": 12,
+          "endRow": 351,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 143,
+          "startColumn": 5,
+          "endRow": 157,
+          "endColumn": 29,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 930,
+          "startColumn": 12,
+          "endRow": 958,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 495,
+          "startColumn": 12,
+          "endRow": 504,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: DECLARE_TABLE",
+        "read": true,
+        "location": {
+          "startRow": 7,
+          "startColumn": 12,
+          "endRow": 20,
+          "endColumn": 12,
+          "path": "/bobz-understand/projects/BankofZ/Cobol Include/ACCDB2.cpy"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 686,
+          "startColumn": 12,
+          "endRow": 695,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: OPEN",
+        "read": true,
+        "location": {
+          "startRow": 674,
+          "startColumn": 5,
+          "endRow": 674,
+          "endColumn": 31,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 1362,
+          "startColumn": 12,
+          "endRow": 1378,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1624,
+          "startColumn": 12,
+          "endRow": 1649,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: DECLARE_TABLE",
+        "read": true,
+        "location": {
+          "startRow": 7,
+          "startColumn": 12,
+          "endRow": 19,
+          "endColumn": 12,
+          "path": "/bobz-understand/projects/BankofZ/Cobol Include/PROCDB2.cpy"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1059,
+          "startColumn": 12,
+          "endRow": 1084,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: CLOSE",
+        "read": true,
+        "location": {
+          "startRow": 348,
+          "startColumn": 12,
+          "endRow": 350,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 992,
+          "startColumn": 12,
+          "endRow": 1008,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1767,
+          "startColumn": 12,
+          "endRow": 1775,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 72,
+          "startColumn": 15,
+          "endRow": 87,
+          "endColumn": 36,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 37,
+        "progName": "INQACCS",
+        "ancestor": "",
+        "fullName": "INQACCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 835,
+          "startColumn": 12,
+          "endRow": 839,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: DECLARE_TABLE",
+        "read": true,
+        "location": {
+          "startRow": 7,
+          "startColumn": 12,
+          "endRow": 11,
+          "endColumn": 12,
+          "path": "/bobz-understand/projects/BankofZ/Cobol Include/CONTDB2.cpy"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 774,
+          "startColumn": 12,
+          "endRow": 799,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 278,
+          "startColumn": 12,
+          "endRow": 285,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 24,
+        "progName": "UPDACC",
+        "ancestor": "",
+        "fullName": "UPDACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 35,
+          "startColumn": 20,
+          "endRow": 35,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 521,
+          "startColumn": 12,
+          "endRow": 546,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 16,
+        "progName": "DELACC",
+        "ancestor": "",
+        "fullName": "DELACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: DELETE",
+        "read": true,
+        "location": {
+          "startRow": 642,
+          "startColumn": 12,
+          "endRow": 646,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 435,
+          "startColumn": 5,
+          "endRow": 471,
+          "endColumn": 58,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1219,
+          "startColumn": 12,
+          "endRow": 1256,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1657,
+          "startColumn": 12,
+          "endRow": 1665,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: FETCH",
+        "read": true,
+        "location": {
+          "startRow": 211,
+          "startColumn": 12,
+          "endRow": 221,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      },
+      "prog": {
+        "progId": 38,
+        "progName": "INQTRAND",
+        "ancestor": "",
+        "fullName": "INQTRAND",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 808,
+          "startColumn": 12,
+          "endRow": 812,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: FETCH",
+        "read": true,
+        "location": {
+          "startRow": 431,
+          "startColumn": 12,
+          "endRow": 444,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 245,
+          "startColumn": 12,
+          "endRow": 273,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 65,
+          "startColumn": 15,
+          "endRow": 80,
+          "endColumn": 36,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      },
+      "prog": {
+        "progId": 38,
+        "progName": "INQTRAND",
+        "ancestor": "",
+        "fullName": "INQTRAND",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: OPEN",
+        "read": true,
+        "location": {
+          "startRow": 246,
+          "startColumn": 12,
+          "endRow": 248,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 265,
+          "startColumn": 12,
+          "endRow": 303,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 20,
+        "progName": "UPDCUST",
+        "ancestor": "",
+        "fullName": "UPDCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/UPDCUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: OPEN",
+        "read": true,
+        "location": {
+          "startRow": 200,
+          "startColumn": 12,
+          "endRow": 201,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      },
+      "prog": {
+        "progId": 38,
+        "progName": "INQTRAND",
+        "ancestor": "",
+        "fullName": "INQTRAND",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 532,
+          "startColumn": 12,
+          "endRow": 557,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 13,
+        "progName": "DBCRFUN",
+        "ancestor": "",
+        "fullName": "DBCRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 33,
+          "startColumn": 20,
+          "endRow": 33,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DBCRFUN.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: FETCH",
+        "read": true,
+        "location": {
+          "startRow": 436,
+          "startColumn": 15,
+          "endRow": 446,
+          "endColumn": 23,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 441,
+          "startColumn": 12,
+          "endRow": 479,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 19,
+        "progName": "DELCUS",
+        "ancestor": "",
+        "fullName": "DELCUS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 29,
+          "startColumn": 20,
+          "endRow": 29,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/DELCUS.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 75,
+          "startColumn": 15,
+          "endRow": 92,
+          "endColumn": 36,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 593,
+          "startColumn": 14,
+          "endRow": 597,
+          "endColumn": 22,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 916,
+          "startColumn": 12,
+          "endRow": 944,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 7,
+        "progName": "CREACC",
+        "ancestor": "",
+        "fullName": "CREACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CREACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1793,
+          "startColumn": 12,
+          "endRow": 1801,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1359,
+          "startColumn": 12,
+          "endRow": 1384,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: DELETE",
+        "read": true,
+        "location": {
+          "startRow": 1466,
+          "startColumn": 12,
+          "endRow": 1468,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: FETCH",
+        "read": true,
+        "location": {
+          "startRow": 318,
+          "startColumn": 12,
+          "endRow": 320,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: FETCH",
+        "read": true,
+        "location": {
+          "startRow": 221,
+          "startColumn": 15,
+          "endRow": 234,
+          "endColumn": 23,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      },
+      "prog": {
+        "progId": 37,
+        "progName": "INQACCS",
+        "ancestor": "",
+        "fullName": "INQACCS",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 15,
+          "startColumn": 20,
+          "endRow": 15,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCS.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1761,
+          "startColumn": 12,
+          "endRow": 1786,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: FETCH",
+        "read": true,
+        "location": {
+          "startRow": 466,
+          "startColumn": 15,
+          "endRow": 479,
+          "endColumn": 23,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      },
+      "prog": {
+        "progId": 9,
+        "progName": "INQACCCU",
+        "ancestor": "",
+        "fullName": "INQACCCU",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 16,
+          "startColumn": 20,
+          "endRow": 16,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACCCU.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1004,
+          "startColumn": 12,
+          "endRow": 1032,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: OPEN",
+        "read": true,
+        "location": {
+          "startRow": 270,
+          "startColumn": 12,
+          "endRow": 271,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: CLOSE",
+        "read": true,
+        "location": {
+          "startRow": 274,
+          "startColumn": 12,
+          "endRow": 275,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      },
+      "prog": {
+        "progId": 38,
+        "progName": "INQTRAND",
+        "ancestor": "",
+        "fullName": "INQTRAND",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRAND.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 1057,
+          "startColumn": 12,
+          "endRow": 1085,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      },
+      "prog": {
+        "progId": 22,
+        "progName": "XFRFUN",
+        "ancestor": "",
+        "fullName": "XFRFUN",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 41,
+          "startColumn": 20,
+          "endRow": 41,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/XFRFUN.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 772,
+          "startColumn": 15,
+          "endRow": 780,
+          "endColumn": 23,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 67,
+          "startColumn": 15,
+          "endRow": 84,
+          "endColumn": 36,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: UPDATE",
+        "read": true,
+        "location": {
+          "startRow": 1524,
+          "startColumn": 12,
+          "endRow": 1528,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 11,
+        "progName": "CRECUST",
+        "ancestor": "",
+        "fullName": "CRECUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 38,
+          "startColumn": 20,
+          "endRow": 38,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/CRECUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1677,
+          "startColumn": 12,
+          "endRow": 1685,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: CLOSE",
+        "read": true,
+        "location": {
+          "startRow": 408,
+          "startColumn": 12,
+          "endRow": 409,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: FETCH",
+        "read": true,
+        "location": {
+          "startRow": 685,
+          "startColumn": 7,
+          "endRow": 694,
+          "endColumn": 30,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: FETCH",
+        "read": true,
+        "location": {
+          "startRow": 367,
+          "startColumn": 5,
+          "endRow": 379,
+          "endColumn": 36,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 75,
+          "startColumn": 15,
+          "endRow": 91,
+          "endColumn": 36,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 675,
+          "startColumn": 12,
+          "endRow": 714,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      },
+      "prog": {
+        "progId": 18,
+        "progName": "INQCUST",
+        "ancestor": "",
+        "fullName": "INQCUST",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 24,
+          "startColumn": 20,
+          "endRow": 24,
+          "endColumn": 27,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQCUST.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: CLOSE",
+        "read": true,
+        "location": {
+          "startRow": 335,
+          "startColumn": 12,
+          "endRow": 336,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 161,
+          "startColumn": 5,
+          "endRow": 181,
+          "endColumn": 43,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1697,
+          "startColumn": 12,
+          "endRow": 1705,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: CLOSE",
+        "read": true,
+        "location": {
+          "startRow": 716,
+          "startColumn": 5,
+          "endRow": 716,
+          "endColumn": 32,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      },
+      "prog": {
+        "progId": 52,
+        "progName": "BNKSTMT:BNKSTMT",
+        "ancestor": "",
+        "fullName": "BNKSTMT:BNKSTMT",
+        "ancestorTypeID": 0,
+        "progTypeId": 2,
+        "progType": "PL/I",
+        "location": {
+          "startRow": 27,
+          "startColumn": 3,
+          "endRow": 27,
+          "endColumn": 10,
+          "path": "/bobz-understand/projects/BankofZ/PL1/BNKSTMT.pli"
+        }
+      }
+    },
+    {
+      "tId": 2,
+      "tName": "ACCOUNT",
+      "usage": {
+        "type": "SQL: SELECT",
+        "read": true,
+        "location": {
+          "startRow": 843,
+          "startColumn": 12,
+          "endRow": 872,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      },
+      "prog": {
+        "progId": 15,
+        "progName": "INQACC",
+        "ancestor": "",
+        "fullName": "INQACC",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 19,
+          "startColumn": 20,
+          "endRow": 19,
+          "endColumn": 26,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQACC.cbl"
+        }
+      }
+    },
+    {
+      "tId": 4,
+      "tName": "PROCTRAN",
+      "usage": {
+        "type": "SQL: OPEN",
+        "read": true,
+        "location": {
+          "startRow": 302,
+          "startColumn": 12,
+          "endRow": 303,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      },
+      "prog": {
+        "progId": 39,
+        "progName": "INQTRANL",
+        "ancestor": "",
+        "fullName": "INQTRANL",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 25,
+          "startColumn": 20,
+          "endRow": 25,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/INQTRANL.cbl"
+        }
+      }
+    },
+    {
+      "tId": 3,
+      "tName": "STTESTER.CONTROL",
+      "usage": {
+        "type": "SQL: INSERT",
+        "read": true,
+        "location": {
+          "startRow": 1630,
+          "startColumn": 12,
+          "endRow": 1638,
+          "endColumn": 20,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    },
+    {
+      "tId": 1,
+      "tName": "CUSTOMER",
+      "usage": {
+        "type": "SQL: DELETE",
+        "read": true,
+        "location": {
+          "startRow": 1401,
+          "startColumn": 12,
+          "endRow": 1403,
+          "endColumn": 21,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      },
+      "prog": {
+        "progId": 2,
+        "progName": "BANKDATA",
+        "ancestor": "",
+        "fullName": "BANKDATA",
+        "ancestorTypeID": 0,
+        "progTypeId": 1,
+        "progType": "COBOL",
+        "location": {
+          "startRow": 34,
+          "startColumn": 20,
+          "endRow": 34,
+          "endColumn": 28,
+          "path": "/bobz-understand/projects/BankofZ/zOS Cobol/BANKDATA.cbl"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,638 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>IBM Bob for Z — Citi Demo Strategy</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 14px; line-height: 1.65; color: #1f2328;
+    background: #fff; padding: 32px 16px 48px;
+  }
+  .page { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #57606a; margin-bottom: 24px; }
+
+  .meta-bar {
+    background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px;
+    padding: 14px 18px; margin-bottom: 28px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+    font-size: 13px;
+  }
+  .meta-item strong { display: block; color: #1f2328; }
+  .meta-item span { color: #57606a; }
+
+  h2 { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: #1f2328; }
+  h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #1f2328; }
+
+  .section { margin-bottom: 36px; }
+
+  .card {
+    background: #fff; border: 1px solid #e5e7eb;
+    border-radius: 6px; padding: 16px 18px; margin-bottom: 14px;
+  }
+  .card-accent { border-left: 4px solid #3b82d4; }
+  .card-purple { border-left: 4px solid #7c5cd8; }
+  .card-green  { border-left: 4px solid #2da44e; }
+  .card-orange { border-left: 4px solid #d97706; }
+
+  .priority-badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .p1 { background: #fee2e2; color: #991b1b; }
+  .p2 { background: #fef3c7; color: #92400e; }
+  .p3 { background: #dbeafe; color: #1e40af; }
+  .p4 { background: #f3f4f6; color: #374151; }
+
+  .sdlc-phase {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    color: #3b82d4; background: #eff6ff; border: 1px solid #bfdbfe;
+    padding: 1px 7px; border-radius: 4px; margin-left: 6px;
+    vertical-align: middle;
+  }
+  .devin-badge {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    color: #7c5cd8; background: #f5f3ff; border: 1px solid #ddd6fe;
+    padding: 1px 7px; border-radius: 4px; margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  p { margin-bottom: 8px; }
+  ul { padding-left: 20px; margin-bottom: 8px; }
+  li { margin-bottom: 4px; }
+
+  .program-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 12.5px; margin-bottom: 12px;
+  }
+  .program-table th {
+    background: #f7f8fa; border-bottom: 2px solid #e5e7eb;
+    text-align: left; padding: 6px 10px; font-weight: 600; color: #57606a;
+  }
+  .program-table td {
+    border-bottom: 1px solid #f0f0f0; padding: 6px 10px;
+    vertical-align: top;
+  }
+  .program-table tr:hover td { background: #fafafa; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .vs-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 8px; }
+  .vs-table th { padding: 8px 10px; text-align: left; font-weight: 700; font-size: 12px; }
+  .vs-table td { padding: 7px 10px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+  .vs-table .col-bob { color: #1e40af; font-weight: 600; }
+  .vs-table .col-devin { color: #7c5cd8; }
+  .vs-table thead tr { background: #f7f8fa; border-bottom: 2px solid #e5e7eb; }
+
+  .lob-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 8px; }
+  .lob-card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px 14px; font-size: 13px; }
+  .lob-title { font-weight: 700; font-size: 13px; margin-bottom: 6px; color: #1f2328; }
+  .lob-tag { font-size: 10px; color: #57606a; display: block; margin-bottom: 4px; }
+
+  .timeline { border-left: 2px solid #e5e7eb; padding-left: 20px; margin-top: 8px; }
+  .tl-item { position: relative; margin-bottom: 18px; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -26px; top: 4px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #3b82d4; border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #3b82d4;
+  }
+  .tl-time { font-size: 11px; font-weight: 700; color: #57606a; }
+  .tl-label { font-weight: 700; font-size: 14px; margin: 2px 0; }
+
+  .callout {
+    background: #eff6ff; border: 1px solid #bfdbfe;
+    border-radius: 6px; padding: 12px 16px; font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .callout strong { color: #1e40af; }
+
+  .app-stat { text-align: center; }
+  .app-stat .num { font-size: 22px; font-weight: 700; color: #3b82d4; }
+  .app-stat .lbl { font-size: 11px; color: #57606a; }
+
+  .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
+  .stat-card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 10px; text-align: center; }
+  .stat-card .num { font-size: 20px; font-weight: 700; color: #3b82d4; display: block; }
+  .stat-card .lbl { font-size: 11px; color: #57606a; }
+
+  hr { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
+  footer { text-align: center; font-size: 12px; color: #57606a; border-top: 1px solid #e5e7eb; padding-top: 16px; margin-top: 40px; }
+
+  .warn { color: #d97706; font-weight: 600; }
+  .good { color: #2da44e; font-weight: 600; }
+
+  .scenario-number {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #3b82d4; color: #fff; font-size: 12px; font-weight: 700;
+    margin-right: 8px; flex-shrink: 0;
+  }
+  .scenario-header { display: flex; align-items: center; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>IBM Bob for Z — Citi Demo Strategy</h1>
+  <div class="subtitle">Deep Analysis &amp; Prioritized Demo Plan  ·  Bank of Z Application  ·  3 Lines of Business</div>
+
+  <div class="meta-bar">
+    <div class="meta-item"><strong>Client</strong><span>Citi — Custody, Wealth (Cards), APAC Core Banking</span></div>
+    <div class="meta-item"><strong>Current AI Tool</strong><span>Devin (Cognition AI) — general-purpose dev agent</span></div>
+    <div class="meta-item"><strong>Demo App</strong><span>Bank of Z — IBM open-source hybrid banking demo</span></div>
+    <div class="meta-item"><strong>Demo Status</strong><span>Wealth LOB waiting to see; Custody &amp; APAC active</span></div>
+    <div class="meta-item"><strong>Z Environment</strong><span>Available — deploy Bank of Z before demo</span></div>
+    <div class="meta-item"><strong>Key Goal</strong><span>Show SDLC coverage + Devin differentiation + coexistence</span></div>
+  </div>
+
+  
+  <div class="section">
+    <h2>1. Bank of Z — Application Deep Analysis</h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:14px">What you are working with — critical for demo preparation and for Citi's credibility assessment.</p>
+
+    <div class="stats-row">
+      <div class="stat-card"><span class="num">40+</span><span class="lbl">COBOL programs (CICS + IMS)</span></div>
+      <div class="stat-card"><span class="num">2</span><span class="lbl">PL/I programs (Batch &amp; IMS)</span></div>
+      <div class="stat-card"><span class="num">9</span><span class="lbl">IMS DBDs (HLASM)</span></div>
+      <div class="stat-card"><span class="num">38+</span><span class="lbl">Copybooks (shared structures)</span></div>
+      <div class="stat-card"><span class="num">10</span><span class="lbl">BMS maps (CICS screens)</span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <h3>CICS Path (customer ID: C####)</h3>
+        <ul>
+          <li><strong>BNKMENU</strong> — main menu, ~42KB</li>
+          <li><strong>CRECUST</strong> — create customer, ~58KB, 1,631 lines — calls 5 async credit agency programs (CRDTAGY1–5), enqueues named counter, writes PROCTRAN</li>
+          <li><strong>INQCUST</strong> — customer inquiry, 785 lines, CICS+SQL</li>
+          <li><strong>UPDCUST / DELCUS</strong> — update/delete customer</li>
+          <li><strong>CREACC / INQACC / INQACCCU / UPDACC / DELACC</strong> — account CRUD</li>
+          <li><strong>DBCRFUN</strong> — debit/credit, 861 lines — reads ACCOUNT from Db2, writes PROCTRAN</li>
+          <li><strong>XFRFUN</strong> — funds transfer, 1,924 lines — most complex program; reads two accounts, updates both, writes PROCTRAN, handles MQ external transfer</li>
+          <li><strong>BANKDATA</strong> — batch data init, 1,897 lines, SQL-heavy</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>IMS Path (customer ID: I####)</h3>
+        <ul>
+          <li><strong>IBLOGIN1 / IBLOGOUT</strong> — IMS session control</li>
+          <li><strong>IBGCUDAT / IBSCUDAT</strong> — get/set customer data via IMS DB</li>
+          <li><strong>IBACSUM</strong> — account summary</li>
+          <li><strong>IBTRAN</strong> — IMS transaction processing</li>
+          <li><strong>LOADCUST / LOADACCT / LOADHIST</strong> — IMS data loaders</li>
+          <li><strong>IBLOGIN.pli</strong> — PL/I IMS login program</li>
+          <li>9 IMS DBDs in HLASM: CUSTOMER, ACCOUNT, CUSTACCS, HISTORY, TSTAT…</li>
+        </ul>
+        <h3 style="margin-top:10px">Batch / PL/I</h3>
+        <ul>
+          <li><strong>BNKSTMT.pli</strong> — 29,750 byte PL/I bank statement generator, JCL-driven</li>
+          <li><strong>BNKSTMT.jcl</strong> — batch job control</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card card-accent">
+      <h3>Architecture Stack — Directly Maps to Citi's Real Environment</h3>
+      <ul>
+        <li><strong>API Gateway:</strong> z/OS Connect exposing REST APIs — CRECUST, INQCUST, UPDCUST, INQACC, DBCRFUN, XFRFUN, IBACSUM, IBGCUDAT, IBSCUDAT, IBTRAN (10 z/OS assets defined)</li>
+        <li><strong>Transaction middleware:</strong> Both CICS (online banking) and IMS TM (core banking) — dual-path routing by customer ID prefix</li>
+        <li><strong>Databases:</strong> Db2 (CUSTOMER, ACCOUNT, PROCTRAN tables) + IMS DB (hierarchical databases for IMS path)</li>
+        <li><strong>Async messaging:</strong> IBM MQ for external bank-to-bank transfers (XFRFUN ↔ Bank of Q)</li>
+        <li><strong>Toolchain:</strong> .bob config, dbb-app.yaml (DBB build), zapp.yaml (Z application), zcodescan/ (security scan), Zowe CLI, GRUB, VS Code, DBB pipeline</li>
+        <li><strong>DevOps:</strong> Pre-commit hooks (.pre-commit-config.yaml), detect-secrets, renovate.json (dependency scanning), docker-compose.yaml</li>
+      </ul>
+      <div class="callout" style="margin-top:10px;margin-bottom:0">
+        <strong>Demo credibility note:</strong> This is not a toy app. XFRFUN alone is 1,924 lines with multi-account Db2 updates, MQ integration, PROCTRAN writes, and full error rollback. CRECUST orchestrates 5 async CICS programs with credit agency aggregation. This closely mirrors the complexity Citi's teams face daily.
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <h2>2. Situation Analysis — Citi Context</h2>
+
+    <div class="lob-grid">
+      <div class="lob-card">
+        <div class="lob-title">🏦 Custody</div>
+        <span class="lob-tag">Active interest</span>
+        <p>Settlement and custody operations are among the most interdependent COBOL workloads. Pain: understanding complex transaction flows, safe changes to settlement logic, regulatory change management.</p>
+        <p><strong>Resonates with:</strong> XFRFUN (transfer/settlement), PROCTRAN audit trail, impact analysis before changes.</p>
+      </div>
+      <div class="lob-card">
+        <div class="lob-title">💳 Wealth (Cards)</div>
+        <span class="lob-tag">Waiting to see demo — highest stake</span>
+        <p>Cards processing = high-volume CICS transactions, credit scoring logic, real-time debit/credit. Pain: feature velocity, onboarding new devs, reducing SME dependency for card rule changes.</p>
+        <p><strong>Resonates with:</strong> CRECUST (credit scoring via CRDTAGY1-5), DBCRFUN (debit/credit), new field enhancement scenario.</p>
+      </div>
+      <div class="lob-card">
+        <div class="lob-title">🌏 APAC Core Banking</div>
+        <span class="lob-tag">Active interest</span>
+        <p>Core banking = largest, most risk-averse workloads. IMS TM + Db2 mixed environments. Pain: IMS expertise scarcity, cross-system understanding, regulatory compliance documentation.</p>
+        <p><strong>Resonates with:</strong> IMS path (IBGCUDAT, IBACSUM, IBTRAN), IMS DBDs, dual CICS/IMS routing, documentation generation.</p>
+      </div>
+    </div>
+
+    <div class="card card-purple">
+      <h3>The Devin Situation — What It Means for This Demo</h3>
+      <p>Citi's teams use Devin for general development workflows. This creates three distinct dynamics you must address:</p>
+      <ul>
+        <li><strong>Comfort:</strong> They know what autonomous agent-style AI feels like. Do not re-explain the concept — jump straight to Z-specific differentiation.</li>
+        <li><strong>Risk:</strong> "We already have Devin, why do we need another tool?" must be pre-empted with concrete, Z-specific demo moments where Devin would fail or hallucinate.</li>
+        <li><strong>Opportunity:</strong> Positioning coexistence ("Devin for your Java microservices, Bob for Z for your mainframe core") removes the replace-vs-add-cost objection and widens adoption surface.</li>
+      </ul>
+      <p style="margin-top:8px"><strong>The demo's single most important moment:</strong> Show Bob for Z producing a correct, Z-aware answer — ideally with IMS/CICS/Db2 context — where Devin would have no choice but to guess.</p>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <h2>3. Prioritized Demo Scenarios</h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:16px">Ordered by business impact and differentiating power. Aim to cover P1–P3 in a focused 60–90 minute demo. P4 is optional depth for technical audiences.</p>
+
+    
+    <div class="card card-accent">
+      <div class="scenario-header">
+        <span class="scenario-number">1</span>
+        <h3 style="margin:0">Enterprise-Wide Impact Analysis — "What breaks if I change this?"</h3>
+      </div>
+      <span class="priority-badge p1">P1 — Must Show</span>
+      <span class="sdlc-phase">SDLC: Plan / Architect</span>
+      <span class="devin-badge">Devin differentiator</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> Citi's Wealth team needs to add a new <code>email</code> field to the customer record (Bank of Z's exact CICS enhancement tutorial). Ask Bob in Z Architect mode: <em>"I need to add an email address field to the customer data model. What is the full impact across the Bank of Z application?"</em></p>
+
+      <p><strong>What Bob for Z shows:</strong></p>
+      <ul>
+        <li>Traverses <strong>all 40+ COBOL programs</strong> using application metadata — not just the open file</li>
+        <li>Identifies every program that COPYs CUSTOMER.cpy, CUSTDB2.cpy, or INQCUSTZ.cpy</li>
+        <li>Flags impact on: CRECUST, INQCUST, UPDCUST, DELCUS, BNK1CCS (the customer create screen BMS map), CUSTMAP.cpy, the z/OS Connect INQCUST/UPDCUST/CRECUST API assets, and the Db2 CUSTOMER table</li>
+        <li>Produces a prioritized implementation checklist</li>
+      </ul>
+
+      <p><strong>Why Devin cannot match this:</strong> Devin would analyze only files in its retrieval window. It has no persistent application model. For a codebase with 40+ programs and 38 copybooks, it would miss cross-file copybook dependencies, Db2 table schema alignment, BMS map fields, and z/OS Connect COMMAREA structures — all of which must change together. A missed dependency in a banking system is a production incident.</p>
+
+      <p><strong>Citi resonance — Custody &amp; Wealth:</strong> Changing a data field in a settlement or card system and missing one downstream program is exactly how production incidents happen. The metadata-driven impact analysis is the single most risk-reducing capability in the deck.</p>
+    </div>
+
+    
+    <div class="card card-accent">
+      <div class="scenario-header">
+        <span class="scenario-number">2</span>
+        <h3 style="margin:0">End-to-End Enhancement — Plan → Code → Build → Validate</h3>
+      </div>
+      <span class="priority-badge p1">P1 — Must Show</span>
+      <span class="sdlc-phase">SDLC: Full cycle</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> Continue from scenario 1. Add the email field end-to-end using the CICS enhancement tutorial that ships with Bank of Z. This is a ready-made, rehearsed demo path.</p>
+
+      <p><strong>What to show:</strong></p>
+      <ul>
+        <li><strong>Plan:</strong> Bob generates the implementation checklist from impact analysis (which files to change, in which order)</li>
+        <li><strong>Code — CUSTOMER.cpy:</strong> Bob generates the COBOL copybook addition for <code>CUSTOMER-EMAIL PIC X(100)</code></li>
+        <li><strong>Code — CUSTDB2.cpy:</strong> Bob updates the Db2 host variable copybook</li>
+        <li><strong>Code — CRECUST.cbl:</strong> Bob adds email to the data flow through CRECUST's 1,631-line program, knowing the program's structure (COMMAREA, credit agency calls, PROCTRAN write) from the metadata — not just from what is visible on screen</li>
+        <li><strong>Code — INQCUST.cbl / UPDCUST.cbl:</strong> Bob applies consistent changes using enterprise coding standards</li>
+        <li><strong>Code — BMS map (BNK1CCA.bms or similar):</strong> Bob adds the email field to the CICS screen definition — a capability Devin has zero context for</li>
+        <li><strong>Build:</strong> Trigger DBB build pipeline — dbb-app.yaml — show incremental build and deployment</li>
+        <li><strong>Validate:</strong> Open Bank of Z web UI, create a customer with email, verify end-to-end</li>
+      </ul>
+
+      <p><strong>This is the Bank of Z tutorial video scenario</strong> — a pre-built, battle-tested demo flow with reference videos already available at the Bank of Z GitHub releases.</p>
+    </div>
+
+    
+    <div class="card card-accent">
+      <div class="scenario-header">
+        <span class="scenario-number">3</span>
+        <h3 style="margin:0">Complex COBOL Explanation — XFRFUN Funds Transfer</h3>
+      </div>
+      <span class="priority-badge p1">P1 — Must Show</span>
+      <span class="sdlc-phase">SDLC: Understand</span>
+      <span class="devin-badge">Devin differentiator</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> Open XFRFUN.cbl (1,924 lines — the funds transfer engine). Ask Bob: <em>"Explain what this program does, including how it handles the case where the source account update succeeds but the target account update fails."</em></p>
+
+      <p><strong>What Bob for Z shows:</strong></p>
+      <ul>
+        <li>Accurate explanation of the dual-account Db2 update pattern with rollback logic</li>
+        <li>Understanding of PROCTRAN audit trail writes and CICS SYNCPOINT behavior</li>
+        <li>Cross-reference to SORTCODE.cpy, XFRFUN.cpy, ACCDB2.cpy, PROCDB2.cpy dependencies</li>
+        <li>Awareness of the IBM MQ integration for external Bank of Q transfers</li>
+        <li>Runtime path analysis — which code paths execute under normal vs. error conditions</li>
+      </ul>
+
+      <p><strong>Why this matters for Custody:</strong> Settlement programs are structurally similar — dual-sided account updates, audit trail, rollback safety. Showing Bob understanding this correctly and completely builds immediate credibility with the Custody team.</p>
+
+      <p><strong>Devin contrast moment:</strong> Ask Devin the same question. Its context window will ingest the 1,924-line file but will lack: (1) the copybook definitions for SORTCODE, ACCDB2, PROCDB2, XFRFUN.cpy, (2) the CICS SYNCPOINT semantics, (3) the PROCTRAN table schema, (4) the MQ configuration. Bob for Z has all of this through application metadata.</p>
+    </div>
+
+    
+    <div class="card" style="border-left:4px solid #d97706">
+      <div class="scenario-header">
+        <span class="scenario-number" style="background:#d97706">4</span>
+        <h3 style="margin:0">Documentation Generation — Application Wiki</h3>
+      </div>
+      <span class="priority-badge p2">P2 — High Value</span>
+      <span class="sdlc-phase">SDLC: Understand / Onboard</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> Generate automated documentation for the Bank of Z CICS application. Show the Application Wiki output covering program descriptions, business rule extraction, and dependency maps.</p>
+
+      <p><strong>What to show:</strong></p>
+      <ul>
+        <li>Program-level documentation for CRECUST — including the credit agency aggregation logic and the named counter pattern for customer number generation</li>
+        <li>Business rule extraction from DBCRFUN — "debit/credit transaction must record to PROCTRAN; if PROCTRAN write fails, the account update is rolled back"</li>
+        <li>Cross-program dependency visualization — CRECUST → CRDTAGY1-5 (async), BNKMENU → all transaction programs</li>
+        <li>IMS vs. CICS routing documentation — show both paths in the same wiki</li>
+      </ul>
+
+      <p><strong>LOB resonance — APAC Core Banking:</strong> IMS expertise is the scarcest skill globally. Documentation that auto-generates from IMS DBD HLASM source and COBOL programs — including the 9 IMS segment databases — directly addresses their onboarding and knowledge-transfer risk. New developers productive in days, not months.</p>
+
+      <p><strong>Devin contrast:</strong> Devin generates documentation from files it can read. It cannot produce a persistent, navigable Application Wiki from across hundreds of interdependent programs. It has no concept of IMS DBDs. Bob for Z generates structured, business-aware documentation using deterministic static analysis — consistent across every run.</p>
+    </div>
+
+    
+    <div class="card" style="border-left:4px solid #d97706">
+      <div class="scenario-header">
+        <span class="scenario-number" style="background:#d97706">5</span>
+        <h3 style="margin:0">CRECUST Credit Agency Refactoring — Async CICS Pattern</h3>
+      </div>
+      <span class="priority-badge p2">P2 — High Value</span>
+      <span class="sdlc-phase">SDLC: Refactor / Code</span>
+      <span class="devin-badge">Devin differentiator</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> CRECUST calls 5 credit agency programs (CRDTAGY1 through CRDTAGY5) asynchronously via CICS START, waits 3 seconds, and aggregates the credit scores. Ask Bob: <em>"CRECUST is calling 5 credit agency programs with a fixed 3-second wait. Refactor this to use CICS RETRIEVE-SUBEVENT to wait for all responses before proceeding, and add a 6th credit agency CRDTAGY6."</em></p>
+
+      <p><strong>What Bob for Z shows:</strong></p>
+      <ul>
+        <li>Understanding of the existing CICS asynchronous API pattern — not guessing from generic COBOL knowledge</li>
+        <li>Generating CICS RETRIEVE-SUBEVENT logic that correctly integrates with the existing COMMAREA structure</li>
+        <li>Creating CRDTAGY6.cbl consistent with the pattern in CRDTAGY1-5</li>
+        <li>Updating the aggregation logic without breaking existing credit score handling</li>
+        <li>Z-specific guidance: using IBM-curated CICS standards rather than generic patterns that may not compile on z/OS</li>
+      </ul>
+
+      <p><strong>Wealth (Cards) resonance:</strong> Card onboarding and credit decisioning use exactly this pattern — multiple async bureau calls, aggregation, decision. Bob for Z's deep CICS knowledge is a direct accelerator.</p>
+    </div>
+
+    
+    <div class="card" style="border-left:4px solid #d97706">
+      <div class="scenario-header">
+        <span class="scenario-number" style="background:#d97706">6</span>
+        <h3 style="margin:0">PL/I Batch — BNKSTMT Statement Generator</h3>
+      </div>
+      <span class="priority-badge p2">P2 — High Value</span>
+      <span class="sdlc-phase">SDLC: Understand / Code</span>
+      <span class="devin-badge">Devin differentiator</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> Open BNKSTMT.pli (29,750 bytes of PL/I batch code). Ask Bob: <em>"Explain the business logic of this bank statement generator and add a new column to the output for transaction category."</em></p>
+
+      <p><strong>Why this matters:</strong> PL/I is the language Devin has essentially zero training data for. Bank statement generation is a universal capability across Custody (custody statements), Wealth (portfolio statements), and APAC Core Banking (account statements). This is a three-LOB win in one demo moment.</p>
+
+      <p><strong>Devin contrast:</strong> Devin will produce a surface-level attempt with high hallucination risk on PL/I syntax — especially PL/I's ON conditions, BASED variables, and z/OS I/O patterns. Bob for Z's IBM-curated PL/I RAG produces correct, compilable PL/I aligned to IBM PL/I Enterprise Edition standards.</p>
+    </div>
+
+    
+    <div class="card" style="border-left:4px solid #3b82d4">
+      <div class="scenario-header">
+        <span class="scenario-number" style="background:#6b7280">7</span>
+        <h3 style="margin:0">IMS DBD + COBOL Analysis — APAC Core Banking Angle</h3>
+      </div>
+      <span class="priority-badge p3">P3 — Valuable</span>
+      <span class="sdlc-phase">SDLC: Understand</span>
+      <span class="devin-badge">Devin differentiator</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> Show Z Architect mode analyzing the IMS path. Ask: <em>"Show me all the IMS segments that IBGCUDAT accesses, and explain the parent-child relationship between CUSTOMER and CUSTACCS databases."</em></p>
+
+      <p><strong>What Bob for Z shows:</strong></p>
+      <ul>
+        <li>Cross-referencing IBGCUDAT.cbl (IMS COBOL) with IBGCUDAT.asm (PSB) and the CUSTOMER.asm, CUSTACCS.asm, ACCOUNT.asm DBDs</li>
+        <li>Understanding of IMS PCB masks and how the COBOL program navigates the hierarchical database</li>
+        <li>Dependency map: IMS DB segments → PCB definitions → COBOL DL/I calls</li>
+      </ul>
+
+      <p><strong>No general-purpose AI tool can do this.</strong> IMS DBDs in HLASM are among the most opaque artifacts in enterprise computing. Bob for Z's Z RAG and deterministic functions include IMS-specific knowledge. Devin has no IMS understanding whatsoever.</p>
+    </div>
+
+    
+    <div class="card" style="border-left:4px solid #3b82d4">
+      <div class="scenario-header">
+        <span class="scenario-number" style="background:#6b7280">8</span>
+        <h3 style="margin:0">Live Debug — INQCUST CICS Transaction</h3>
+      </div>
+      <span class="priority-badge p3">P3 — Valuable</span>
+      <span class="sdlc-phase">SDLC: Debug / Test</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> Use the Bank of Z debug tutorial: set a breakpoint in INQCUST.cbl via IBM Z Open Debug in VS Code, trigger the CICS customer inquiry transaction from the Bank of Z UI, and show live COBOL debugging with Bob AI providing code-aware guidance alongside the debug session.</p>
+
+      <p><strong>What to show:</strong></p>
+      <ul>
+        <li>VS Code debugging a live CICS transaction — paused at a breakpoint in INQCUST</li>
+        <li>Bob explaining the current program state: "This is the Db2 SELECT for CUSTDB2 — the variable HV-CUSTOMER-NUMBER in the host variable group corresponds to the customer number passed in the COMMAREA"</li>
+        <li>Bob suggesting a fix for a deliberately introduced bug (e.g., a wrong SQL predicate)</li>
+      </ul>
+
+      <p><strong>Impact:</strong> Combines the live Z debugging story with Bob AI intelligence. Directly addresses skills scarcity — a mid-level developer can debug complex CICS/Db2 interactions with Bob guidance rather than needing a CICS/Db2 expert.</p>
+    </div>
+
+    
+    <div class="card" style="border-left:4px solid #3b82d4">
+      <div class="scenario-header">
+        <span class="scenario-number" style="background:#6b7280">9</span>
+        <h3 style="margin:0">BobShell — Native z/OS Agentic CLI</h3>
+      </div>
+      <span class="priority-badge p3">P3 — Valuable</span>
+      <span class="sdlc-phase">SDLC: Deploy / Operate</span>
+      <span class="devin-badge">Devin differentiator</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> In the deployed Bank of Z USS environment, demonstrate BobShell executing a multi-step workflow via natural language: <em>"Check the COBOL compile listing for XFRFUN, identify any performance warnings, and submit the fix."</em></p>
+
+      <p><strong>Why this matters for Citi's data residency:</strong> BobShell runs natively inside USS — code never leaves the Z environment. Devin operates in cloud-based sandboxes that require external connectivity. For Citi's Custody and Core Banking workloads, data residency is non-negotiable. This is a direct compliance differentiator.</p>
+    </div>
+
+    
+    <div class="card" style="border-left:4px solid #e5e7eb">
+      <div class="scenario-header">
+        <span class="scenario-number" style="background:#9ca3af">10</span>
+        <h3 style="margin:0">COBOL-to-Java Transformation — Strategic Modernization</h3>
+      </div>
+      <span class="priority-badge p4">P4 — Optional Depth</span>
+      <span class="sdlc-phase">SDLC: Transform</span>
+
+      <p style="margin-top:8px"><strong>Scenario:</strong> Use DBCRFUN.cbl (861 lines, debit/credit function) as the transformation candidate — it is self-contained enough to transform cleanly while being realistic enough to be credible. Show the specification-driven COBOL-to-Java transformation workflow.</p>
+
+      <p><strong>Audience filter:</strong> Show this only to technical architects or teams explicitly exploring selective modernization. Wealth (Cards) teams running high-volume CICS are unlikely to be transforming core transaction logic to Java soon — lead with Day 1 productivity stories instead.</p>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <h2>4. Bob for Z vs. Devin — Live Demo Contrast Guide</h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:12px">Use these specific prompts side-by-side to make the differentiation concrete and memorable.</p>
+
+    <table class="vs-table">
+      <thead>
+        <tr>
+          <th style="width:30%">Prompt / Task</th>
+          <th style="width:35%" class="col-bob">Bob for Z Response</th>
+          <th style="width:35%" class="col-devin">Devin Response (expected)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><em>"What is the impact of adding an email field to the customer data model?"</em></td>
+          <td class="col-bob">Lists all 8–12 affected programs, copybooks, BMS maps, z/OS Connect assets, and the Db2 DDL — from metadata spanning the full application</td>
+          <td class="col-devin">Lists files it can retrieve. Misses copybooks not in window, BMS maps, z/OS Connect COMMAREA structures</td>
+        </tr>
+        <tr>
+          <td><em>"Explain the IMS segment hierarchy in Bank of Z"</em></td>
+          <td class="col-bob">Reads CUSTOMER.asm, CUSTACCS.asm DBDs, PSB IB.asm, cross-references IBGCUDAT.cbl DL/I calls — produces accurate hierarchy</td>
+          <td class="col-devin">No IMS knowledge. May confuse HLASM DBD syntax with data. High hallucination risk on segment-PCB relationships</td>
+        </tr>
+        <tr>
+          <td><em>"Add a 6th credit agency call to CRECUST"</em></td>
+          <td class="col-bob">Generates CRDTAGY6.cbl matching IBM CICS async API standards, updates CRECUST aggregation — all consistent with Z coding standards and copybook structures</td>
+          <td class="col-devin">May produce syntactically plausible COBOL but CICS-specific async API syntax is rarely correct without Z RAG. Cannot guarantee copybook consistency</td>
+        </tr>
+        <tr>
+          <td><em>"Fix the COBOL in BNKSTMT.pli"</em> (trick: it's PL/I)</td>
+          <td class="col-bob">Recognizes it as PL/I, applies IBM PL/I Enterprise Edition standards, fixes correctly</td>
+          <td class="col-devin">PL/I is outside Devin's training distribution. Likely to produce incorrect syntax or refuse confidently</td>
+        </tr>
+        <tr>
+          <td><em>"Run a performance analysis on XFRFUN"</em></td>
+          <td class="col-bob">Optimize mode: static + dynamic analysis of 1,924-line program, runtime path frequency, Db2 execution cost, prioritized fix list</td>
+          <td class="col-devin">Static-only analysis of what it can read. No runtime metadata, no Db2 CPU profiling, no Z-specific performance awareness</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Coexistence narrative:</strong> "Devin handles your Java microservices, Python automation, and cloud-native workflows where it excels. Bob for Z owns your IBM Z estate — COBOL, PL/I, HLASM, CICS, IMS, Db2, JCL. They run in parallel, each purpose-built for its domain. You do not replace Devin; you fill the gap Devin was never designed to fill."
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <h2>5. Recommended Demo Flow &amp; Timing</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-time">0:00 – 0:05</span>
+        <div class="tl-label">Opening: The problem Citi faces</div>
+        <p>One slide. The complexity of Bank of Z as a proxy for Citi's real environment. 40+ COBOL programs, 2 transaction engines (CICS + IMS), Db2, PL/I, HLASM — this is what your teams manage every day.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">0:05 – 0:25</span>
+        <div class="tl-label">Demo 1: Impact Analysis (Scenario 1) — Z Architect Mode</div>
+        <p>Show the metadata-driven, enterprise-wide analysis. This is the <em>jaw-drop moment</em>. No general-purpose tool produces this. End with the implementation checklist Bob generates.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">0:25 – 0:50</span>
+        <div class="tl-label">Demo 2: End-to-End Enhancement (Scenario 2) — Z Code Mode</div>
+        <p>Implement the email field. Show code generation in COBOL, BMS map update, Db2 schema awareness. Trigger DBB build. Open Bank of Z UI and verify. This is the "full SDLC in one demo" moment.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">0:50 – 1:05</span>
+        <div class="tl-label">Demo 3: PL/I + XFRFUN Explanation (Scenarios 3 &amp; 6)</div>
+        <p>Explain XFRFUN rollback logic (Custody angle). Then pivot to BNKSTMT.pli for PL/I capability (all three LOBs). Quick but high-impact — PL/I alone wins the APAC room.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">1:05 – 1:20</span>
+        <div class="tl-label">Demo 4: Documentation / IMS Analysis (Scenarios 4 &amp; 7)</div>
+        <p>Show Application Wiki generation. Then pull up the IMS segment analysis. This locks in the APAC Core Banking audience.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">1:20 – 1:35</span>
+        <div class="tl-label">Devin Contrast + Coexistence Positioning</div>
+        <p>Run the side-by-side on one specific prompt (email field impact analysis works best). Then pivot to the coexistence narrative. Do not attack Devin — position complementarity.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">1:35 – 1:45</span>
+        <div class="tl-label">Optional: BobShell / Debug (Scenarios 8 &amp; 9) — Technical Audience</div>
+        <p>Show only if architects are in the room. BobShell data residency story is the closing differentiator for Custody and APAC.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">1:45 – 1:60</span>
+        <div class="tl-label">Q&amp;A + Next Steps</div>
+        <p>Come prepared with NOSI numbers (94% / 79%). Propose a Citi-specific PoC scoped to one LOB's representative COBOL application.</p>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <h2>6. Pre-Demo Preparation Checklist</h2>
+    <div class="two-col">
+      <div>
+        <h3 style="margin-bottom:8px">Environment Setup</h3>
+        <ul style="font-size:13px">
+          <li>Deploy Bank of Z to Z environment — follow deploy tutorial (Zowe CLI or GRUB workflow)</li>
+          <li>Load BANKDATA — populate Db2 CUSTOMER and ACCOUNT tables</li>
+          <li>Verify both CICS path (C-prefix customer) and IMS path (I-prefix customer) work via Bank of Z UI</li>
+          <li>Configure Z Understand project scanning all 40+ COBOL programs</li>
+          <li>Load CUSTOMER.cpy, CUSTDB2.cpy into data dictionary if available</li>
+          <li>Set up VS Code with IBM Z Open Editor, Z Open Debug, Bob extension</li>
+          <li>Configure BobShell in USS environment</li>
+          <li>Pre-compile INQCUST with TEST option for debug demo</li>
+          <li>Prepare a deliberate bug in INQCUST for debug scenario</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px">Demo Content Prep</h3>
+        <ul style="font-size:13px">
+          <li>Pre-run impact analysis query and save the output — have a fallback screenshot</li>
+          <li>Practice the CRECUST email enhancement end-to-end at least 3 times</li>
+          <li>Prepare a side-by-side browser tab with Devin for contrast moments</li>
+          <li>Have NOSI client reference metrics ready (94% / 79%)</li>
+          <li>Prepare LOB-specific talking points for each room (Custody / Wealth / APAC)</li>
+          <li>Have the coexistence one-liner ready: "Devin for your web stack, Bob for Z for your mainframe core"</li>
+          <li>Know the Bank of Z tutorial video URLs as fallbacks if live demo fails</li>
+          <li>Confirm zcodescan/ output — security scanning is a Citi-specific win</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <h2>7. LOB-Specific Demo Emphasis</h2>
+    <div class="lob-grid">
+      <div class="lob-card">
+        <div class="lob-title">Custody — Lead With</div>
+        <ul style="font-size:12.5px">
+          <li>XFRFUN rollback safety (Scenario 3)</li>
+          <li>Impact analysis for regulatory changes (Scenario 1)</li>
+          <li>BobShell data residency (Scenario 9)</li>
+          <li>Documentation / audit trail generation</li>
+        </ul>
+        <p style="font-size:12px;color:#57606a;margin-top:6px">Key message: Bob for Z reduces the risk of getting it wrong in settlement-critical code.</p>
+      </div>
+      <div class="lob-card">
+        <div class="lob-title">Wealth (Cards) — Lead With</div>
+        <ul style="font-size:12.5px">
+          <li>CRECUST credit agency enhancement (Scenario 5)</li>
+          <li>End-to-end feature delivery (Scenario 2)</li>
+          <li>Developer productivity — onboarding story</li>
+          <li>DBCRFUN debit/credit pattern</li>
+        </ul>
+        <p style="font-size:12px;color:#57606a;margin-top:6px">Key message: Bob for Z delivers new card features faster, with junior developers — without SME bottlenecks.</p>
+      </div>
+      <div class="lob-card">
+        <div class="lob-title">APAC Core Banking — Lead With</div>
+        <ul style="font-size:12.5px">
+          <li>IMS DBD analysis — HLASM (Scenario 7)</li>
+          <li>PL/I batch capability (Scenario 6)</li>
+          <li>Application Wiki / documentation (Scenario 4)</li>
+          <li>Dual CICS/IMS path understanding</li>
+        </ul>
+        <p style="font-size:12px;color:#57606a;margin-top:6px">Key message: Bob for Z is the only AI that understands IMS — your scarcest skill is no longer a single point of failure.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>Made with IBM Bob</footer>
+</div>
+</body>
+</html>

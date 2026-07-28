@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Scenario 2 - End-to-End Enhancement: Add Email Field</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; font-size: 14px; line-height: 1.65; color: #1f2328; background: #fff; padding: 32px 16px 48px; }
+  .page { max-width: 940px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  h2 { font-size: 16px; font-weight: 700; margin: 28px 0 10px; color: #1f2328; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; }
+  h3 { font-size: 14px; font-weight: 700; margin: 14px 0 6px; color: #1f2328; }
+  h4 { font-size: 13px; font-weight: 700; margin: 10px 0 4px; color: #374151; }
+  .subtitle { font-size: 13px; color: #57606a; margin-bottom: 24px; }
+  p { margin-bottom: 8px; }
+  ul, ol { padding-left: 20px; margin-bottom: 8px; }
+  li { margin-bottom: 3px; }
+  .prompt-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 14px 18px; margin-bottom: 24px; }
+  .prompt-box .label { font-size: 11px; font-weight: 700; color: #15803d; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .prompt-box p { font-style: italic; font-size: 14.5px; margin: 0; }
+  .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
+  .stat-card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px 10px; text-align: center; }
+  .stat-card .num { font-size: 20px; font-weight: 700; color: #3b82d4; display: block; }
+  .stat-card .lbl { font-size: 11px; color: #57606a; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+  th { background: #f7f8fa; border-bottom: 2px solid #e5e7eb; text-align: left; padding: 7px 10px; font-weight: 600; color: #57606a; font-size: 12px; }
+  td { border-bottom: 1px solid #f0f0f0; padding: 7px 10px; vertical-align: top; }
+  tr:hover td { background: #fafafa; }
+  code { font-family: "SF Mono","Fira Code",Menlo,monospace; background: #f0f4f8; border-radius: 3px; padding: 1px 5px; font-size: 12px; }
+  pre { background: #f6f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px 16px; font-size: 12px; overflow-x: auto; margin-bottom: 4px; font-family: "SF Mono","Fira Code",Menlo,monospace; line-height: 1.8; }
+  pre.before { background: #fff5f5; border-color: #fecaca; }
+  pre.after  { background: #f0fdf4; border-color: #bbf7d0; }
+  .diff-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px 4px 0 0; display: inline-block; margin-bottom: 0; margin-top: 8px; }
+  .diff-label.before { background: #fee2e2; color: #991b1b; }
+  .diff-label.after  { background: #dcfce7; color: #166534; }
+  .diff-wrap { margin-bottom: 16px; }
+  .callout { border-radius: 6px; padding: 12px 16px; font-size: 13px; margin-bottom: 12px; }
+  .callout-blue   { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .callout-amber  { background: #fffbeb; border: 1px solid #fde68a; }
+  .callout-green  { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .section { margin-bottom: 36px; }
+  td.line-ref { font-family: "SF Mono","Fira Code",Menlo,monospace; font-size: 11px; color: #57606a; white-space: nowrap; }
+  .checklist-table td:first-child { width: 30px; font-family: monospace; color: #6b7280; }
+  .checklist-table td:nth-child(2) { width: 28px; font-weight: 700; color: #374151; font-size: 12px; }
+  hr { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
+  footer { text-align: center; font-size: 12px; color: #57606a; padding-top: 16px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Scenario 2 &mdash; End-to-End Enhancement</h1>
+  <div class="subtitle">Add Email Address Field &middot; Plan &rarr; Code &rarr; Build &rarr; Validate &middot; Bank of Z &middot; Real codebase analysis</div>
+
+  <div class="prompt-box">
+    <div class="label">Scenario</div>
+    <p>Add an email address field to the customer data model end-to-end: copybooks, COBOL programs, BMS screens, Db2 DDL, and z/OS Connect API mappings.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><span class="num">5</span><span class="lbl">Copybooks changed</span></div>
+    <div class="stat-card"><span class="num">6</span><span class="lbl">COBOL programs changed</span></div>
+    <div class="stat-card"><span class="num">2</span><span class="lbl">BMS screens changed</span></div>
+    <div class="stat-card"><span class="num">5</span><span class="lbl">API YAML files changed</span></div>
+    <div class="stat-card"><span class="num">9+</span><span class="lbl">More to recompile</span></div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <h2>Summary</h2>
+    <div class="callout callout-blue" style="margin-bottom:12px">
+      <strong>The field:</strong> <code>CUSTOMER-EMAIL PIC X(100)</code> in COBOL / <code>CUSTOMER_EMAIL CHAR(100)</code> in Db2. It slots in after the existing phone field at every layer, following the same positional pattern used by phone throughout all copybooks, programs, and DDL.
+    </div>
+    <div class="callout callout-blue" style="margin-bottom:12px">
+      <strong>Dependency order is strict.</strong> Db2 DDL must be applied first. Copybooks must be updated before any COBOL program is compiled. BMS maps must be assembled before CUSTMAP.cpy is regenerated. z/OS Connect schemas regenerate automatically from the updated copybooks; only the five request/response mapping YAMLs need manual edits.
+    </div>
+    <div class="callout callout-amber" style="margin-bottom:12px">
+      <strong>The HOST-CUSTOMER-ROW declaration must match CUSTDB2.cpy column order exactly.</strong> <code>HV-CUSTOMER-EMAIL</code> must appear between <code>HV-CUSTOMER-PHONE</code> and <code>HV-CUSTOMER-ADDR-LINE1</code> in the working-storage host variable group in CRECUST.cbl, UPDCUST.cbl, INQCUST.cbl, and BANKDATA.cbl. A positional mismatch causes silent data corruption in Db2.
+    </div>
+    <div class="callout callout-amber" style="margin-bottom:12px">
+      <strong>9 additional programs must be recompiled</strong> with no logic changes because <code>CUSTOMER.cpy</code> record length increases by 100 bytes: DELCUS, CREACC, INQACCCU, BNK1DCS, and CRDTAGY1&ndash;CRDTAGY5. DBB handles this automatically via dependency scanning.
+    </div>
+    <div class="callout callout-blue">
+      <strong>IMS path:</strong> The IMS programs (IBGCUDAT, IBSCUDAT, LOADCUST) define their own inline customer segment &mdash; they do not share the CICS copybooks. Each needs its own <code>EMAIL-CD / EMAIL-IN / EMAIL-OUT</code> field added inline after the phone field.
+    </div>
+  </div>
+
+  <!-- PHASE 1: PLAN -->
+  <div class="section">
+    <h2>Phase 1 &mdash; Plan</h2>
+    <p style="color:#57606a;font-size:13px;margin-bottom:12px">Ordered implementation sequence. Each group must complete before the next begins.</p>
+    <table class="checklist-table">
+      <tbody>
+        <tr><td>[ ]</td><td>1.</td><td><strong>Db2 DDL</strong> &mdash; add <code>CUSTOMER_EMAIL CHAR(100)</code> after <code>CUSTOMER_PHONE</code> in <code>.setup/jcl/cics/Db2-create.jcl</code></td></tr>
+        <tr><td>[ ]</td><td>2.</td><td><strong>Copybook: CUSTOMER.cpy</strong> &mdash; add <code>CUSTOMER-EMAIL PIC X(100)</code> after line 21</td></tr>
+        <tr><td>[ ]</td><td>3.</td><td><strong>Copybook: CUSTDB2.cpy</strong> &mdash; add <code>CUSTOMER_EMAIL CHAR(100)</code> after line 16</td></tr>
+        <tr><td>[ ]</td><td>4.</td><td><strong>Copybook: CRECUST.cpy</strong> &mdash; add <code>COMM-EMAIL PIC X(100)</code> after line 19</td></tr>
+        <tr><td>[ ]</td><td>5.</td><td><strong>Copybook: UPDCUST.cpy</strong> &mdash; add <code>COMM-EMAIL PIC X(100)</code> after line 18</td></tr>
+        <tr><td>[ ]</td><td>6.</td><td><strong>Copybook: INQCUSTZ.cpy</strong> &mdash; add <code>INQCUST-EMAIL PIC X(100)</code> after line 17</td></tr>
+        <tr><td>[ ]</td><td>7.</td><td><strong>CRECUST.cbl</strong> &mdash; host variable, MOVE to record, MOVE to HV, INSERT column+value</td></tr>
+        <tr><td>[ ]</td><td>8.</td><td><strong>UPDCUST.cbl</strong> &mdash; host variable, SELECT column+INTO, conditional MOVE, UPDATE SET clause</td></tr>
+        <tr><td>[ ]</td><td>9.</td><td><strong>INQCUST.cbl</strong> &mdash; host variable, both SELECT paths: column+INTO, MOVE to INQCUST-EMAIL</td></tr>
+        <tr><td>[ ]</td><td>10.</td><td><strong>BANKDATA.cbl</strong> &mdash; host variable, MOVE SPACES, INSERT column+value</td></tr>
+        <tr><td>[ ]</td><td>11.</td><td><strong>IMS programs</strong> &mdash; EMAIL-CD in IBGCUDAT + IBSCUDAT + LOADCUST inline segments; EMAIL-IN / EMAIL-OUT in I/O areas</td></tr>
+        <tr><td>[ ]</td><td>12.</td><td><strong>BNK1CCM.bms</strong> &mdash; add CUSTMAIL input field after phone field</td></tr>
+        <tr><td>[ ]</td><td>13.</td><td><strong>BNK1DCM.bms</strong> &mdash; add CUSTEMAIL display field after last name field</td></tr>
+        <tr><td>[ ]</td><td>14.</td><td><strong>Reassemble BMS maps</strong> &mdash; regenerate CUSTMAP.cpy (do not hand-edit)</td></tr>
+        <tr><td>[ ]</td><td>15.</td><td><strong>Recompile only</strong> &mdash; DELCUS, CREACC, INQACCCU, BNK1DCS, CRDTAGY1&ndash;5 (DBB handles automatically)</td></tr>
+        <tr><td>[ ]</td><td>16.</td><td><strong>API: POST /customers request.yaml</strong> &mdash; add COMM-EMAIL mapping</td></tr>
+        <tr><td>[ ]</td><td>17.</td><td><strong>API: PUT /customers/{id} request.yaml</strong> &mdash; add COMM-EMAIL mapping</td></tr>
+        <tr><td>[ ]</td><td>18.</td><td><strong>API: GET /customers/{id} response_200.yaml</strong> &mdash; add INQCUST-EMAIL mapping</td></tr>
+        <tr><td>[ ]</td><td>19.</td><td><strong>IMS API: PUT request.yaml</strong> &mdash; add EMAIL-IN mapping</td></tr>
+        <tr><td>[ ]</td><td>20.</td><td><strong>IMS API: GET response_200.yaml</strong> &mdash; add EMAIL-OUT mapping</td></tr>
+        <tr><td>[ ]</td><td>21.</td><td><strong>DBB build</strong> &mdash; trigger incremental build via <code>dbb-app.yaml</code></td></tr>
+        <tr><td>[ ]</td><td>22.</td><td><strong>Deploy</strong> &mdash; NEWCOPY/PHASEIN updated load modules in CICS; redeploy z/OS Connect API</td></tr>
+        <tr><td>[ ]</td><td>23.</td><td><strong>Validate</strong> &mdash; POST with email, GET confirms email, PUT updates email, BMS screen shows email</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PHASE 2: CODE CHANGES -->
+  <div class="section">
+    <h2>Phase 2 &mdash; Code Changes</h2>
+
+    <h3>1. Db2 DDL &mdash; .setup/jcl/cics/Db2-create.jcl (line 93)</h3>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">                    CUSTOMER_PHONE                 CHAR(20),
+                    CUSTOMER_ADDR_LINE1            CHAR(50),</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">                    CUSTOMER_PHONE                 CHAR(20),
+                    CUSTOMER_EMAIL                 CHAR(100),
+                    CUSTOMER_ADDR_LINE1            CHAR(50),</pre>
+    </div>
+    <div class="callout callout-amber">For an existing environment: <code>ALTER TABLE BANKZ.CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(100);</code></div>
+
+    <hr>
+    <h3>2. Copybooks (5 files)</h3>
+
+    <h4>CUSTOMER.cpy &mdash; after line 21</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">               05 CUSTOMER-PHONE                      PIC X(20).
+               05 CUSTOMER-ADDRESS.</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">               05 CUSTOMER-PHONE                      PIC X(20).
+               05 CUSTOMER-EMAIL                      PIC X(100).
+               05 CUSTOMER-ADDRESS.</pre>
+    </div>
+
+    <h4>CUSTDB2.cpy &mdash; after line 16</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">                 CUSTOMER_PHONE                 CHAR(20),
+                 CUSTOMER_ADDR_LINE1            CHAR(50),</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">                 CUSTOMER_PHONE                 CHAR(20),
+                 CUSTOMER_EMAIL                 CHAR(100),
+                 CUSTOMER_ADDR_LINE1            CHAR(50),</pre>
+    </div>
+
+    <h4>CRECUST.cpy &mdash; after line 19</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">           03 COMM-PHONE                      PIC X(20).
+           03 COMM-ADDR.</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">           03 COMM-PHONE                      PIC X(20).
+           03 COMM-EMAIL                      PIC X(100).
+           03 COMM-ADDR.</pre>
+    </div>
+
+    <h4>UPDCUST.cpy &mdash; after line 18</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">           03 COMM-PHONE                PIC X(20).
+           03 COMM-ADDR.</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">           03 COMM-PHONE                PIC X(20).
+           03 COMM-EMAIL                PIC X(100).
+           03 COMM-ADDR.</pre>
+    </div>
+
+    <h4>INQCUSTZ.cpy &mdash; after line 17</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">           03 INQCUST-PHONE                PIC X(20).
+           03 INQCUST-ADDR.</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">           03 INQCUST-PHONE                PIC X(20).
+           03 INQCUST-EMAIL                PIC X(100).
+           03 INQCUST-ADDR.</pre>
+    </div>
+
+    <hr>
+    <h3>3. CRECUST.cbl &mdash; 4 changes</h3>
+
+    <h4>Change 1: HOST-CUSTOMER-ROW declaration (~line 75)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">           03 HV-CUSTOMER-PHONE          PIC X(20).
+           03 HV-CUSTOMER-ADDR-LINE1     PIC X(50).</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">           03 HV-CUSTOMER-PHONE          PIC X(20).
+           03 HV-CUSTOMER-EMAIL          PIC X(100).
+           03 HV-CUSTOMER-ADDR-LINE1     PIC X(50).</pre>
+    </div>
+
+    <h4>Change 2: MOVE to CUSTOMER working-storage record (~line 1151)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">            MOVE COMM-PHONE TO CUSTOMER-PHONE.
+            MOVE COMM-ADDR TO CUSTOMER-ADDRESS.</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">            MOVE COMM-PHONE TO CUSTOMER-PHONE.
+            MOVE COMM-EMAIL TO CUSTOMER-EMAIL.
+            MOVE COMM-ADDR TO CUSTOMER-ADDRESS.</pre>
+    </div>
+
+    <h4>Change 3: MOVE to host variable before INSERT (~line 1171)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">            MOVE COMM-PHONE TO HV-CUSTOMER-PHONE.
+            MOVE COMM-ADDR-LINE1 OF COMM-ADDR TO HV-CUSTOMER-ADDR-LINE1.</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">            MOVE COMM-PHONE TO HV-CUSTOMER-PHONE.
+            MOVE COMM-EMAIL TO HV-CUSTOMER-EMAIL.
+            MOVE COMM-ADDR-LINE1 OF COMM-ADDR TO HV-CUSTOMER-ADDR-LINE1.</pre>
+    </div>
+
+    <h4>Change 4: INSERT INTO CUSTOMER column list and VALUES clause (~line 1219)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">                   CUSTOMER_PHONE,
+                   CUSTOMER_ADDR_LINE1,
+               ...
+                   :HV-CUSTOMER-PHONE,
+                   :HV-CUSTOMER-ADDR-LINE1,</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">                   CUSTOMER_PHONE,
+                   CUSTOMER_EMAIL,
+                   CUSTOMER_ADDR_LINE1,
+               ...
+                   :HV-CUSTOMER-PHONE,
+                   :HV-CUSTOMER-EMAIL,
+                   :HV-CUSTOMER-ADDR-LINE1,</pre>
+    </div>
+
+    <hr>
+    <h3>4. UPDCUST.cbl &mdash; 4 changes</h3>
+
+    <h4>Change 1: HOST-CUSTOMER-ROW declaration (~line 75) &mdash; same as CRECUST Change 1</h4>
+    <div class="diff-wrap">
+      <span class="diff-label after">Add after HV-CUSTOMER-PHONE</span>
+      <pre class="after">           03 HV-CUSTOMER-EMAIL          PIC X(100).</pre>
+    </div>
+
+    <h4>Change 2: SELECT column list and INTO clause (~line 266)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">                      CUSTOMER_PHONE,
+                      CUSTOMER_ADDR_LINE1,
+               ...
+                      :HV-CUSTOMER-PHONE,
+                      :HV-CUSTOMER-ADDR-LINE1,</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">                      CUSTOMER_PHONE,
+                      CUSTOMER_EMAIL,
+                      CUSTOMER_ADDR_LINE1,
+               ...
+                      :HV-CUSTOMER-PHONE,
+                      :HV-CUSTOMER-EMAIL,
+                      :HV-CUSTOMER-ADDR-LINE1,</pre>
+    </div>
+
+    <h4>Change 3: Conditional MOVE (~line 335) &mdash; only overwrite if caller supplies non-blank value</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">            IF COMM-PHONE(1:1) NOT = ' '
+               MOVE COMM-PHONE TO HV-CUSTOMER-PHONE
+            END-IF.</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">            IF COMM-PHONE(1:1) NOT = ' '
+               MOVE COMM-PHONE TO HV-CUSTOMER-PHONE
+            END-IF.
+            IF COMM-EMAIL(1:1) NOT = ' '
+               MOVE COMM-EMAIL TO HV-CUSTOMER-EMAIL
+            END-IF.</pre>
+    </div>
+
+    <h4>Change 4: UPDATE CUSTOMER SET clause (~line 364)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">                      CUSTOMER_PHONE = :HV-CUSTOMER-PHONE,
+                      CUSTOMER_ADDR_LINE1 = :HV-CUSTOMER-ADDR-LINE1,</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">                      CUSTOMER_PHONE = :HV-CUSTOMER-PHONE,
+                      CUSTOMER_EMAIL = :HV-CUSTOMER-EMAIL,
+                      CUSTOMER_ADDR_LINE1 = :HV-CUSTOMER-ADDR-LINE1,</pre>
+    </div>
+
+    <hr>
+    <h3>5. INQCUST.cbl &mdash; 5 changes (two SELECT paths)</h3>
+    <div class="callout callout-amber">INQCUST.cbl contains two separate SELECT/INTO blocks. Both must be updated identically. The result is moved to <code>INQCUST-EMAIL</code> in the INQCUSTZ response COMMAREA.</div>
+
+    <h4>Change 1: HOST-CUSTOMER-ROW declaration &mdash; add HV-CUSTOMER-EMAIL (same as above)</h4>
+    <h4>Changes 2+3: First SELECT path (~line 310) &mdash; column, INTO, MOVE</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">                      CUSTOMER_PHONE,
+                      CUSTOMER_ADDR_LINE1,
+               ...
+                      :HV-CUSTOMER-PHONE,
+                      :HV-CUSTOMER-ADDR-LINE1,
+               ...
+               MOVE HV-CUSTOMER-PHONE TO INQCUST-PHONE.
+               MOVE HV-CUSTOMER-ADDR-LINE1 TO INQCUST-ADDR-LINE1.</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">                      CUSTOMER_PHONE,
+                      CUSTOMER_EMAIL,
+                      CUSTOMER_ADDR_LINE1,
+               ...
+                      :HV-CUSTOMER-PHONE,
+                      :HV-CUSTOMER-EMAIL,
+                      :HV-CUSTOMER-ADDR-LINE1,
+               ...
+               MOVE HV-CUSTOMER-PHONE TO INQCUST-PHONE.
+               MOVE HV-CUSTOMER-EMAIL TO INQCUST-EMAIL.
+               MOVE HV-CUSTOMER-ADDR-LINE1 TO INQCUST-ADDR-LINE1.</pre>
+    </div>
+    <h4>Changes 4+5: Second SELECT path (~line 675) &mdash; identical changes</h4>
+
+    <hr>
+    <h3>6. BANKDATA.cbl &mdash; 3 changes</h3>
+
+    <h4>Change 1: HOST-CUSTOMER-ROW declaration (~line 74)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label after">Add after HV-CUSTOMER-PHONE</span>
+      <pre class="after">           03 HV-CUSTOMER-EMAIL          PIC X(100).</pre>
+    </div>
+
+    <h4>Change 2: MOVE statements in generation loop (~line 636) &mdash; default email to spaces</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">                    MOVE CUSTOMER-PHONE TO HV-CUSTOMER-PHONE
+                    MOVE CUSTOMER-ADDR-LINE1 TO HV-CUSTOMER-ADDR-LINE1</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">                    MOVE CUSTOMER-PHONE TO HV-CUSTOMER-PHONE
+                    MOVE SPACES TO HV-CUSTOMER-EMAIL
+                    MOVE CUSTOMER-ADDR-LINE1 TO HV-CUSTOMER-ADDR-LINE1</pre>
+    </div>
+
+    <h4>Change 3: INSERT INTO CUSTOMER (~line 677) &mdash; column and value</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">                           CUSTOMER_PHONE,
+                           CUSTOMER_ADDR_LINE1,
+               ...
+                           :HV-CUSTOMER-PHONE,
+                           :HV-CUSTOMER-ADDR-LINE1,</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">                           CUSTOMER_PHONE,
+                           CUSTOMER_EMAIL,
+                           CUSTOMER_ADDR_LINE1,
+               ...
+                           :HV-CUSTOMER-PHONE,
+                           :HV-CUSTOMER-EMAIL,
+                           :HV-CUSTOMER-ADDR-LINE1,</pre>
+    </div>
+
+    <hr>
+    <h3>7. IMS Programs &mdash; Inline Segment Structures</h3>
+    <p style="font-size:13px;color:#57606a">IMS programs define their own CUSTOMER-SEG inline. No shared copybooks. Phone field is PIC X(12) in IMS (shorter than CICS PIC X(20)).</p>
+
+    <h4>IBGCUDAT.cbl &mdash; CUSTOMER-SEG (~line 70) and OUTPUT-AREA (~line 96)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before &mdash; CUSTOMER-SEG</span>
+      <pre class="before">            05  PHONE-CD        PIC  X(12).
+            05  STATUS-CD       PIC  X(1).</pre>
+      <span class="diff-label after">After &mdash; CUSTOMER-SEG</span>
+      <pre class="after">            05  PHONE-CD        PIC  X(12).
+            05  EMAIL-CD        PIC  X(100).
+            05  STATUS-CD       PIC  X(1).</pre>
+      <span class="diff-label before" style="margin-top:8px;display:inline-block">Before &mdash; OUTPUT-AREA</span>
+      <pre class="before">            05  PHONE-OUT       PIC  X(12).
+            05  CUSTID-OUT      PIC  X(09).</pre>
+      <span class="diff-label after">After &mdash; OUTPUT-AREA</span>
+      <pre class="after">            05  PHONE-OUT       PIC  X(12).
+            05  EMAIL-OUT       PIC  X(100).
+            05  CUSTID-OUT      PIC  X(09).</pre>
+    </div>
+    <p style="font-size:13px">Add <code>MOVE EMAIL-CD TO EMAIL-OUT</code> alongside existing <code>MOVE PHONE-CD TO PHONE-OUT</code> in the retrieval section.</p>
+
+    <h4>IBSCUDAT.cbl &mdash; CUSTOMER-SEG (~line 74) and INPUT-AREA (~line 96)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label after">In CUSTOMER-SEG: add EMAIL-CD PIC X(100) after PHONE-CD</span>
+      <pre class="after">            05  PHONE-CD        PIC  X(12).
+            05  EMAIL-CD        PIC  X(100).   &lt;-- add here</pre>
+      <span class="diff-label after" style="margin-top:8px;display:inline-block">In CUSTOMER-IN input area: add EMAIL-IN PIC X(100) after PHONE-IN</span>
+      <pre class="after">              10  PHONE-IN        PIC  X(12).
+              10  EMAIL-IN        PIC  X(100).  &lt;-- add here</pre>
+    </div>
+    <p style="font-size:13px">Add <code>MOVE EMAIL-IN TO EMAIL-CD</code> before the REPL call.</p>
+
+    <h4>LOADCUST.cbl &mdash; CUSTOMER-SEG (~line 72) and text input fields (~line 85)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label after">In CUSTOMER-SEG: add EMAIL PIC X(100) after PHONE; in text input: add TXT-EMAIL PIC X(100) after TXT-PHONE</span>
+      <pre class="after">            05  PHONE           PIC  X(12).
+            05  EMAIL           PIC  X(100).   &lt;-- add here
+
+            05  TXT-PHONE       PIC  X(12).
+            05  TXT-EMAIL       PIC  X(100).   &lt;-- add here, MOVE SPACES before ISRT</pre>
+    </div>
+
+    <hr>
+    <h3>8. BMS Maps</h3>
+
+    <h4>BNK1CCM.bms &mdash; Create Customer screen: add CUSTMAIL input field</h4>
+    <p style="font-size:13px;color:#57606a">Insert after the phone field (CUSTPHN). The generated copybook field will be CUSTMAILI (input) / CUSTMAILO (output).</p>
+    <div class="diff-wrap">
+      <span class="diff-label after">Insert after CUSTPHN field definition</span>
+      <pre class="after">          DFHMDF POS=(9,1),LENGTH=16,ATTRB=(NORM,PROT),                *
+                COLOR=NEUTRAL,INITIAL='Email Address  '
+ CUSTMAIL DFHMDF POS=(9,18),LENGTH=100,                                *
+                ATTRB=(UNPROT,FSET,NORM),COLOR=GREEN,                  *
+                HILIGHT=UNDERLINE
+          DFHMDF POS=(9,119),LENGTH=0,ATTRB=(ASKIP,PROT),              *
+                COLOR=NEUTRAL</pre>
+    </div>
+
+    <h4>BNK1DCM.bms &mdash; Display Customer screen: add CUSTEMAIL display field</h4>
+    <p style="font-size:13px;color:#57606a">Insert after the last name field (CUSTLNAM). Protected (read-only) display field.</p>
+    <div class="diff-wrap">
+      <span class="diff-label after">Insert after CUSTLNAM field definition</span>
+      <pre class="after">          DFHMDF POS=(12,1),LENGTH=16,ATTRB=(NORM,PROT),               *
+                COLOR=NEUTRAL,INITIAL='Email Address  '
+ CUSTEMAIL DFHMDF POS=(12,18),LENGTH=100,                              *
+                ATTRB=(PROT,FSET,NORM,ASKIP),COLOR=NEUTRAL
+          DFHMDF POS=(12,119),LENGTH=0,ATTRB=(PROT,ASKIP),             *
+                COLOR=GREEN</pre>
+    </div>
+    <div class="callout callout-amber">After assembling both BMS files, regenerate CUSTMAP.cpy from the assembler output. Do not hand-edit CUSTMAP.cpy.</div>
+
+    <hr>
+    <h3>9. z/OS Connect API Mappings (5 files)</h3>
+
+    <h4>POST /customers &mdash; request.yaml (after phoneNumber mapping, lines 48-52)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">         - COMM-PHONE:
+             required: false
+             nullable: false
+             template: "{{$body.phoneNumber}}"
+         - COMM-ADDR:</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">         - COMM-PHONE:
+             required: false
+             nullable: false
+             template: "{{$body.phoneNumber}}"
+         - COMM-EMAIL:
+             required: false
+             nullable: false
+             template: "{{$body.emailAddress}}"
+         - COMM-ADDR:</pre>
+    </div>
+
+    <h4>PUT /customers/{id} &mdash; request.yaml (after phoneNumber mapping, lines 46-50)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">         - COMM-PHONE:
+             required: false
+             nullable: false
+             template: "{{$body.phoneNumber}}"
+         - COMM-ADDR:</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">         - COMM-PHONE:
+             required: false
+             nullable: false
+             template: "{{$body.phoneNumber}}"
+         - COMM-EMAIL:
+             required: false
+             nullable: false
+             template: "{{$body.emailAddress}}"
+         - COMM-ADDR:</pre>
+    </div>
+
+    <h4>GET /customers/{id} &mdash; response_200.yaml (after phoneNumber mapping, lines 32-36)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">     - phoneNumber:
+         required: false
+         nullable: false
+         template: "{{$zosAssetResponse.commarea.INQCUSTZ.\"INQCUST-PHONE\"}}"
+     - address:</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">     - phoneNumber:
+         required: false
+         nullable: false
+         template: "{{$zosAssetResponse.commarea.INQCUSTZ.\"INQCUST-PHONE\"}}"
+     - emailAddress:
+         required: false
+         nullable: false
+         template: "{{$zosAssetResponse.commarea.INQCUSTZ.\"INQCUST-EMAIL\"}}"
+     - address:</pre>
+    </div>
+
+    <h4>IMS GET /ims/customers/{id} &mdash; response_200.yaml (after phoneNumber, lines 18-22)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">     - phoneNumber:
+         required: false
+         nullable: false
+         template: "{{$zosAssetResponse.message.\"OUTPUT-AREA\".\"PHONE-OUT\"}}"
+     - address:</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">     - phoneNumber:
+         required: false
+         nullable: false
+         template: "{{$zosAssetResponse.message.\"OUTPUT-AREA\".\"PHONE-OUT\"}}"
+     - emailAddress:
+         required: false
+         nullable: false
+         template: "{{$zosAssetResponse.message.\"OUTPUT-AREA\".\"EMAIL-OUT\"}}"
+     - address:</pre>
+    </div>
+
+    <h4>IMS PUT /ims/customers/{id} &mdash; request.yaml (after PHONE-IN, lines 46-50)</h4>
+    <div class="diff-wrap">
+      <span class="diff-label before">Before</span>
+      <pre class="before">             - PHONE-IN:
+                 required: false
+                 nullable: false
+                 template: "{{$body.phoneNumber}}"</pre>
+      <span class="diff-label after">After</span>
+      <pre class="after">             - PHONE-IN:
+                 required: false
+                 nullable: false
+                 template: "{{$body.phoneNumber}}"
+             - EMAIL-IN:
+                 required: false
+                 nullable: false
+                 template: "{{$body.emailAddress}}"</pre>
+    </div>
+  </div>
+
+  <!-- PHASE 3: BUILD -->
+  <div class="section">
+    <h2>Phase 3 &mdash; Build</h2>
+    <p style="font-size:13px;color:#57606a;margin-bottom:12px">Bank of Z uses IBM Dependency Based Build (DBB) configured via <code>dbb-app.yaml</code>. DBB performs incremental builds &mdash; it detects which programs depend on the changed copybooks and recompiles the affected set automatically.</p>
+    <table>
+      <thead><tr><th>Step</th><th>Action</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Apply Db2 DDL</td><td>Run ALTER TABLE or recreate from JCL. Must complete before any program is deployed.</td></tr>
+        <tr><td>2</td><td>Assemble BMS maps</td><td>Assemble BNK1CCM.bms and BNK1DCM.bms. Output regenerates CUSTMAP.cpy automatically.</td></tr>
+        <tr><td>3</td><td>Trigger DBB incremental build</td><td>DBB detects copybook changes and recompiles all dependent programs. Programs affected: CRECUST, UPDCUST, INQCUST, BANKDATA, DELCUS, CREACC, INQACCCU, BNK1DCS, CRDTAGY1&ndash;5, and IMS programs.</td></tr>
+        <tr><td>4</td><td>Deploy updated load modules</td><td>NEWCOPY or PHASEIN each updated load module in CICS to activate the new code.</td></tr>
+        <tr><td>5</td><td>Regenerate z/OS Connect schemas</td><td>Schemas auto-regenerate from updated copybooks. Redeploy updated request/response YAML mappings.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PHASE 4: VALIDATE -->
+  <div class="section">
+    <h2>Phase 4 &mdash; Validate</h2>
+    <table>
+      <thead><tr><th>Test</th><th>Method</th><th>Expected result</th></tr></thead>
+      <tbody>
+        <tr><td>Create customer with email via API</td><td>POST /customers with <code>"emailAddress": "test@example.com"</code></td><td>HTTP 201; email stored in Db2 CUSTOMER_EMAIL column</td></tr>
+        <tr><td>Retrieve email via API</td><td>GET /customers/{id}</td><td>HTTP 200; response JSON includes <code>"emailAddress": "test@example.com"</code></td></tr>
+        <tr><td>Update email via API</td><td>PUT /customers/{id} with new emailAddress</td><td>HTTP 200; CUSTOMER_EMAIL column updated in Db2</td></tr>
+        <tr><td>Create customer with email via BMS screen</td><td>CICS transaction OCCS &rarr; BNK1CCM screen &rarr; enter value in CUSTMAIL field</td><td>Customer created; email stored</td></tr>
+        <tr><td>Display screen shows email</td><td>CICS transaction ODCS &rarr; BNK1DCM screen</td><td>CUSTEMAIL field populated with stored value</td></tr>
+        <tr><td>Create customer without email</td><td>POST /customers omitting emailAddress</td><td>HTTP 201; CUSTOMER_EMAIL = spaces; no error</td></tr>
+        <tr><td>BANKDATA batch load</td><td>Run BANKDATA with existing parameters</td><td>All generated rows insert cleanly with CUSTOMER_EMAIL = spaces</td></tr>
+        <tr><td>IMS create and retrieve</td><td>POST /ims/customers then GET /ims/customers/{id}</td><td>Email stored and returned via IMS path</td></tr>
+        <tr><td>PROCTRAN unaffected</td><td>Inspect PROCTRAN after customer create</td><td>PROCTRAN record written correctly; no regression</td></tr>
+        <tr><td>Credit agency programs unaffected</td><td>Create customer (triggers OCR1&ndash;5)</td><td>Credit check completes normally; recompiled CRDTAGYn programs work correctly</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+  <footer>Bank of Z &middot; Scenario 2 &mdash; End-to-End Enhancement &middot; Generated by IBM Bob</footer>
+
+</div>
+</body>
+</html>
