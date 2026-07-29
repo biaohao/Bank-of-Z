@@ -328,6 +328,7 @@
                         <cds-text-input id="city" label="City" value="${customer.address?.city || ''}"></cds-text-input>
                         <cds-text-input id="postalCode" label="Postal Code" value="${customer.address?.postalCode || ''}"></cds-text-input>
                         <cds-text-input id="country" label="Country" value="${customer.address?.country || ''}"></cds-text-input>
+                        <cds-text-input id="email" label="Email Address" value="${customer.email || ''}" maxlength="50" type="email"></cds-text-input>
                         <cds-text-input id="customerStatus" label="Status" readonly value="${customer.customerStatus || ''}"></cds-text-input>
                         <cds-text-input id="createdDate" label="Created Date" readonly value="${customer.createdDate || ''}"></cds-text-input>
                         <br>
@@ -570,6 +571,7 @@
             const city = document.getElementById('city').value.trim();
             const postalCode = document.getElementById('postalCode').value.trim();
             const country = document.getElementById('country').value.trim();
+            const email = document.getElementById('email').value.trim();
             
             // Validation: Valid titles
             const VALID_TITLES = ['Professor', 'Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Drs', 'Lord', 'Sir', 'Lady', ''];
@@ -611,7 +613,9 @@
                 if (postalCode) updatedData.address.postalCode = postalCode;
                 if (country) updatedData.address.country = country;
             }
-            
+
+            if (email) updatedData.email = email;
+
             // Note: customerStatus is read-only in the form, so we don't include it
             
             showLoadingModal('Updating customer...');

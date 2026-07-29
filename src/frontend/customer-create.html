@@ -109,6 +109,13 @@
                         maxlength="50"
                         required>
                     </cds-text-input>
+                    <cds-text-input
+                        id="email"
+                        label="Email address"
+                        placeholder="Enter email address"
+                        maxlength="50"
+                        type="email">
+                    </cds-text-input>
                     <cds-date-picker date-format="d/m/Y">
                         <cds-date-picker-input 
                             id="dateOfBirth"
@@ -160,7 +167,7 @@
         // Mirrors the OpenAPI constraints in src/api/src/main/api/openapi.yaml#CreateCustomerRequest.
         // The backend (CRECUST COBOL) silently truncates over-length names instead of
         // rejecting them, so this is the only place that actually stops it.
-        function validateCustomerData({ firstName, lastName, phoneNumber, dateOfBirth, addressLine1, addressLine2, city, postalCode, country }) {
+        function validateCustomerData({ firstName, lastName, phoneNumber, dateOfBirth, addressLine1, addressLine2, city, postalCode, country, email }) {
             const requiredFields = {
                 'First name': firstName,
                 'Last name': lastName,
@@ -185,7 +192,8 @@
                 'Address line 2': [addressLine2, 100],
                 'City': [city, 50],
                 'Postal code': [postalCode, 10],
-                'Country': [country, 50]
+                'Country': [country, 50],
+                'Email address': [email, 50]
             };
             for (const [label, [value, max]] of Object.entries(maxLengths)) {
                 if (value && value.length > max) {
@@ -212,9 +220,10 @@
             const city = document.getElementById('city').value;
             const postalCode = document.getElementById('postalCode').value;
             const country = document.getElementById('country').value;
+            const email = document.getElementById('email').value;
 
             const validationError = validateCustomerData({
-                firstName, lastName, phoneNumber, dateOfBirth, addressLine1, addressLine2, city, postalCode, country
+                firstName, lastName, phoneNumber, dateOfBirth, addressLine1, addressLine2, city, postalCode, country, email
             });
             if (validationError) {
                 showErrorModal('Validation Error', validationError);
@@ -234,6 +243,7 @@
                     postalCode: postalCode || undefined,
                     country: country || undefined
                 },
+                email: email || undefined,
                 customerStatus: 'ACTIVE'
             };
 
