@@ -106,7 +106,14 @@ Full documentation: [https://ibm.github.io/Bank-of-Z/](https://ibm.github.io/Ban
 | Commands reference | `docs/docs/reference/commands-reference.md` |
 | Zowe CLI workflow | `docs/docs/development-workflows/zowe-cli-workflow.md` |
 | GRUB workflow | `docs/docs/development-workflows/grub-workflow.md` |
+| Workflow comparison | `docs/docs/development-workflows/workflow-comparison.md` |
 | CICS enhancement tutorial | `docs/docs/tutorials/cics-enhancement-scenario.md` |
+| Debug a CICS transaction | `docs/docs/tutorials/debug-cics-transaction.md` |
+| Deploy Bank of Z (video) | `docs/docs/tutorials/deploy-bank-of-z.md` |
+
+**Agent Planning Artifacts:** Store impact analyses and implementation plans under `bobz/` (e.g., `bobz/impact-analysis/<name>/`, `bobz/implementation-plans/<name>/`). This directory is agent-writable and gitignored for generated output.
+
+**`citi-demo/`** — Pre-built HTML demo scenario pages for sales demos only. Not source code or documentation. Do not modify.
 
 **COBOL Program to Documentation Mapping:**
 
@@ -118,12 +125,30 @@ Full documentation: [https://ibm.github.io/Bank-of-Z/](https://ibm.github.io/Ban
 | `BNKSTMT.pli` + `BNKSTMT.jcl` | `docs/docs/architecture/application-components.md` (batch/statement generation) |
 | PSB/DBD Assembler sources | `docs/docs/architecture/build-and-deployment.md` |
 | `src/api/src/main/api/openapi.yaml` | `docs/docs/reference/configuration-reference.md`, OpenBanking UK spec |
+| `INQCUST.cbl` | `docs/docs/tutorials/debug-cics-transaction.md` |
 
 **Auto-Update Rules:**
 1. When modifying COBOL programs, check if related docs/tutorials reference that program and update accordingly
 2. When adding new programs, add them to the mapping table above and update `dbb-app.yaml` if they require non-default build options
 3. When modifying IMS PSB/DBD sources, note that changes require IMS ACBGEN — coordinate with IMS admin
 4. When updating z/OS Connect operations, regenerate provider `.cpy` files in `src/api/src/main/zosAssets/` — do not hand-edit
+
+## z/OS Connect Conventions
+
+- **Provider file layout per program**: `src/api/src/main/zosAssets/<PROGRAM>/providerFiles/`
+  - `request.dai` / `response.dai` — hand-authored data interface descriptors (never generated)
+  - `gen/<PROGRAM>_request_0.cpy` / `gen/<PROGRAM>_response_0.cpy` — **generated** COBOL copybooks; regenerate via z/OS Connect CLI after each COBOL deploy; **never hand-edit**
+  - `gen/requestSchema.json` / `gen/responseSchema.json` — also generated, never hand-edit
+  - `COMMAREA.cpy` at providerFiles level (CRECUST only as example) — source of truth for z/OS Connect; must match deployed COBOL COMMAREA exactly
+- **Mapping YAML JSONata pattern**: use `$exists($body.field)` null-guards for optional fields to avoid forwarding empty strings to COBOL (e.g., `"{{$exists($body.email) ? $body.email : \"\"}}"`)
+- **All z/OS Connect operations** use `transid: "OMEN"` and `connectionRef: "bankzCicsConnection"` — the CICS transaction ID is `OMEN` regardless of which business program is invoked
+
+## Web UI Conventions (src/frontend/)
+
+- **API base URL** is auto-detected in `src/frontend/config.js`: port 3001 → `/api` (Docker dev, proxied by nginx); any other port → `http://<hostname>:9080/api` (z/OS Liberty)
+- **System routing** (CICS vs IMS) is determined purely by the leading letter of the customer ID: `C...` → CICS endpoints (`/api/customers/`), `I...` → IMS endpoints (`/api/ims/customers/`)
+- Web UI uses Carbon Design System web components (`<cds-text-input>`, etc.) bundled as `src/frontend/js/carbon-web-components.min.js` — no npm build step; vanilla JS ES modules with native `import`
+- For optional API fields (e.g., `email`), pass `value || undefined` so the field is omitted from the JSON body entirely when blank, rather than sending an empty string
 
 ## DB2 Table Ownership
 
@@ -150,10 +175,12 @@ Full documentation: [https://ibm.github.io/Bank-of-Z/](https://ibm.github.io/Ban
 | `BNK1DCM.bms` | `BNK1DC` | `BNK1DCS` — Delete customer |
 | `BNK1MAI.bms` | `BNK1ME` | `BNKMENU` — Main menu |
 | `BNK1TFM.bms` | `BNK1TF` | `BNK1TFN` — Transfer funds |
+| `BNK1B2M.bms` | `BNK1B2` (within mapset `BNK1TFM`) | Secondary transfer funds map; no program COPYs it directly — part of the same `BNK1TFN` transaction flow |
 | `BNK1UAM.bms` | `BNK1UA` | `BNK1UAC` — Update account |
 
 > The BNK1xxx programs are thin CICS presentation-layer programs that call the business logic programs (e.g., `BNK1CAC` calls `CREACC`, `BNK1CRA` calls `DBCRFUN`).
 > **BMS reassembly must precede COBOL compile** for programs that `COPY` a BMS-generated symbolic map (e.g., `BNK1CCS` copies `BNK1CCM`, `BNK1DCS` copies `BNK1DCM`). DBB handles this via `.bms` dependency patterns in `dbb-app.yaml`.
+> **`BNK1DDM.cpy`** in `src/base/cics/copy/` is a pre-generated symbolic copybook with only `COMPANY` and `MESSAGE` fields — it is NOT used by any current COBOL program (confirmed by grep). Do not mistake it for a BMS-derived copybook for a screen.
 
 ## Key Shared Copybooks
 
@@ -181,3 +208,8 @@ Full documentation: [https://ibm.github.io/Bank-of-Z/](https://ibm.github.io/Ban
 **IMS COBOL**: `IBACSUM`, `IBGCUDAT`, `IBLOGIN1`, `IBLOGOUT`, `IBSCUDAT`, `IBTRAN` (Java bridge), `LOADACCT`, `LOADCUSA`, `LOADCUST`, `LOADHIST`, `LOADTSTA`
 **IMS PL/I**: `IBLOGIN` (IMS entry), `BNKSTMT` (batch monthly statement)
 **Data loader** (not runtime): `BANKDATA` — seeds all Db2 tables
+
+## COBOL Program Quirks
+
+- **`INQCUST.cbl`** has three separate SQL SELECT statements: only the one in paragraph `READ-CUSTOMER-DB2` populates the COMMAREA. The `GET-LAST-CUSTOMER-DB2` paragraph looks up the most recently assigned customer number — it does NOT return customer data to the caller and does NOT need new columns added when extending the customer schema.
+- **`BANKDATA.cbl`** uses literal string values directly in SQL `VALUES` clauses (not host variables) — this is intentional for a test-data seeder; `detect-secrets` baseline must be updated if new literals are added.
