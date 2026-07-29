@@ -13,8 +13,8 @@
 
 Add a 50-character email address field (`CUSTOMER_EMAIL`) to the Bank of Z CICS customer data
 model end-to-end: DB2 schema, COBOL copybooks, CICS business programs, BMS 3270 screens,
-CICS presentation programs, z/OS Connect provider files, request/response mapping YAMLs, and
-the OpenAPI specification.
+CICS presentation programs, z/OS Connect provider files, request/response mapping YAMLs,
+the OpenAPI specification, and the WebSphere Liberty Web UI.
 
 **Business Value**: Enables customer email capture and downstream digital communications across
 all CICS customer operations — create, inquire, and update.
@@ -53,12 +53,15 @@ operations change.
 - **FR9**: The `GET /customers/{id}`, `POST /customers`, and `PUT /customers/{id}` z/OS Connect
   operations expose the email field
 - **FR10**: The OpenAPI `Customer` and `CustomerUpdate` schemas include an optional `email` field
+- **FR11**: The Web UI Create Customer page (`customer-create.html`) presents an optional email input field and submits it in the POST request body
+- **FR12**: The Web UI Customer Details page (`customer-details.html`) displays the email address returned by the API and allows the user to edit and submit an updated email via PUT
 
 ### Non-Functional Requirements
 - **NFR1**: `CUSTOMER_EMAIL` column is nullable — no NOT NULL constraint — to preserve all existing rows
 - **NFR2**: Email field is optional at all API boundaries (`required: false`, nullable)
 - **NFR3**: BMS field length: 50 characters, matching the DB2 column and COBOL PIC X(50)
 - **NFR4**: DB2 DBRM bind must follow DDL — programs must not run against new column until bind completes
+- **NFR5**: Web UI email field is optional (no `required` attribute), `maxlength="50"`, `type="email"` for browser-side format hint; not sent in request body when empty
 
 ### Business Requirements
 - **BR1**: All CICS customer operations (create/inquire/update) are consistent — email is present
@@ -80,13 +83,16 @@ operations change.
 7. Regenerate z/OS Connect provider `.cpy` files for CRECUST, INQCUST, UPDCUST
 8. Update z/OS Connect request/response mapping YAMLs for POST, GET, PUT /customers
 9. Add `email` field to OpenAPI `Customer` and `CustomerUpdate` schemas
+10. Update the Web UI Create Customer page to capture and submit email
+11. Update the Web UI Customer Details page to display and update email
 
 ### Non-Goals
 1. Any changes to the IMS processing path
-2. Email validation logic (format checking) — out of scope for this iteration
+2. Server-side email format validation (regex checking) — the Web UI uses `type="email"` as a browser hint only; the COBOL backend stores whatever is passed
 3. Changes to the `DELCUS` delete operation (email not involved)
 4. Changes to `BNKSTMT.pli` batch (SELECT uses named columns; no statement email requirement)
 5. Changes to BMS screens other than BNK1CCM and BNK1DCM
+6. Changes to IMS Web UI pages (`/ims/customers/…`) — email is CICS-only
 
 ---
 
@@ -339,6 +345,49 @@ of F1–F3 and can be done in parallel.
 
 ---
 
+### Workstream G — Web UI (3 files)
+**Purpose**: Surface the email field in the WebSphere Liberty-hosted vanilla JavaScript frontend
+so users can enter email when creating a customer and view/edit it on the details page.
+
+> The API client (`api.js`) passes request bodies through unchanged — no routing logic needed.
+> Workstream G is fully independent of Workstreams A–F and can be developed in parallel.
+
+| Step | Task | File | Change |
+|---|---|---|---|
+| G1 | Add email input to Create Customer page | `src/frontend/customer-create.html` | `<cds-text-input id="email" …>` field added after Country; `validateCustomerData` extended with 50-char max check; `email` included in POST body when non-empty |
+| G2 | Add email field to Customer Details page | `src/frontend/customer-details.html` | Email field rendered in `displayCustomerDetails` form (pre-populated from API response, editable); `updateCustomer` reads and includes `email` in PUT body when non-empty |
+| G3 | Update API client JSDoc | `src/frontend/js/api.js` | `@typedef Customer` and `createCustomer` param docs updated to include `email` property |
+
+#### G1 — customer-create.html field specification
+```html
+<cds-text-input
+    id="email"
+    label="Email address"
+    placeholder="Enter email address"
+    maxlength="50"
+    type="email">
+</cds-text-input>
+```
+- Optional (no `required` attribute)
+- Placed after Country, before Date of Birth picker
+- Client-side max-length check: 50 characters (matches COBOL `PIC X(50)`)
+- Sent in POST body as `email: email || undefined` (omitted entirely when blank)
+
+#### G2 — customer-details.html field specification
+```html
+<cds-text-input id="email" label="Email Address"
+    value="${customer.email || ''}" maxlength="50" type="email">
+</cds-text-input>
+```
+- Placed after Country, before Status (read-only)
+- Pre-populated from `customer.email` returned by `GET /customers/{id}`
+- Included in PUT body via `if (email) updatedData.email = email`
+- Existing email is **not** cleared if the field is left empty — only sent when user has typed a value
+
+**Dependency**: None. G1–G3 can be committed as soon as Workstream F (OpenAPI `email` field) is in place; they do not require z/OS deployment.
+
+---
+
 ## 7. Execution Sequence (Critical Path)
 
 ```mermaid
@@ -363,6 +412,7 @@ graph TD
     F1 --> F9[F9 DBB API Build]
     F4[F4-F8 Mapping YAMLs\n+ OpenAPI] --> F9
     F9 --> F10[F10 Deploy z/OS Connect]
+    F8[F4-F8 Mapping YAMLs\n+ OpenAPI] --> G1[G1-G3 Web UI]
 
     style A1 fill:#ff9999
     style B1 fill:#ffcc99
@@ -375,12 +425,14 @@ graph TD
     style D5 fill:#ff9999
     style E1 fill:#ffe066
     style F10 fill:#99ff99
+    style G1 fill:#99ff99
 ```
 
 **Parallel opportunities**:
 - Workstreams A, B, C can all start simultaneously
 - D1, D2, D3, D6 can be worked in parallel once B copybooks are done
 - F4–F8 (mapping YAMLs + OpenAPI) can be written before provider CPYs are regenerated
+- **G1–G3 (Web UI) can be developed in parallel with all other workstreams** once the OpenAPI `email` field is defined (F8); no z/OS deployment needed
 
 ---
 
@@ -440,6 +492,14 @@ graph TD
 | `%2Fcustomers%2F%7BcustomerId%7D/put/response_200.yaml` | Add `email` ← `COMM-EMAIL` |
 | `src/api/src/main/api/openapi.yaml` | Add `email` to `Customer` + `CustomerUpdate` schemas |
 
+### Web UI
+
+| File | Change |
+|---|---|
+| `src/frontend/customer-create.html` | Email input field (optional, maxlength 50); validation; included in POST body |
+| `src/frontend/customer-details.html` | Email field pre-populated from API response; included in PUT body when non-empty |
+| `src/frontend/js/api.js` | JSDoc `Customer` typedef and `createCustomer` params updated to document `email` |
+
 ---
 
 ## 9. Risks and Mitigations
@@ -452,6 +512,7 @@ graph TD
 | R4 | DBRM bind executed before DDL → SQL -204 abend at runtime | Medium | High | Enforce sequence: DDL → compile → bind |
 | R5 | `BANKDATA.cbl` INSERT fails if email column in table but INSERT not updated | High | Medium | Edit D6 before executing DDL |
 | R6 | Existing NULL email rows show garbage if COBOL field not initialised before SELECT | High | Low | Add `INITIALIZE` or `MOVE SPACES TO CUSTOMER-EMAIL` before each SELECT |
+| R7 | Web UI sends empty string for email → COBOL stores 50 spaces instead of NULL | Low | Low | POST/PUT body excludes `email` key entirely when field is blank (`email || undefined`) |
 
 ---
 
@@ -471,11 +532,19 @@ graph TD
 5. **PUT /customers/{id}** with `"email": "new@example.com"` → 200; subsequent GET confirms update
 6. **PUT /customers/{id}** without `email` field → existing email preserved (not overwritten with null)
 
+### Web UI Tests (manual, via browser)
+1. **Create customer with email**: Fill in email field → Submit → confirm customer created; navigate to Customer Details and verify email is displayed
+2. **Create customer without email**: Leave email blank → Submit → confirm customer created (field absent from POST body); Customer Details shows email blank
+3. **Update email**: Load existing customer → edit email field → click Update → confirm success notification; reload and verify updated email displayed
+4. **Clear email on update**: Leave email blank during update → email field omitted from PUT body → backend preserves existing email (no overwrite)
+5. **Email too long**: Enter >50 characters → browser `maxlength` prevents entry; verify validation message appears if bypassed
+
 ### Regression Tests
 - All existing BMS screen operations (no email fields) still function correctly
 - `DELCUS` delete path unchanged and working
 - `INQTRANL`, `INQTRAND`, `XFRFUN`, `DBCRFUN`, `CREACC`, `DELACC` — unaffected; verify no impact from CUSTDB2.cpy recompile
 - `BNKSTMT.pli` batch run completes successfully (new nullable column does not affect named-column SELECT)
+- All other Web UI pages (`account-*.html`, `transaction-*.html`) unaffected — no customer email displayed there
 
 ### Build Verification
 - DBB build log shows: BMS task before COBOL task for BNK1CCM/BNK1DCM dependent programs
@@ -492,6 +561,7 @@ graph TD
 | DB2 DDL deployed, programs not yet bound | `ALTER TABLE CUSTOMER DROP COLUMN CUSTOMER_EMAIL` (no data loss — column was empty) |
 | Programs bound and deployed, defect found | Redeploy previous load modules from prior Wazi Deploy package; re-bind previous DBRMs; issue DDL to drop column |
 | z/OS Connect API deployed, API defect | Redeploy previous z/OS Connect API artifact; COBOL programs remain compatible (column is nullable) |
+| Web UI defect | Revert `customer-create.html`, `customer-details.html`, `api.js` to previous commit; no backend impact |
 
 > ⚠️ DDL rollback is safe only while `CUSTOMER_EMAIL` values are all NULL. Once real email data is in production, dropping the column loses that data. Plan rollback window accordingly.
 
@@ -535,5 +605,5 @@ WS-COMM-AREA — after WS-COMM-CS-REVIEW-DATE PIC 9(8) (line ~146),
 
 ---
 
-**Last Updated**: 2026-07-27T23:00:00Z  
+**Last Updated**: 2026-07-28
 **Reference**: `bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`
