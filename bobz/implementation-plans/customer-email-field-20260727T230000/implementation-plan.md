@@ -93,6 +93,7 @@ operations change.
 4. Changes to `BNKSTMT.pli` batch (SELECT uses named columns; no statement email requirement)
 5. Changes to BMS screens other than BNK1CCM and BNK1DCM
 6. Changes to IMS Web UI pages (`/ims/customers/…`) — email is CICS-only
+7. Changes to account or transaction Web UI pages (`account-*.html`, `transaction-*.html`) — email is customer-level only
 
 ---
 

@@ -14,9 +14,9 @@
 
 **Title**: Add Email Address Field to Customer Data Model  
 **Type**: Enhancement  
-**Description**: Add a `CUSTOMER_EMAIL` column (CHAR(50)) to the `CUSTOMER` DB2 table and propagate the new field through all layers of the CICS processing path — COBOL copybooks, COBOL programs, z/OS Connect COMMAREA definitions, z/OS Connect request/response mappings, and the OpenAPI specification.  
-**Business Objective**: Capture and expose customer email addresses to support digital communications, notifications, and API consumers.  
-**Scope Decision**: CICS path only. The IMS path uses a separate, smaller customer model (IMS DBD/PCB) that does not include comparable demographic fields and is out of scope for this change.  
+**Description**: Add a `CUSTOMER_EMAIL` column (CHAR(50)) to the `CUSTOMER` DB2 table and propagate the new field through all layers of the CICS processing path — COBOL copybooks, COBOL programs, BMS 3270 screens, CICS presentation programs, z/OS Connect COMMAREA definitions, z/OS Connect request/response mappings, the OpenAPI specification, and the WebSphere Liberty vanilla JavaScript Web UI.
+**Business Objective**: Capture and expose customer email addresses to support digital communications, notifications, and API consumers.
+**Scope Decision**: CICS path only. The IMS path uses a separate, smaller customer model (IMS DBD/PCB) that does not include comparable demographic fields and is out of scope for this change.
 **DB2 Schema**: Owned by this team — DDL will be executed directly.
 
 ### System Context
@@ -62,6 +62,10 @@
 | z/OS Connect response mapping — PUT /customers/{id} | `src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/put/response_200.yaml` | Map `COMM-EMAIL` → `email` |
 | z/OS Connect response mapping — GET /customers/{id} | `src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/get/response_200.yaml` | Map `INQCUST-EMAIL` → `email` |
 | OpenAPI specification | `src/api/src/main/api/openapi.yaml` | Add `email` field to `Customer` and `CustomerUpdate` schemas |
+| **Web UI — Create Customer page** | **`src/frontend/customer-create.html`** | **Add optional email input field (`<cds-text-input>`, `maxlength=50`, `type=email`); include in POST body when non-empty** |
+| **Web UI — Customer Details page** | **`src/frontend/customer-details.html`** | **Display email from GET response; allow edit and submit via PUT body; preserve existing email when field left blank** |
+| **Web UI — API client JSDoc** | **`src/frontend/js/api.js`** | **Update `@typedef Customer` and `createCustomer` param docs to include `email` property** |
+| **Web UI setup script** | **`.setup/jcl/cics/Db2-create.j2`** | **Add `CUSTOMER_EMAIL CHAR(50)` to `CREATE TABLE BANKZ.CUSTOMER` DDL (fresh installs)** |
 
 ### Out of Scope
 
@@ -76,9 +80,11 @@
 
 ### System Boundaries
 
-- **External boundary**: The OpenAPI `Customer` schema exposed by z/OS Connect is the outermost boundary — API consumers will see the new `email` field
+- **External boundary**: The Web UI (`src/frontend/`) is the outermost user-facing boundary — end users see the email field in `customer-create.html` and `customer-details.html`
+- **API boundary**: The OpenAPI `Customer` schema exposed by z/OS Connect is the API consumer boundary — `email` is now part of the public contract
 - **IMS boundary**: No change crosses into the IMS processing path
 - **DB2 boundary**: Only the `CUSTOMER` table changes; `ACCOUNT`, `PROCTRAN`, and `STTESTER.CONTROL` are unaffected
+- **Web UI routing**: The Web UI automatically routes to CICS endpoints for customer IDs starting with `C` — IMS endpoints (`/ims/customers/*`) are unaffected
 
 ---
 
@@ -88,6 +94,12 @@
 
 ```mermaid
 graph TD
+    subgraph "Web UI (Liberty — port 9081)"
+        UICREATE[customer-create.html\nEmail input field]
+        UIDETAILS[customer-details.html\nEmail display + edit]
+        APIJS[api.js\nCustomer typedef]
+    end
+
     subgraph "API Layer"
         OAS[openapi.yaml\nCustomer schema]
         POST[POST /customers\nrequest.yaml]
@@ -123,6 +135,11 @@ graph TD
         DB[(CUSTOMER table)]
     end
 
+    UICREATE -->|POST /api/customers| OAS
+    UIDETAILS -->|GET /api/customers/id| OAS
+    UIDETAILS -->|PUT /api/customers/id| OAS
+    APIJS -.->|documents| UICREATE
+    APIJS -.->|documents| UIDETAILS
     OAS -->|schema ref| POST
     OAS -->|schema ref| PUTREQ
     OAS -->|schema ref| GETRESP
@@ -146,6 +163,8 @@ graph TD
     CUSTDB2_CPY --> DB
     CUSTOMER_CPY --> DB
 
+    style UICREATE fill:#ff9999
+    style UIDETAILS fill:#ff9999
     style CUSTOMER_CPY fill:#ff9999
     style CUSTDB2_CPY fill:#ff9999
     style DB fill:#ff9999
@@ -382,6 +401,25 @@ Add `email` to the `Customer` and `CustomerUpdate` component schemas:
 #### COMMAREA size change
 Each of the three COMMAREA copybooks (`CRECUST.cpy`, `INQCUSTZ.cpy`, `UPDCUST.cpy`) grows by 50 bytes. CICS COMMAREA length is specified in the `EXEC CICS LINK` / `EXEC CICS RETURN` calls in the calling programs (`BNK1CCS`, `BNK1DCS`, `BNK1CRA` etc.). Review `DFHCOMMAREA` length values in the presentation-layer programs to confirm they use `LENGTH OF DFHCOMMAREA` dynamically (common pattern) rather than hard-coded lengths. If hard-coded, those values must be updated too.
 
+#### 15. Web UI — `src/frontend/` (3 files)
+
+**`customer-create.html`**:
+- Add `<cds-text-input id="email" label="Email address" placeholder="Enter email address" maxlength="50" type="email">` after the Country field
+- Extend `validateCustomerData` with a 50-character max-length check for email
+- Include `email` in the POST request body as `email || undefined` — field is omitted entirely when blank (sends no key, not an empty string)
+
+**`customer-details.html`**:
+- Add email `<cds-text-input>` to `displayCustomerDetails` form, pre-populated from `customer.email` returned by `GET /customers/{id}`
+- In `updateCustomer`, read the email field and include in PUT body only when non-empty — existing email is **preserved** (not overwritten) if the field is left blank
+
+**`src/frontend/js/api.js`**:
+- Update `@typedef Customer` JSDoc to include `email` property (`string`, max 50 chars, optional)
+- Update `createCustomer` parameter documentation to include `email`
+
+**Dependency**: Workstream G (Web UI) depends only on the OpenAPI `email` field being defined (F8). It does not require z/OS deployment and can be developed in parallel with all z/OS workstreams.
+
+---
+
 #### Programs requiring recompile (all CICS path)
 
 | Program | Logic change? | Reason |
@@ -389,10 +427,19 @@ Each of the three COMMAREA copybooks (`CRECUST.cpy`, `INQCUSTZ.cpy`, `UPDCUST.cp
 | `CRECUST.cbl` | ✅ Yes | SQL INSERT + COMMAREA |
 | `INQCUST.cbl` | ✅ Yes | SQL SELECT + COMMAREA |
 | `UPDCUST.cbl` | ✅ Yes | SQL UPDATE + COMMAREA |
-| `BANKDATA.cbl` | ✅ Yes | Test data INSERT |
+| `BANKDATA.cbl` | ✅ Yes | Test data INSERT (use host variable — not literal) |
 | `DELCUS.cbl` | ❌ Recompile only | Uses `COPY CUSTDB2` |
-| `BNK1CCS.cbl` | ❌ Recompile only | COPY of `CRECUST.cpy` (passes COMMAREA through) |
-| `BNK1DCS.cbl` | ❌ Recompile only | COPY of `UPDCUST.cpy` (passes COMMAREA through) |
+| `BNK1CCS.cbl` | ✅ Yes | Reads `EMAILI` from BMS map; wires to SUBPGM-EMAIL |
+| `BNK1DCS.cbl` | ✅ Yes ⚠️ | Inline LINKAGE + WS-COMM-AREA extended; display + update paths wired |
+
+#### Web UI files changed
+
+| File | Nature | Dependency |
+|---|---|---|
+| `src/frontend/customer-create.html` | Feature addition | OpenAPI `email` field (F8) |
+| `src/frontend/customer-details.html` | Feature addition | OpenAPI `email` field (F8) |
+| `src/frontend/js/api.js` | JSDoc update | None |
+| `.setup/jcl/cics/Db2-create.j2` | DDL fix | Setup/install only |
 
 #### DB2 DBRM bind
 After recompiling `CRECUST`, `INQCUST`, `UPDCUST`, and `BANKDATA`, new DBRMs are produced. These must be bound into the DB2 plan before the programs can run. This is part of the normal DBB pipeline.
@@ -403,6 +450,9 @@ After recompiling `CRECUST`, `INQCUST`, `UPDCUST`, and `BANKDATA`, new DBRMs are
 
 #### z/OS Connect API contract change
 The `Customer` schema in `openapi.yaml` gains an optional `email` field. This is a **backward-compatible additive change** — existing API consumers that ignore unknown fields are unaffected. Consumers that validate strictly against the schema must update their validation.
+
+#### Web UI impact
+The Web UI (`src/frontend/`) is a vanilla JavaScript application served from a WebSphere Liberty server (port 9081) separate from z/OS Connect (port 9080). Changes are purely frontend — no Liberty server restart is needed; Wazi Deploy deploys the WAR file and Liberty picks it up. The Web UI uses `config.js` for API base URL detection (port 3001 → Docker dev proxy; other → direct z/OS Connect on port 9080). CICS vs IMS routing is determined by the leading letter of the customer ID — IMS pages are unaffected.
 
 #### `BNKSTMT.pli` — Batch monthly statement
 The PL/I SELECT uses named columns (`HV_CUST_*`). Adding `CUSTOMER_EMAIL` to the table does not affect existing queries that do not reference it. **No change to `BNKSTMT.pli` is required for this scope.** If email is desired on printed statements in future, `BNKSTMT.pli` and its host variable struct (`HV_CUSTOMER`) would need a separate change.
@@ -444,24 +494,28 @@ graph TD
 
     MAPPINGS --> OAS["openapi.yaml\nAdd email to Customer +\nCustomerUpdate schemas"]
 
-    OAS --> DEPLOY["Deploy:\n1. DDL\n2. COBOL load modules\n3. DBRM bind\n4. z/OS Connect API\n5. Frontend (if applicable)"]
+    OAS --> WEBUI["Web UI\ncustomer-create.html\ncustomer-details.html\napi.js"]
+
+    OAS --> DEPLOY["Deploy:\n1. DDL\n2. COBOL load modules\n3. DBRM bind\n4. z/OS Connect API\n5. Web UI WAR"]
 
     style START fill:#ff0000,color:#fff
     style CUSTDB2 fill:#ff9999
     style CUSTOMER_CPY fill:#ff9999
     style BIND fill:#ffcc99
+    style WEBUI fill:#99ccff
     style DEPLOY fill:#99ff99
 ```
 
 ### Deployment Sequence (order is critical)
 
-1. **DB2 DDL** — `ALTER TABLE CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(50)` (nullable, no default)
+1. **DB2 DDL** — `ALTER TABLE CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(50)` (existing installs only; fresh installs use `Db2-create.j2` which now includes the column)
 2. **Build COBOL programs** — DBB impact build picks up copybook changes automatically via `dbb-app.yaml` dependency patterns
 3. **DB2 DBRM bind** — bind new DBRMs for `CRECUST`, `INQCUST`, `UPDCUST`, `BANKDATA` into the DB2 plan
 4. **Regenerate z/OS Connect provider `.cpy` files** — using z/OS Connect CLI after programs are live on z/OS
 5. **Update z/OS Connect mapping YAMLs** — add email mappings
 6. **Rebuild z/OS Connect API** — `dbb build impact` picks up the `openapi.yaml` and mapping YAML changes
 7. **Deploy z/OS Connect API** — Wazi Deploy deploys the new API artifact
+8. **Build and deploy Web UI WAR** — `dbb build impact` packages `bank-frontend-vanilla.war`; Wazi Deploy copies it to `${frontend_root}/servers/bankz-frontend/apps/`; Liberty auto-deploys (or `MODIFY FEBOZ,REFRESH,APPS`)
 
 > ⚠️ **Critical ordering**: Steps 1 (DDL) and 3 (DBRM bind) must complete before running any program that accesses `CUSTOMER_EMAIL`. The DB2 plan must be re-bound after DDL to allow programs to reference the new column.
 
@@ -498,6 +552,9 @@ The presentation-layer programs `BNK1CCS.cbl` (create customer) and `BNK1DCS.cbl
 | A3 | Email field is optional (nullable) — not required for existing customer records | Confirmed — user approved nullable column |
 | A4 | The z/OS Connect API `Customer` schema is defined in `openapi.yaml` under `components/schemas/Customer` | Confirmed from file inspection |
 | A5 | `BNKSTMT.pli` batch does not need to output email on statements in this scope | Confirmed by user (CICS-only, no batch requirement stated) |
+| A6 | Web UI is vanilla JavaScript with no build step — files are packaged into a WAR by `VanillaFrontend.groovy` DBB task and deployed to a separate Liberty server on port 9081 | Confirmed from `dbb-app.yaml` and `VanillaFrontend.groovy` inspection |
+| A7 | Web UI `config.js` detects the z/OS Connect API URL at runtime — port 3001 → Docker dev proxy; all other ports → direct z/OS Connect on port 9080 | Confirmed from `src/frontend/config.js` inspection |
+| A8 | IMS customer pages (`/ims/customers/*`) in the Web UI are unaffected — routing is based on customer ID prefix (`I` = IMS, `C` = CICS) | Confirmed from `api.js` `getSystemFromCustomerId()` function |
 
 ---
 
@@ -508,12 +565,15 @@ The presentation-layer programs `BNK1CCS.cbl` (create customer) and `BNK1DCS.cbl
 | DB2 DDL | < 0.5 day |
 | COBOL copybook edits (6 files × simple additions) | 0.5 day |
 | COBOL program logic changes (`CRECUST`, `INQCUST`, `UPDCUST`, `BANKDATA`) | 1–2 days |
+| BMS map updates (`BNK1CCM.bms`, `BNK1DCM.bms`) | 0.25 day |
+| CICS presentation program changes (`BNK1CCS.cbl`, `BNK1DCS.cbl`) | 0.5–1 day |
 | z/OS Connect provider file regeneration | 0.5 day |
 | z/OS Connect mapping YAML updates (4 files) | 0.5 day |
 | OpenAPI schema update | 0.25 day |
+| Web UI changes (3 files) | 0.5 day |
 | DBB build + DBRM bind + deployment | 0.5 day |
-| Testing (unit + integration + API) | 1–2 days |
-| **Total** | **~5–7 days** |
+| Testing (unit + integration + API + Web UI) | 1–2 days |
+| **Total** | **~6–8 days** |
 
 ---
 
