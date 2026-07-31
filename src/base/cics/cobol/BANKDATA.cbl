@@ -72,6 +72,7 @@
           03 HV-CUSTOMER-CREATE-DATE    PIC S9(9) COMP.
           03 HV-CUSTOMER-CREDIT-SCORE   PIC S9(4) COMP.
           03 HV-CUSTOMER-CS-REVIEW-DATE PIC S9(9) COMP.
+          03 HV-CUSTOMER-EMAIL          PIC X(50).
 
       * Working storage for CUSTOMER data generation
        01 WS-CUSTOMER-RECORD.
@@ -670,6 +671,10 @@
                       (CUSTOMER-CS-REVIEW-MONTH * 100) +
                       CUSTOMER-CS-REVIEW-DAY
 
+                  MOVE SPACES TO HV-CUSTOMER-EMAIL
+                  MOVE 'test@bankofz.example.com'
+                      TO HV-CUSTOMER-EMAIL
+
       *
       * Insert customer record into DB2
       *
@@ -710,7 +715,7 @@
                           :HV-CUSTOMER-CREATE-DATE,
                           :HV-CUSTOMER-CREDIT-SCORE,
                           :HV-CUSTOMER-CS-REVIEW-DATE,
-                          'test@bankofz.example.com')
+                          :HV-CUSTOMER-EMAIL)
                END-EXEC
 
                    IF SQLCODE NOT = 0
