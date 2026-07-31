@@ -24,5 +24,5 @@
                 CUSTOMER_CREDIT_SCORE          SMALLINT,
                 CUSTOMER_CS_REVIEW_DATE        INTEGER,
                 CUSTOMER_EMAIL                 CHAR(50) )
-          END-EXEC.
+           END-EXEC.
 
