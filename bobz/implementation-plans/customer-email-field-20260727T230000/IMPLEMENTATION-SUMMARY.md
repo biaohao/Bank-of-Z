@@ -173,44 +173,38 @@ Root cause chain:
 
 ---
 
-### Fix 7 — Email field position: move from end of COMMAREA to after phone (`900778c`) ⚠️ Critical
+### Fix 7 — COBOL source: email field repositioned to after phone (`900778c`) ⚠️ Critical
 
-**Problem**: The `COMM-EMAIL` / `INQCUST-EMAIL` / `CUSTOMER-EMAIL` field was inserted at the **end** of each COMMAREA (before success/fail flags) in the initial implementation. The authoritative COMMAREA layout requires email immediately **after the phone field** (byte 159 in CRECUST), with address and all subsequent fields shifted +50 bytes. This mismatch caused z/OS Connect to read customer data fields from the wrong byte offsets, producing garbled address/status data and server errors on the Create Customer API call.
-
-**Root cause**: The `.dai` provider files were partially updated in commit `f962ace` (email added at end) but the COBOL structs and the `.dai` addr-field startPos values were not consistent with the intended layout. The correct layout per the implementation plan places email at byte 159 (right after phone, 20 bytes, which ends at byte 158).
+**Problem**: The `COMM-EMAIL` / `INQCUST-EMAIL` / `CUSTOMER-EMAIL` field was inserted at the **end** of each COMMAREA in the initial implementation. The authoritative layout requires email immediately **after the phone field** (byte 159).
 
 **Files changed** (25 files, commit `900778c`):
 
-*COBOL copybooks* — `COMM-EMAIL` / `INQCUST-EMAIL` / `CUSTOMER-EMAIL` moved from after CS-REVIEW-DATE to after PHONE:
-- `src/base/cics/copy/CRECUST.cpy`
-- `src/base/cics/copy/INQCUSTZ.cpy`
-- `src/base/cics/copy/UPDCUST.cpy`
-- `src/base/cics/copy/DELCUS.cpy`
-- `src/base/cics/copy/CUSTOMER.cpy`
+*COBOL copybooks* — email moved from after CS-REVIEW-DATE to after PHONE:
+- `src/base/cics/copy/CRECUST.cpy`, `INQCUSTZ.cpy`, `UPDCUST.cpy`, `DELCUS.cpy`, `CUSTOMER.cpy`
 
-*COBOL inline structs* (no COPY — required manual repositioning):
-- `src/base/cics/cobol/CRECUST.cbl` — `WS-CHILD-EMAIL` in `WS-CHILD-DATA` moved from after `WS-CHILD-CS-REVIEW-YEAR` to after `WS-CHILD-PHONE`
-- `src/base/cics/cobol/BNK1CCS.cbl` — `SUBPGM-EMAIL` in `SUBPGM-PARMS` moved from after `SUBPGM-CS-REVIEW-DATE` to after `SUBPGM-PHONE`
-- `src/base/cics/cobol/BNK1DCS.cbl` — `WS-COMM-EMAIL` and `COMM-EMAIL` moved to after their respective phone fields in both `WS-COMM-AREA` and `DFHCOMMAREA` LINKAGE
+*COBOL inline structs* (no COPY — manual sync):
+- `CRECUST.cbl` `WS-CHILD-DATA`, `BNK1CCS.cbl` `SUBPGM-PARMS`, `BNK1DCS.cbl` `WS-COMM-AREA` + `DFHCOMMAREA`
 
-*z/OS Connect provider files* — email field moved to startPos 159; addr through cs-review-date shifted +50:
+*z/OS Connect provider files (gen/ .cpy + .dai)* — email moved to startPos 159, addr/status/created/credit/csreview all shifted +50.
 
-| Field | Old startPos | New startPos |
-|---|---|---|
-| `COMM-EMAIL` / `INQCUST-EMAIL` | 398 | **159** |
-| `COMM-ADDR` / `INQCUST-ADDR` | 159 | **209** |
-| `COMM-ADDR-LINE1` | 159 | **209** |
-| `COMM-ADDR-LINE2` | 209 | **259** |
-| `COMM-CITY` | 259 | **309** |
-| `COMM-POSTCODE` | 309 | **359** |
-| `COMM-COUNTRY` | 319 | **369** |
-| `COMM-STATUS` | 369 | **419** |
-| `COMM-CREATED-DATE` | 379 | **429** |
-| `COMM-CREDIT-SCORE` | 387 | **437** |
-| `COMM-CS-REVIEW-DATE` | 390 | **440** |
-| `COMM-SUCCESS` / `COMM-UPD-SUCCESS` / etc. | 448 | **448 (unchanged)** |
+> ⚠️ **Partial rollback required** — see Fix 8 below. The z/OS load modules had not been rebuilt before deployment. The z/OS Connect provider files were subsequently rolled back to match the deployed COBOL. The COBOL source copybooks remain at the new layout and are correct for the next z/OS rebuild.
 
-Files: `CRECUST/providerFiles/COMMAREA.cpy`, `CRECUST/gen/CRECUST_request_0.cpy`, `CRECUST/gen/CRECUST_response_0.cpy`, `CRECUST/request.dai`, `CRECUST/response.dai`, and equivalent files for INQCUST, UPDCUST, and DELCUS.
+---
+
+### Fix 8 — z/OS Connect provider files rolled back to match deployed COBOL layout (`d7d9302`)
+
+**Problem**: After `900778c` updated the z/OS Connect provider files to the new layout (email at byte 159), the deployed COBOL load modules still used the old layout (email at byte 398). This caused two runtime failures:
+
+1. **GET /customers** (`INQCUST`): z/OS Connect read bytes 159–208 from the COMMAREA (which in the old layout is `INQCUST-ADDR-LINE1`) and returned them as `email`. The web UI displayed this address data appended to the real email value — e.g. `biaohao2@boz.com               0000000000010082026`.
+2. **PUT /customers** (`UPDCUST`): The PUT response mapping similarly read the wrong bytes as `email`, appending `COMM-CUSTNO` zeros — e.g. `biaohao3@boz.com               00000000000`.
+
+**Fix** (`d7d9302`, 18 files):
+- **8 `.dai` files** (CRECUST, INQCUST, UPDCUST, DELCUS request + response) — restored to email at **startPos 398** (end of COMMAREA), matching currently-deployed COBOL
+- **9 gen/ `.cpy` files** + `CRECUST/COMMAREA.cpy` — email moved back to after CS-REVIEW-DATE, matching deployed COBOL
+
+**Web UI defensive fix** (`d7d9302`): `customer-details.html` now sanitises the `email` value before rendering — strips any character outside `[a-zA-Z0-9._%+\-@]` — so residual COMMAREA misalignment bytes never reach the displayed form field.
+
+> ⚠️ **Action required after z/OS rebuild**: Once `dbb build impact` + DBRM bind + Wazi Deploy runs with the new COBOL copybooks, the z/OS Connect provider files must be updated **again** to the new layout (email at byte 159, addr shifted +50). The COBOL source copybooks are already correct for this.
 
 ---
 
@@ -225,8 +219,10 @@ All source code fixes are committed and pushed to `origin/demo-start`:
 | `399a02e` | `Db2-create.j2` — add `CUSTOMER_EMAIL` to `CREATE TABLE` |
 | `f962ace` | All z/OS Connect provider files + `DELCUS.cpy` |
 | `183edf0` | `openapi.yaml` — add `email` to `CreateCustomerRequest` |
-| `ab395ed` | **`CRECUST.cbl` — add `WS-CHILD-EMAIL` to `WS-CHILD-DATA`** |
-| `900778c` | **Email field repositioned to after phone (byte 159) — 25 files: 5 COBOL copybooks, 3 inline structs (`CRECUST.cbl`, `BNK1CCS.cbl`, `BNK1DCS.cbl`), 16 z/OS Connect provider files** |
+| `ab395ed` | `CRECUST.cbl` — add `WS-CHILD-EMAIL` to `WS-CHILD-DATA` |
+| `900778c` | COBOL source: email field repositioned to after phone (byte 159) — 5 copybooks + 3 inline structs |
+| `cf0ba86` | Web UI: email field moved to after phone in create and details pages |
+| `d7d9302` | **z/OS Connect provider files rolled back to match deployed COBOL (email@398); web UI email display sanitised** |
 
 ---
 
@@ -250,15 +246,17 @@ ALTER TABLE CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(50);
    - `BNK1CCM`: email input field visible at row 21
    - `BNK1DCM`: email display field visible at row 20
 
-### Workstream F — z/OS Connect API ✅ Complete (manual fix applied)
+### Workstream F — z/OS Connect API
 
-The provider `.cpy`, `.dai`, and schema JSON files for CRECUST, INQCUST, UPDCUST, and DELCUS have been manually corrected and pushed in commit `f962ace`. See the **Workstream F** section above for the full file inventory.
+Provider `.cpy`, `.dai`, and schema JSON files were manually corrected in `f962ace`, then updated for the new email-after-phone layout in `900778c`, then **rolled back to the old layout in `d7d9302`** to match the currently-deployed COBOL load modules.
+
+Current state of provider files: **email at startPos 398** (old layout — matches deployed COBOL).
 
 Remaining steps:
+- **E1–E3** — z/OS DBB rebuild + DBRM bind + Wazi Deploy (see above) — **must run first**
+- **F-reapply** — After z/OS rebuild, re-apply the new email-after-phone layout to all 17 provider files (COMMAREA.cpy, 8 gen/ .cpy files, 8 .dai files) to match the rebuilt load modules
 - **F9** — `dbb build impact` for z/OS Connect API project
 - **F10** — Wazi Deploy — deploy updated z/OS Connect API artifact
-
-> **Optional**: After z/OS deploy, regenerate `gen/` files via z/OS Connect CLI to produce the authoritative version.
 
 ---
 
@@ -277,4 +275,4 @@ Remaining steps:
 
 **Reference**: [`implementation-plan.md`](./implementation-plan.md)
 **Impact analysis**: [`bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`](../../impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md)
-**Last Updated**: 2026-07-30 (Fix 7: email field repositioned to after-phone byte offset — 25 files, commit `900778c`; Web UI email field reordered to after phone, commit `cf0ba86`)
+**Last Updated**: 2026-07-30 (Fix 8: z/OS Connect provider files rolled back to match deployed COBOL — `d7d9302`; email display sanitised in Web UI)

@@ -304,14 +304,14 @@ VALUES (..., :HV-CUSTOMER-EMAIL)
 ### Workstream F — z/OS Connect API Layer (6 provider CPY files + 4 mapping YAMLs + OpenAPI)
 **Purpose**: Expose the new email field through the REST API.
 
-> ✅ **F1–F3 and F-DELCUS are complete** — provider `.cpy`, `.dai`, and schema JSON files were manually corrected for CRECUST, INQCUST, UPDCUST, and DELCUS in commit `f962ace` (see Appendix B). Regeneration via CLI is recommended after z/OS deploy to produce the authoritative version.
+> ✅ **F1–F3 and F-DELCUS** — provider files manually corrected in `f962ace`; updated for new layout in `900778c`; **rolled back to old layout in `d7d9302`** to match currently-deployed COBOL. Current state: email at startPos 398. Must be re-updated after z/OS rebuild.
 
 | Step | Task | File | Status |
 |---|---|---|---|
-| F1 | Fix/regenerate CRECUST provider files | `CRECUST/providerFiles/gen/` + `COMMAREA.cpy` + DAI files | ✅ Manually fixed |
-| F2 | Fix/regenerate INQCUST provider files | `INQCUST/providerFiles/gen/` + DAI files | ✅ Manually fixed |
-| F3 | Fix/regenerate UPDCUST provider files | `UPDCUST/providerFiles/gen/` + DAI files | ✅ Manually fixed |
-| F-DELCUS | Fix DELCUS provider files + DELCUS.cpy | `DELCUS/providerFiles/gen/` + DAI files + `DELCUS.cpy` | ✅ Manually fixed |
+| F1 | Fix/regenerate CRECUST provider files | `CRECUST/providerFiles/gen/` + `COMMAREA.cpy` + DAI files | ⚠️ At old layout — re-apply after z/OS rebuild |
+| F2 | Fix/regenerate INQCUST provider files | `INQCUST/providerFiles/gen/` + DAI files | ⚠️ At old layout — re-apply after z/OS rebuild |
+| F3 | Fix/regenerate UPDCUST provider files | `UPDCUST/providerFiles/gen/` + DAI files | ⚠️ At old layout — re-apply after z/OS rebuild |
+| F-DELCUS | Fix DELCUS provider files + DELCUS.cpy | `DELCUS/providerFiles/gen/` + DAI files + `DELCUS.cpy` | ⚠️ At old layout — re-apply after z/OS rebuild |
 | F4 | Update POST /customers request mapping | `src/api/src/main/operations/%2Fcustomers/post/request.yaml` |
 | F5 | Update GET /customers/{id} response mapping | `src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/get/response_200.yaml` |
 | F6 | Update PUT /customers/{id} request mapping | `src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/put/request.yaml` |
@@ -718,8 +718,11 @@ WS-CHILD-DATA Working-Storage — after WS-CHILD-PHONE field (before WS-CHILD-AD
 | `f962ace` | All z/OS Connect provider files (CRECUST, INQCUST, UPDCUST, DELCUS) | `gen/` copybooks, `.dai` descriptors, and JSON schemas not updated — COMMAREA size mismatch caused HTTP 500 on all customer API calls | Manually added email field and corrected byte offsets in all 26 affected provider files; also fixed missing `COMM-EMAIL` in `DELCUS.cpy` |
 | `183edf0` | `src/api/src/main/api/openapi.yaml` | `CreateCustomerRequest` schema missing `email` property — only `Customer` and `CustomerUpdate` had it; z/OS Connect may strip unknown fields before the mapping engine | Added `email` (string, maxLength 50, nullable) to `CreateCustomerRequest` |
 | `ab395ed` | `src/base/cics/cobol/CRECUST.cbl` | **`WS-CHILD-DATA` inline struct missing `WS-CHILD-EMAIL PIC X(50)`** — CRDTAGY1–5 write 447-byte containers (via `COPY CUSTOMER`, correctly updated); CRECUST GETs them using `LENGTH OF WS-CHILD-DATA` = 397 bytes (no email); CICS returns LENGERR; CRECUST sets fail-code `'E'`, `COMM-SUCCESS = 'N'`; z/OS Connect returns HTTP 400 | Added `05 WS-CHILD-EMAIL PIC X(50).` after `WS-CHILD-CS-REVIEW-YEAR`, before `WS-CHILD-SUCCESS` in `WS-CHILD-DATA` |
+| `900778c` | 5 COBOL copybooks + 3 inline structs + 17 z/OS Connect provider files | Email field placed at wrong (end) position in COMMAREA — correct layout requires email at byte 159, after phone, with all address fields shifted +50 | Moved email to after phone in all COBOL sources and z/OS Connect provider files |
+| `cf0ba86` | `src/frontend/customer-create.html`, `src/frontend/customer-details.html` | Email input rendered after Country field — should appear after Phone to match COMMAREA field order | Moved email field to immediately after Phone number in both pages |
+| `d7d9302` | 8 `.dai` files + 9 gen/ `.cpy` files + `COMMAREA.cpy` + `customer-details.html` | z/OS Connect provider files updated to new layout (email@159) but deployed COBOL load modules compiled against old layout (email@398) — GET returned address bytes as email (e.g. `…0000000000010082026`); PUT response returned custno zeros appended to email (e.g. `…00000000000`) | Rolled back provider files to old layout (email@398) matching deployed COBOL; added client-side email sanitisation in `customer-details.html` to strip non-email characters as a defensive measure |
 
 ---
 
-**Last Updated**: 2026-07-30 (Appendix A updated — email-after-phone field position; byte-offset table added; all insertion points corrected to "after phone field")
+**Last Updated**: 2026-07-30 (Appendix B — Fix 8 and Fix 9 added; provider files rollback documented)
 **Reference**: `bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`
