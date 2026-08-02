@@ -96,8 +96,8 @@ After deployment it was discovered that all four z/OS Connect provider file sets
 
 | File | Change |
 |---|---|
-| `src/frontend/customer-create.html` | Email input field (`<cds-text-input>`, optional, `maxlength=50`, `type=email`) added after Country; `validateCustomerData` extended with 50-char max check; `email` included in POST body as `email || undefined` (omitted when blank) |
-| `src/frontend/customer-details.html` | Email field added to `displayCustomerDetails` form, pre-populated from `customer.email` returned by API; `updateCustomer` reads field and includes `email` in PUT body when non-empty; existing email preserved if field left blank |
+| `src/frontend/customer-create.html` | Email input field (`<cds-text-input>`, optional, `maxlength=50`, `type=email`) added after Country; `validateCustomerData` extended with 50-char max check; `email` included in POST body as `email || undefined` (omitted when blank). **Post-deployment fix (`cf0ba86`)**: Email field moved to immediately after Phone number. |
+| `src/frontend/customer-details.html` | Email field added to `displayCustomerDetails` form, pre-populated from `customer.email` returned by API; `updateCustomer` reads field and includes `email` in PUT body when non-empty; existing email preserved if field left blank. **Post-deployment fix (`cf0ba86`)**: Email field moved to immediately after Phone Number. |
 | `src/frontend/js/api.js` | JSDoc `@typedef Customer` and `createCustomer` param list updated to document `email` property (max 50 chars, optional) |
 
 ---
@@ -277,4 +277,4 @@ Remaining steps:
 
 **Reference**: [`implementation-plan.md`](./implementation-plan.md)
 **Impact analysis**: [`bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`](../../impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md)
-**Last Updated**: 2026-07-30 (Fix 7: email field repositioned to after-phone byte offset — 25 files, commit `900778c`)
+**Last Updated**: 2026-07-30 (Fix 7: email field repositioned to after-phone byte offset — 25 files, commit `900778c`; Web UI email field reordered to after phone, commit `cf0ba86`)
