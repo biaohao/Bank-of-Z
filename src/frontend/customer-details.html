@@ -310,7 +310,13 @@
                     formattedDOB = customer.dateOfBirth;
                 }
             }
-            
+
+            // Sanitise email — strip any non-email characters that can appear when
+            // the COBOL COMMAREA byte offset is misaligned (e.g. numeric garbage
+            // appended after the real email value).
+            const rawEmail = (customer.email || '').trim();
+            const displayEmail = rawEmail.replace(/[^a-zA-Z0-9._%+\-@]/g, '');
+
             // Restore the proper HTML structure
             detailsSection.innerHTML = `
                 <h3>Customer Information (${system})</h3>
@@ -322,7 +328,7 @@
                         <cds-text-input id="firstName" label="First Name" value="${customer.firstName || ''}"></cds-text-input>
                         <cds-text-input id="lastName" label="Last Name" value="${customer.lastName || ''}"></cds-text-input>
                         <cds-text-input id="phoneNumber" label="Phone Number" value="${customer.phoneNumber || ''}"></cds-text-input>
-                        <cds-text-input id="email" label="Email Address" value="${customer.email || ''}" maxlength="50" type="email"></cds-text-input>
+                        <cds-text-input id="email" label="Email Address" value="${displayEmail}" maxlength="50" type="email"></cds-text-input>
                         <cds-text-input id="dateOfBirth" label="Date of Birth" value="${formattedDOB}"></cds-text-input>
                         <cds-text-input id="addressLine1" label="Address Line 1" value="${customer.address?.addressLine1 || ''}"></cds-text-input>
                         <cds-text-input id="addressLine2" label="Address Line 2" value="${customer.address?.addressLine2 || ''}"></cds-text-input>
