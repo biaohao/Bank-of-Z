@@ -288,6 +288,7 @@
                 07 WS-CHILD-CS-REVIEW-DAY  PIC 99 DISPLAY.
                 07 WS-CHILD-CS-REVIEW-MONTH PIC 99 DISPLAY.
                 07 WS-CHILD-CS-REVIEW-YEAR PIC 9999 DISPLAY.
+             05 WS-CHILD-EMAIL             PIC X(50).
              05 WS-CHILD-SUCCESS           PIC X.
              05 WS-CHILD-FAIL-CODE         PIC X.
 
