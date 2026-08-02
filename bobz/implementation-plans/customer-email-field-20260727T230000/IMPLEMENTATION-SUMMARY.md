@@ -1,6 +1,6 @@
 # Implementation Summary: Add CUSTOMER_EMAIL Field
 
-**Commits**: `d51f56b`, `138b3bd`, `f1f5f79`, `32371fa`, `127c889`, `c503601`, `477c3b7`, `f0da907`, `399a02e`
+**Commits**: `d51f56b`, `138b3bd`, `f1f5f79`, `32371fa`, `127c889`, `c503601`, `477c3b7`, `f0da907`, `399a02e`, `f962ace`, `183edf0`, `ab395ed`, `900778c`, `cf0ba86`, `a429eb1`
 **Branch**: `demo-start` (pushed to `origin/demo-start`)
 **Date**: 2026-07-27 – 2026-07-28
 **Signed-off-by**: DCO ✅
@@ -187,24 +187,26 @@ Root cause chain:
 
 *z/OS Connect provider files (gen/ .cpy + .dai)* — email moved to startPos 159, addr/status/created/credit/csreview all shifted +50.
 
-> ⚠️ **Partial rollback required** — see Fix 8 below. The z/OS load modules had not been rebuilt before deployment. The z/OS Connect provider files were subsequently rolled back to match the deployed COBOL. The COBOL source copybooks remain at the new layout and are correct for the next z/OS rebuild.
+> ⚠️ **Note**: A temporary rollback (Fix 8, `d7d9302`) occurred while z/OS load modules were still at the old layout. Fix 9 (`a429eb1`) restored provider files to the new layout after confirming the deployed COBOL uses `INQCUST.cbl` line 280 `MOVE CUSTOMER-EMAIL TO INQCUST-EMAIL` at byte 159. Provider files are now permanently correct for the deployed COBOL.
 
 ---
 
-### Fix 8 — z/OS Connect provider files rolled back to match deployed COBOL layout (`d7d9302`)
+### Fix 8 — z/OS Connect provider files temporarily rolled back then restored (`d7d9302` → `a429eb1`)
 
-**Problem**: After `900778c` updated the z/OS Connect provider files to the new layout (email at byte 159), the deployed COBOL load modules still used the old layout (email at byte 398). This caused two runtime failures:
+**Problem**: After `900778c` updated the z/OS Connect provider files to the new layout (email at byte 159), the deployed COBOL load modules appeared to still be on the old layout — causing z/OS Connect to read bytes 159–208 as `email` when the deployed COBOL put address data there. The web UI showed garbled email values, e.g. `biaohao2@boz.com               0000000000010082026`.
 
-1. **GET /customers** (`INQCUST`): z/OS Connect read bytes 159–208 from the COMMAREA (which in the old layout is `INQCUST-ADDR-LINE1`) and returned them as `email`. The web UI displayed this address data appended to the real email value — e.g. `biaohao2@boz.com               0000000000010082026`.
-2. **PUT /customers** (`UPDCUST`): The PUT response mapping similarly read the wrong bytes as `email`, appending `COMM-CUSTNO` zeros — e.g. `biaohao3@boz.com               00000000000`.
+**Initial rollback** (`d7d9302`): Provider files were moved back to email at startPos 398 as a temporary measure. A web UI sanitise filter was also applied.
 
-**Fix** (`d7d9302`, 18 files):
-- **8 `.dai` files** (CRECUST, INQCUST, UPDCUST, DELCUS request + response) — restored to email at **startPos 398** (end of COMMAREA), matching currently-deployed COBOL
-- **9 gen/ `.cpy` files** + `CRECUST/COMMAREA.cpy` — email moved back to after CS-REVIEW-DATE, matching deployed COBOL
+**Root cause determination**: The deployed COBOL was then confirmed (by reading the deployed `INQCUST.cbl` at line 280: `MOVE CUSTOMER-EMAIL TO INQCUST-EMAIL`) to already be using the **new** layout — email at byte 159, address at byte 209. The garbled output in `d7d9302` was caused by the provider files being at the **old** layout (email@398), not the new one. The rollback had made things worse.
 
-**Web UI defensive fix** (`d7d9302`): `customer-details.html` now sanitises the `email` value before rendering — strips any character outside `[a-zA-Z0-9._%+\-@]` — so residual COMMAREA misalignment bytes never reach the displayed form field.
+**Definitive fix** (`a429eb1`): Restored all 17 provider files to the new layout — email at startPos 159, address at startPos 209. The web UI sanitise filter was also reverted as it is no longer needed. This commit represents the final correct state.
 
-> ⚠️ **Action required after z/OS rebuild**: Once `dbb build impact` + DBRM bind + Wazi Deploy runs with the new COBOL copybooks, the z/OS Connect provider files must be updated **again** to the new layout (email at byte 159, addr shifted +50). The COBOL source copybooks are already correct for this.
+**Files restored in `a429eb1`:**
+- 8 `.dai` files (CRECUST, INQCUST, UPDCUST, DELCUS request + response) — `COMM-EMAIL` / `INQCUST-EMAIL` at startPos 159
+- 8 `gen/` `.cpy` files — email field after PHONE, before ADDR
+- `CRECUST/COMMAREA.cpy` — email after PHONE
+
+> ✅ Provider files are now permanently aligned with deployed COBOL. No further provider file updates are needed before or after the z/OS rebuild.
 
 ---
 
@@ -218,11 +220,11 @@ All source code fixes are committed and pushed to `origin/demo-start`:
 | `f0da907` | `CUSTDB2.cpy` — restore `END-EXEC.` to Area B |
 | `399a02e` | `Db2-create.j2` — add `CUSTOMER_EMAIL` to `CREATE TABLE` |
 | `f962ace` | All z/OS Connect provider files + `DELCUS.cpy` |
-| `183edf0` | `openapi.yaml` — add `email` to `CreateCustomerRequest` |
+| `183efd0` | `openapi.yaml` — add `email` to `CreateCustomerRequest` |
 | `ab395ed` | `CRECUST.cbl` — add `WS-CHILD-EMAIL` to `WS-CHILD-DATA` |
 | `900778c` | COBOL source: email field repositioned to after phone (byte 159) — 5 copybooks + 3 inline structs |
 | `cf0ba86` | Web UI: email field moved to after phone in create and details pages |
-| `d7d9302` | **z/OS Connect provider files rolled back to match deployed COBOL (email@398); web UI email display sanitised** |
+| `a429eb1` | **z/OS Connect provider files restored to new layout (email@159, addr@209) — final correct state** |
 
 ---
 
@@ -238,7 +240,7 @@ ALTER TABLE CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(50);
 - Can be submitted via `jsub` on USS using a JCL that runs `DSNTEP13` against subsystem `DBD1`
 - Fresh installs do NOT need this step — `Db2-create.j2` now includes the column
 
-### Workstream E — Build, Bind, Deploy
+### Workstream E — Build, Bind, Deploy (COBOL side)
 1. **E1** — `dbb build impact` — DBB impact build picks up all copybook changes; BMS reassembly runs before COBOL compile for `BNK1CCS` and `BNK1DCS`
 2. **E2** — DB2 DBRM bind for `CRECUST`, `INQCUST`, `UPDCUST`, `BANKDATA` into plan `BANKZPLN`
 3. **E3** — Wazi Deploy to CICS load library
@@ -248,15 +250,15 @@ ALTER TABLE CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(50);
 
 ### Workstream F — z/OS Connect API
 
-Provider `.cpy`, `.dai`, and schema JSON files were manually corrected in `f962ace`, then updated for the new email-after-phone layout in `900778c`, then **rolled back to the old layout in `d7d9302`** to match the currently-deployed COBOL load modules.
-
-Current state of provider files: **email at startPos 398** (old layout — matches deployed COBOL).
+Provider `.cpy`, `.dai`, and schema JSON files are now at the correct new layout (email at startPos 159, addr at startPos 209) as of commit `a429eb1`. **No further provider file edits are required.**
 
 Remaining steps:
-- **E1–E3** — z/OS DBB rebuild + DBRM bind + Wazi Deploy (see above) — **must run first**
-- **F-reapply** — After z/OS rebuild, re-apply the new email-after-phone layout to all 17 provider files (COMMAREA.cpy, 8 gen/ .cpy files, 8 .dai files) to match the rebuilt load modules
-- **F9** — `dbb build impact` for z/OS Connect API project
-- **F10** — Wazi Deploy — deploy updated z/OS Connect API artifact
+- **F9** — `dbb build impact` for the z/OS Connect API project — picks up corrected provider files
+- **F10** — Wazi Deploy — deploy updated z/OS Connect API WAR artifact to Liberty
+- **F11** — Smoke test:
+  - `POST /api/customers` with `email` — confirm HTTP 200/201, `COMM-SUCCESS = 'Y'`
+  - `GET /api/customers/{id}` — confirm `email` field present and clean (no trailing garbage bytes)
+  - `PUT /api/customers/{id}` with `email` update — confirm `email` in response body
 
 ---
 
@@ -275,4 +277,4 @@ Remaining steps:
 
 **Reference**: [`implementation-plan.md`](./implementation-plan.md)
 **Impact analysis**: [`bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`](../../impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md)
-**Last Updated**: 2026-07-30 (Fix 8: z/OS Connect provider files rolled back to match deployed COBOL — `d7d9302`; email display sanitised in Web UI)
+**Last Updated**: 2026-07-30 (Fix 8/9: provider files restored to new layout `a429eb1`; `d7d9302` rollback confirmed as incorrect and reverted; remaining steps are F9/F10 z/OS Connect API rebuild + deploy)
