@@ -105,9 +105,9 @@ operations change.
 |---|---|---|
 | DB2 DECLARE TABLE | `src/base/cics/copy/CUSTDB2.cpy` | 17 columns, no email |
 | COBOL customer struct | `src/base/cics/copy/CUSTOMER.cpy` | `03 CUSTOMER-RECORD`, ends at `CUSTOMER-CS-REVIEW-DATE` group |
-| Create COMMAREA | `src/base/cics/copy/CRECUST.cpy` | Ends at `COMM-CS-REVIEW-DATE`, then `COMM-SUCCESS` / `COMM-FAIL-CODE` |
-| Inquire COMMAREA | `src/base/cics/copy/INQCUSTZ.cpy` | Ends at `INQCUST-CS-REVIEW-DT`, then success/fail/PCB fields |
-| Update COMMAREA | `src/base/cics/copy/UPDCUST.cpy` | Ends at `COMM-CS-REVIEW-DATE`, then `COMM-UPD-SUCCESS` / `COMM-UPD-FAIL-CD` |
+| Create COMMAREA | `src/base/cics/copy/CRECUST.cpy` | `COMM-EMAIL PIC X(50)` currently at end, before `COMM-SUCCESS` / `COMM-FAIL-CODE` — **must move to after `COMM-PHONE`** |
+| Inquire COMMAREA | `src/base/cics/copy/INQCUSTZ.cpy` | `INQCUST-EMAIL PIC X(50)` currently at end, before success/fail/PCB fields — **must move to after phone field** |
+| Update COMMAREA | `src/base/cics/copy/UPDCUST.cpy` | `COMM-EMAIL PIC X(50)` currently at end, before `COMM-UPD-SUCCESS` / `COMM-UPD-FAIL-CD` — **must move to after `COMM-PHONE`** |
 | Create screen | `src/base/cics/bms/BNK1CCM.bms` | Last data row 20; rows 21-22 empty; row 23 MESSAGE; row 24 PF keys |
 | Display screen | `src/base/cics/bms/BNK1DCM.bms` | Last data row 19; rows 20-22 empty; row 23 MESSAGE; row 24 PF keys |
 | Create presenter | `src/base/cics/cobol/BNK1CCS.cbl` | Has local `SUBPGM-PARMS` struct (not COPY CRECUST); COPY BNK1CCM for map |
@@ -143,11 +143,11 @@ the DBB impact scanner to automatically pick up all downstream COBOL recompiles.
 | Step | Task | File | Change |
 |---|---|---|---|
 | B1 | Add to DB2 DECLARE TABLE | `src/base/cics/copy/CUSTDB2.cpy` | Add `CUSTOMER_EMAIL CHAR(50)` — remove `)` after last column, add new column then `)` |
-| B2 | Add to COBOL customer struct | `src/base/cics/copy/CUSTOMER.cpy` | Add `05 CUSTOMER-EMAIL PIC X(50)` after `CUSTOMER-CS-REVIEW-DATE` group (before end of `03 CUSTOMER-RECORD`) |
-| B3 | Add to Create COMMAREA | `src/base/cics/copy/CRECUST.cpy` | Add `03 COMM-EMAIL PIC X(50)` after `COMM-CS-REVIEW-DATE` group (before `COMM-SUCCESS`) |
-| B4 | Add to Inquire COMMAREA | `src/base/cics/copy/INQCUSTZ.cpy` | Add `03 INQCUST-EMAIL PIC X(50)` after `INQCUST-CS-REVIEW-DT` group (before `INQCUST-INQ-SUCCESS`) |
-| B5 | Add to Update COMMAREA | `src/base/cics/copy/UPDCUST.cpy` | Add `03 COMM-EMAIL PIC X(50)` after `COMM-CS-REVIEW-DATE` group (before `COMM-UPD-SUCCESS`) |
-| B6 | Add to Delete COMMAREA | `src/base/cics/copy/DELCUS.cpy` | Add `03 COMM-EMAIL PIC X(50)` after `COMM-CS-REVIEW-DATE` group (before `COMM-DEL-SUCCESS`) — initially assessed as skip; corrected post-deployment |
+| B2 | Add to COBOL customer struct | `src/base/cics/copy/CUSTOMER.cpy` | Move/add `05 CUSTOMER-EMAIL PIC X(50)` **after `CUSTOMER-PHONE` group** (before `CUSTOMER-ADDR` group) |
+| B3 | Add to Create COMMAREA | `src/base/cics/copy/CRECUST.cpy` | Move/add `03 COMM-EMAIL PIC X(50)` **after `COMM-PHONE` field** (before `COMM-ADDR-LINE1`) |
+| B4 | Add to Inquire COMMAREA | `src/base/cics/copy/INQCUSTZ.cpy` | Move/add `03 INQCUST-EMAIL PIC X(50)` **after phone field** (before address fields) |
+| B5 | Add to Update COMMAREA | `src/base/cics/copy/UPDCUST.cpy` | Move/add `03 COMM-EMAIL PIC X(50)` **after `COMM-PHONE` field** (before address fields) |
+| B6 | Add to Delete COMMAREA | `src/base/cics/copy/DELCUS.cpy` | Move/add `03 COMM-EMAIL PIC X(50)` **after `COMM-PHONE` field** (before address fields) — initially assessed as skip; corrected post-deployment |
 
 **Dependency**: B1–B5 can be done in parallel. Must complete before Workstream D.
 
@@ -213,13 +213,16 @@ explicit source edits before the build runs.
 >
 > `CRECUST.cbl` contains an inline manual copy of the customer structure — `WS-CHILD-DATA` (lines ~260–292) — that is used to GET async credit-check results back from CICS containers written by CRDTAGY1–5. Because it has no `COPY` statement it does **not** inherit email automatically.
 >
-> Add `05 WS-CHILD-EMAIL PIC X(50).` after `WS-CHILD-CS-REVIEW-YEAR` (line 290) and before `WS-CHILD-SUCCESS`:
+> Add `05 WS-CHILD-EMAIL PIC X(50).` **after `WS-CHILD-PHONE`** (before the address fields). Field positions must match the COMMAREA layout (email at byte 159, after phone at byte 139):
 > ```cobol
+>               05 WS-CHILD-PHONE             PIC X(20).
+>               05 WS-CHILD-EMAIL             PIC X(50).   ← ADD HERE (after phone)
+>               05 WS-CHILD-ADDR-LINE1        PIC X(50).
+>               ...
 >               05 WS-CHILD-CS-REVIEW-DATE.
 >                  07 WS-CHILD-CS-REVIEW-DAY  PIC 99 DISPLAY.
 >                  07 WS-CHILD-CS-REVIEW-MONTH PIC 99 DISPLAY.
 >                  07 WS-CHILD-CS-REVIEW-YEAR PIC 9999 DISPLAY.
->               05 WS-CHILD-EMAIL             PIC X(50).   ← ADD THIS
 >               05 WS-CHILD-SUCCESS           PIC X.
 >               05 WS-CHILD-FAIL-CODE         PIC X.
 > ```
@@ -235,7 +238,7 @@ explicit source edits before the build runs.
 2. Add `CUSTOMER_EMAIL = :CUSTOMER-EMAIL` to the SET clause of the UPDATE statement
 
 #### D4 — BNK1CCS.cbl
-1. In `SUBPGM-PARMS` (Working-Storage, lines 102–133) — add after `SUBPGM-CS-REVIEW-DATE` group:
+1. In `SUBPGM-PARMS` (Working-Storage, lines 102–133) — add **after `SUBPGM-PHONE` field** (before the address group):
    ```cobol
               03 SUBPGM-EMAIL                    PIC X(50).
    ```
@@ -248,12 +251,12 @@ explicit source edits before the build runs.
 #### D5 — BNK1DCS.cbl ⚠️ CRITICAL — inline structs
 Four edits required (two in DATA DIVISION, two in PROCEDURE DIVISION):
 
-**Edit 1 — `DFHCOMMAREA` LINKAGE SECTION** (line ~212, after `COMM-UPD`):
+**Edit 1 — `DFHCOMMAREA` LINKAGE SECTION** — add **after `COMM-PHONE` field** (before the address fields):
 ```cobol
            03 COMM-EMAIL                PIC X(50).
 ```
 
-**Edit 2 — `WS-COMM-AREA` Working-Storage** (line ~149, after `WS-COMM-CS-REVIEW-DATE`):
+**Edit 2 — `WS-COMM-AREA` Working-Storage** — add **after `WS-COMM-PHONE` field** (before the address fields):
 ```cobol
            03 WS-COMM-EMAIL             PIC X(50).
 ```
@@ -472,10 +475,10 @@ graph TD
 | File | Change | Insert after |
 |---|---|---|
 | `src/base/cics/copy/CUSTDB2.cpy` | Add `CUSTOMER_EMAIL CHAR(50)` to DECLARE TABLE | Last column before closing `)` |
-| `src/base/cics/copy/CUSTOMER.cpy` | Add `05 CUSTOMER-EMAIL PIC X(50)` | `CUSTOMER-CS-REVIEW-DATE` group |
-| `src/base/cics/copy/CRECUST.cpy` | Add `03 COMM-EMAIL PIC X(50)` | `COMM-CS-REVIEW-DATE` group |
-| `src/base/cics/copy/INQCUSTZ.cpy` | Add `03 INQCUST-EMAIL PIC X(50)` | `INQCUST-CS-REVIEW-DT` group |
-| `src/base/cics/copy/UPDCUST.cpy` | Add `03 COMM-EMAIL PIC X(50)` | `COMM-CS-REVIEW-DATE` group |
+| `src/base/cics/copy/CUSTOMER.cpy` | Move/add `05 CUSTOMER-EMAIL PIC X(50)` | `CUSTOMER-PHONE` group (before `CUSTOMER-ADDR`) |
+| `src/base/cics/copy/CRECUST.cpy` | Move/add `03 COMM-EMAIL PIC X(50)` | `COMM-PHONE` field (before address fields; byte 159) |
+| `src/base/cics/copy/INQCUSTZ.cpy` | Move/add `03 INQCUST-EMAIL PIC X(50)` | Phone field (before address fields) |
+| `src/base/cics/copy/UPDCUST.cpy` | Move/add `03 COMM-EMAIL PIC X(50)` | `COMM-PHONE` field (before address fields) |
 
 ### BMS Maps
 
@@ -617,6 +620,29 @@ graph TD
 
 ## Appendix A: Exact Field Positions in Copybooks
 
+### COMMAREA byte layout (CRECUST — 453 bytes total)
+
+The email field is positioned **after the phone field** in all COBOL structs and COMMAREs.
+The table below shows the authoritative byte offsets to use for all provider file `startPos` values.
+
+| Field | Start byte | Length |
+|---|---|---|
+| `COMM-EYECATCHER` | 1 | 4 |
+| `COMM-KEY` (SORTCODE 6 + NUMBER 10) | 5 | 16 |
+| `COMM-NAME` (TITLE 15 + FIRST 60 + LAST 30 + INITIAL 1 + MIDDLE 4) | 21 | 110 |
+| `COMM-DOB` (DAY 2 + MONTH 2 + YEAR 4) | 131 | 8 |
+| `COMM-PHONE` | 139 | 20 |
+| **`COMM-EMAIL`** ← new field | **159** | **50** |
+| `COMM-ADDR` (LINE1 50 + LINE2 50 + TOWN 50 + POSTCODE 8 + COUNTRY 20 + PHONE 32) | 209 | 210 |
+| `COMM-STATUS` | 419 | 10 |
+| `COMM-CREATED-DATE` | 429 | 8 |
+| `COMM-CREDIT-SCORE` | 437 | 3 |
+| `COMM-CS-REVIEW-DATE` | 440 | 8 |
+| `COMM-SUCCESS` | 448 | 1 |
+| `COMM-FAIL-CODE` | 449 | 1 |
+
+**Total**: 453 bytes — unchanged. `COMM-SUCCESS` remains at byte 448.
+
 ### New fields — exact insertion points
 
 ```
@@ -625,34 +651,60 @@ CUSTDB2.cpy  — inside EXEC SQL DECLARE CUSTOMER TABLE:
   Replace with:
            CUSTOMER_CS_REVIEW_DATE        INTEGER,
            CUSTOMER_EMAIL                 CHAR(50) )
+  (DB2 physical column order: ALTER TABLE appends to end; COBOL struct order is separate)
 
-CUSTOMER.cpy — after CUSTOMER-CS-REVIEW-DATE group (line 40):
+CUSTOMER.cpy — after CUSTOMER-PHONE group (before CUSTOMER-ADDR group):
   05 CUSTOMER-EMAIL                       PIC X(50).
 
-CRECUST.cpy — after COMM-CS-REVIEW-DATE group (line 34), before COMM-SUCCESS (line 36):
+CRECUST.cpy — after COMM-PHONE field (byte 139, before COMM-ADDR-LINE1 at byte 209):
   03 COMM-EMAIL                           PIC X(50).
 
-INQCUSTZ.cpy — after INQCUST-CS-REVIEW-DT group (line 33), before INQCUST-INQ-SUCCESS (line 34):
+INQCUSTZ.cpy — after phone field (before address fields):
   03 INQCUST-EMAIL                        PIC X(50).
 
-UPDCUST.cpy — after COMM-CS-REVIEW-DATE group (line 34), before COMM-UPD-SUCCESS (line 35):
+UPDCUST.cpy — after COMM-PHONE field (before address fields):
   03 COMM-EMAIL                           PIC X(50).
 
-DELCUS.cpy — after COMM-CS-REVIEW-DATE group (line 34), before COMM-DEL-SUCCESS (line 35):
+DELCUS.cpy — after COMM-PHONE field (before address fields):
   03 COMM-EMAIL                           PIC X(50).
 ```
 
 ### BNK1DCS.cbl inline struct insertions
 
 ```
-LINKAGE SECTION DFHCOMMAREA — after COMM-CS-REVIEW-DATE PIC 9(8) (line ~209),
-                               before COMM-DEL-SUCCESS:
+LINKAGE SECTION DFHCOMMAREA — after COMM-PHONE PIC X(20) (before COMM-ADDR fields):
   03 COMM-EMAIL                PIC X(50).
 
-WS-COMM-AREA — after WS-COMM-CS-REVIEW-DATE PIC 9(8) (line ~146),
-               before WS-COMM-DEL-SUCCESS:
+WS-COMM-AREA — after WS-COMM-PHONE PIC X(20) (before WS-COMM-ADDR fields):
   03 WS-COMM-EMAIL             PIC X(50).
 ```
+
+### BNK1CCS.cbl SUBPGM-PARMS insertion
+
+```
+SUBPGM-PARMS Working-Storage — after SUBPGM-PHONE field (before SUBPGM-ADDR group):
+  03 SUBPGM-EMAIL              PIC X(50).
+```
+
+### CRECUST.cbl WS-CHILD-DATA insertion
+
+```
+WS-CHILD-DATA Working-Storage — after WS-CHILD-PHONE field (before WS-CHILD-ADDR fields):
+  05 WS-CHILD-EMAIL            PIC X(50).
+```
+
+### z/OS Connect provider file startPos values (CRECUST)
+
+| Field | Old startPos | New startPos |
+|---|---|---|
+| `COMM-EMAIL` | 398 (old end) | **159** |
+| `COMM-ADDR-LINE1` (first addr field) | — | **209** |
+| `COMM-STATUS` | — | **419** |
+| `COMM-CREATED-DATE` | — | **429** |
+| `COMM-CREDIT-SCORE` | — | **437** |
+| `COMM-CS-REVIEW-DATE` | — | **440** |
+| `COMM-SUCCESS` | — | **448** |
+| `COMM-FAIL-CODE` | — | **449** |
 
 ---
 
@@ -669,5 +721,5 @@ WS-COMM-AREA — after WS-COMM-CS-REVIEW-DATE PIC 9(8) (line ~146),
 
 ---
 
-**Last Updated**: 2026-07-29 (Appendix B updated — CRECUST.cbl WS-CHILD-DATA fix; openapi.yaml CreateCustomerRequest fix)
+**Last Updated**: 2026-07-30 (Appendix A updated — email-after-phone field position; byte-offset table added; all insertion points corrected to "after phone field")
 **Reference**: `bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`
