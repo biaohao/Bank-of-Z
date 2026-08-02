@@ -703,6 +703,12 @@ components:
           maxLength: 10
           description: Customer status
           example: "ACTIVE"
+        email:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: Customer email address
+          example: "customer@example.com"
 
     CreatedCustomer:
       type: object
