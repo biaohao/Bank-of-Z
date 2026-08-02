@@ -19,6 +19,7 @@
                  07 CUSTOMER-DOB-MONTH               PIC 99 DISPLAY.
                  07 CUSTOMER-DOB-YEAR                PIC 9999 DISPLAY.
               05 CUSTOMER-PHONE                      PIC X(20).
+              05 CUSTOMER-EMAIL                      PIC X(50).
               05 CUSTOMER-ADDRESS.
                  07 CUSTOMER-ADDR-LINE1              PIC X(50).
                  07 CUSTOMER-ADDR-LINE2              PIC X(50).
@@ -38,4 +39,3 @@
                  07 CUSTOMER-CS-REVIEW-DAY           PIC 99 DISPLAY.
                  07 CUSTOMER-CS-REVIEW-MONTH         PIC 99 DISPLAY.
                  07 CUSTOMER-CS-REVIEW-YEAR          PIC 9999 DISPLAY.
-              05 CUSTOMER-EMAIL                      PIC X(50).

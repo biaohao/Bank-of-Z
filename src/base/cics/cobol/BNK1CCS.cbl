@@ -113,6 +113,7 @@
              05 SUBPGM-BIRTH-MONTH             PIC 99 DISPLAY.
              05 SUBPGM-BIRTH-YEAR              PIC 9999 DISPLAY.
           03 SUBPGM-PHONE                      PIC X(20).
+          03 SUBPGM-EMAIL                      PIC X(50).
           03 SUBPGM-ADDR.
              05 SUBPGM-ADDR-LINE1              PIC X(50).
              05 SUBPGM-ADDR-LINE2              PIC X(50).
@@ -129,7 +130,6 @@
              05 SUBPGM-CS-REVIEW-DAY           PIC 99 DISPLAY.
              05 SUBPGM-CS-REVIEW-MONTH         PIC 99 DISPLAY.
              05 SUBPGM-CS-REVIEW-YEAR          PIC 9999 DISPLAY.
-          03 SUBPGM-EMAIL                      PIC X(50).
           03 SUBPGM-SUCCESS                    PIC X.
           03 SUBPGM-FAIL-CODE                  PIC X.
 

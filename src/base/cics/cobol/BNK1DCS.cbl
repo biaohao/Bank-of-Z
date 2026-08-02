@@ -135,6 +135,7 @@
           03 WS-COMM-LAST-NAME        PIC X(50).
           03 WS-COMM-DOB              PIC 9(8).
           03 WS-COMM-PHONE            PIC X(20).
+          03 WS-COMM-EMAIL             PIC X(50).
           03 WS-COMM-ADDR-LINE1       PIC X(50).
           03 WS-COMM-ADDR-LINE2       PIC X(50).
           03 WS-COMM-CITY             PIC X(50).
@@ -144,7 +145,6 @@
           03 WS-COMM-CREATED-DATE     PIC 9(8).
           03 WS-COMM-CREDIT-SCORE     PIC 9(3).
           03 WS-COMM-CS-REVIEW-DATE   PIC 9(8).
-          03 WS-COMM-EMAIL             PIC X(50).
           03 WS-COMM-DEL-SUCCESS      PIC X.
           03 WS-COMM-DEL-FAIL-CD      PIC X.
           03 WS-COMM-UPDATE           PIC X.
@@ -199,6 +199,7 @@
           03 COMM-LAST-NAME           PIC X(50).
           03 COMM-DOB                 PIC 9(8).
           03 COMM-PHONE               PIC X(20).
+          03 COMM-EMAIL               PIC X(50).
           03 COMM-ADDR-LINE1          PIC X(50).
           03 COMM-ADDR-LINE2          PIC X(50).
           03 COMM-CITY                PIC X(50).
@@ -208,7 +209,6 @@
           03 COMM-CREATED-DATE        PIC 9(8).
           03 COMM-CREDIT-SCORE        PIC 9(3).
           03 COMM-CS-REVIEW-DATE      PIC 9(8).
-          03 COMM-EMAIL               PIC X(50).
           03 COMM-DEL-SUCCESS         PIC X.
           03 COMM-DEL-FAIL-CD         PIC X.
           03 COMM-UPD                 PIC X.

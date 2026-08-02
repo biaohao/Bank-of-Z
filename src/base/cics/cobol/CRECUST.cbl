@@ -272,6 +272,7 @@
                 07 WS-CHILD-DOB-MONTH      PIC 99 DISPLAY.
                 07 WS-CHILD-DOB-YEAR       PIC 9999 DISPLAY.
              05 WS-CHILD-PHONE             PIC X(20).
+             05 WS-CHILD-EMAIL             PIC X(50).
              05 WS-CHILD-ADDRESS.
                 07 WS-CHILD-ADDR-LINE1     PIC X(50).
                 07 WS-CHILD-ADDR-LINE2     PIC X(50).
@@ -288,7 +289,6 @@
                 07 WS-CHILD-CS-REVIEW-DAY  PIC 99 DISPLAY.
                 07 WS-CHILD-CS-REVIEW-MONTH PIC 99 DISPLAY.
                 07 WS-CHILD-CS-REVIEW-YEAR PIC 9999 DISPLAY.
-             05 WS-CHILD-EMAIL             PIC X(50).
              05 WS-CHILD-SUCCESS           PIC X.
              05 WS-CHILD-FAIL-CODE         PIC X.
 
