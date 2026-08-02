@@ -297,10 +297,30 @@ Add after `CUSTOMER_CS_REVIEW_DATE INTEGER )`:
 ---
 
 #### 7. `src/base/cics/cobol/CRECUST.cbl` — Create customer program
-**Impact**: Modify SQL INSERT to include the new column:
+**Impact**: Two separate changes required:
+
+**7a — SQL INSERT** (original plan):
 - In WORKING-STORAGE: `CUSTOMER-EMAIL` is already available via `COPY CUSTOMER` (after copybook change)
 - Move `COMM-EMAIL` → `CUSTOMER-EMAIL` before the INSERT
 - Add `CUSTOMER_EMAIL` to the `INSERT INTO CUSTOMER` column list and `:CUSTOMER-EMAIL` to the VALUES list
+
+**7b — ⚠️ CRITICAL (post-deployment bug fix, commit `ab395ed`): `WS-CHILD-DATA` inline struct**
+
+`CRECUST.cbl` contains an inline manual copy of the customer record structure, `WS-CHILD-DATA` (WORKING-STORAGE lines ~260–292), used to receive credit-agency results back from async CICS containers. This struct was **not** updated with the email field because it does not use a `COPY` statement.
+
+The async credit-check flow:
+1. CRECUST PUT CONTAINERs the DFHCOMMAREA (453 bytes) to each of 5 credit agency child transactions (CRDTAGY1–5)
+2. Each CRDTAGY stub GETs the container into `WS-CONT-IN` which is `COPY CUSTOMER` (447 bytes, correctly updated)
+3. Each stub writes a random credit score and PUTs 447 bytes back into the container
+4. CRECUST GETs the returned container into `WS-CHILD-DATA` using `FLENGTH(LENGTH OF WS-CHILD-DATA)`
+5. Before the fix, `WS-CHILD-DATA` was 397 bytes (missing `WS-CHILD-EMAIL PIC X(50)`) — shorter than the 447-byte container
+6. CICS GET CONTAINER returns **LENGERR** when FLENGTH < actual container length
+7. CRECUST treats any non-NORMAL RESP from GET CONTAINER as fail-code `'E'`: `COMM-SUCCESS = 'N'`
+8. z/OS Connect maps `COMM-SUCCESS = 'N'` → HTTP 400 "Invalid request parameters"
+
+**Fix**: Added `05 WS-CHILD-EMAIL PIC X(50).` immediately after `WS-CHILD-CS-REVIEW-YEAR` and before `WS-CHILD-SUCCESS` in `WS-CHILD-DATA`. `WS-CHILD-DATA` is now 447 bytes — matching the CRDTAGY container size. CRDTAGY1–5 did not need recompilation; their `COPY CUSTOMER` already included the email field.
+
+> ⚠️ **Root cause of runtime 400 error**: This was the reason `POST /customers` returned HTTP 400 after deployment even though the z/OS Connect provider files, COMMAREA copybooks, and SQL INSERT were all correct. `messages.log` showed no error because the failure occurred inside CRECUST after the CICS call had completed successfully (z/OS Connect received a well-formed response with `COMM-SUCCESS = 'N'`).
 
 ---
 
@@ -601,7 +621,7 @@ The presentation-layer programs `BNK1CCS.cbl` (create customer) and `BNK1DCS.cbl
 
 ## 11. Post-Implementation Findings
 
-Three issues were discovered during the first compile and populate attempt on z/OS after the initial implementation:
+Five issues were discovered during deployment and testing after the initial implementation:
 
 | # | Finding | Root Cause | Resolution | Commit |
 |---|---|---|---|---|
@@ -609,3 +629,5 @@ Three issues were discovered during the first compile and populate attempt on z/
 | F2 | RC=8 compile on `CRECUST`, `INQCUST`, `UPDCUST`, `DELCUS` | `END-EXEC.` in `CUSTDB2.cpy` shifted to COBOL Area A (col 11) during edit — syntax error in all programs that INCLUDE CUSTDB2 | Restore `END-EXEC.` to column 12 (Area B) | `f0da907` |
 | F3 | SQLCODE -206 ("column does not exist") running `BANKDATA` after populate | `.setup/jcl/cics/Db2-create.j2` `CREATE TABLE` statement did not include `CUSTOMER_EMAIL` — existing install required `ALTER TABLE`; fresh install would create table without column | Added `CUSTOMER_EMAIL CHAR(50)` to `CREATE TABLE` in `Db2-create.j2`; existing installs still need `ALTER TABLE CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(50)` | `399a02e` |
 | F4 | HTTP 500 on all customer API calls (Create, Display, Update, Delete) | All z/OS Connect provider file sets (`gen/` copybooks, `.dai` descriptors, JSON schemas) were missing the email field — COMMAREA size mismatch between z/OS Connect (stale, pre-email size) and deployed CICS programs (email-aware size) | Manually corrected all 26 affected files across CRECUST, INQCUST, UPDCUST, DELCUS; also corrected missing `COMM-EMAIL` in `DELCUS.cpy` | `f962ace` |
+| F5 | HTTP 400 "Invalid request parameters" on `POST /customers` after all provider files were fixed | `WS-CHILD-DATA` inline struct in `CRECUST.cbl` was missing `WS-CHILD-EMAIL PIC X(50)`. The CRDTAGY1–5 credit-agency stubs write 447-byte containers (using updated `COPY CUSTOMER`). CRECUST GETs those containers into `WS-CHILD-DATA` using `LENGTH OF WS-CHILD-DATA` = 397 bytes — CICS returns LENGERR, CRECUST sets `COMM-SUCCESS = 'N'`, fail-code `'E'` | Added `05 WS-CHILD-EMAIL PIC X(50).` to `WS-CHILD-DATA` after `WS-CHILD-CS-REVIEW-YEAR`, before `WS-CHILD-SUCCESS` | `ab395ed` |
+| F6 | HTTP 400 also triggered when `email` field present in `POST /customers` request body | `CreateCustomerRequest` schema in `openapi.yaml` was missing the `email` property — only `Customer` and `CustomerUpdate` had it; z/OS Connect schema validation may strip unknown fields | Added `email` (string, maxLength 50, nullable) to `CreateCustomerRequest` in `openapi.yaml` | `183edf0` |

@@ -209,6 +209,23 @@ explicit source edits before the build runs.
 2. Before the INSERT, move `COMM-EMAIL` → `CUSTOMER-EMAIL`
 3. Initialise `CUSTOMER-EMAIL` to SPACES at start of paragraph (guards against uninitialised data)
 
+> ⚠️ **Additional edit required (post-deployment, commit `ab395ed`)**: `WS-CHILD-DATA` inline struct
+>
+> `CRECUST.cbl` contains an inline manual copy of the customer structure — `WS-CHILD-DATA` (lines ~260–292) — that is used to GET async credit-check results back from CICS containers written by CRDTAGY1–5. Because it has no `COPY` statement it does **not** inherit email automatically.
+>
+> Add `05 WS-CHILD-EMAIL PIC X(50).` after `WS-CHILD-CS-REVIEW-YEAR` (line 290) and before `WS-CHILD-SUCCESS`:
+> ```cobol
+>               05 WS-CHILD-CS-REVIEW-DATE.
+>                  07 WS-CHILD-CS-REVIEW-DAY  PIC 99 DISPLAY.
+>                  07 WS-CHILD-CS-REVIEW-MONTH PIC 99 DISPLAY.
+>                  07 WS-CHILD-CS-REVIEW-YEAR PIC 9999 DISPLAY.
+>               05 WS-CHILD-EMAIL             PIC X(50).   ← ADD THIS
+>               05 WS-CHILD-SUCCESS           PIC X.
+>               05 WS-CHILD-FAIL-CODE         PIC X.
+> ```
+>
+> Without this fix, CICS GET CONTAINER returns LENGERR (container = 447 bytes, FLENGTH = 397 bytes), CRECUST sets `COMM-SUCCESS = 'N'` with fail-code `'E'`, and z/OS Connect returns HTTP 400.
+
 #### D2 — INQCUST.cbl
 1. Add `CUSTOMER_EMAIL` to the named-column SELECT list (existing SELECT uses named columns — confirmed)
 2. After the FETCH/SELECT, move `CUSTOMER-EMAIL` → `INQCUST-EMAIL`
@@ -627,8 +644,10 @@ WS-COMM-AREA — after WS-COMM-CS-REVIEW-DATE PIC 9(8) (line ~146),
 | `f0da907` | `src/base/cics/copy/CUSTDB2.cpy` | `END-EXEC.` shifted to Area A (col 11) during email column addition — RC=8 in all 4 including programs | Restored to Area B (col 12) |
 | `399a02e` | `.setup/jcl/cics/Db2-create.j2` | `CREATE TABLE` DDL missing `CUSTOMER_EMAIL` column — fresh installs create table without it | Added `CUSTOMER_EMAIL CHAR(50)` as last column |
 | `f962ace` | All z/OS Connect provider files (CRECUST, INQCUST, UPDCUST, DELCUS) | `gen/` copybooks, `.dai` descriptors, and JSON schemas not updated — COMMAREA size mismatch caused HTTP 500 on all customer API calls | Manually added email field and corrected byte offsets in all 26 affected provider files; also fixed missing `COMM-EMAIL` in `DELCUS.cpy` |
+| `183edf0` | `src/api/src/main/api/openapi.yaml` | `CreateCustomerRequest` schema missing `email` property — only `Customer` and `CustomerUpdate` had it; z/OS Connect may strip unknown fields before the mapping engine | Added `email` (string, maxLength 50, nullable) to `CreateCustomerRequest` |
+| `ab395ed` | `src/base/cics/cobol/CRECUST.cbl` | **`WS-CHILD-DATA` inline struct missing `WS-CHILD-EMAIL PIC X(50)`** — CRDTAGY1–5 write 447-byte containers (via `COPY CUSTOMER`, correctly updated); CRECUST GETs them using `LENGTH OF WS-CHILD-DATA` = 397 bytes (no email); CICS returns LENGERR; CRECUST sets fail-code `'E'`, `COMM-SUCCESS = 'N'`; z/OS Connect returns HTTP 400 | Added `05 WS-CHILD-EMAIL PIC X(50).` after `WS-CHILD-CS-REVIEW-YEAR`, before `WS-CHILD-SUCCESS` in `WS-CHILD-DATA` |
 
 ---
 
-**Last Updated**: 2026-07-29 (Appendix B updated — z/OS Connect provider file fixes; DELCUS.cpy correction)
+**Last Updated**: 2026-07-29 (Appendix B updated — CRECUST.cbl WS-CHILD-DATA fix; openapi.yaml CreateCustomerRequest fix)
 **Reference**: `bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`

@@ -39,7 +39,7 @@ All source changes for the customer email field have been committed and pushed t
 
 | File | Changes |
 |---|---|
-| `src/base/cics/cobol/CRECUST.cbl` | `HV-CUSTOMER-EMAIL` host variable added; `MOVE COMM-EMAIL` to HV before INSERT; `CUSTOMER_EMAIL` / `:HV-CUSTOMER-EMAIL` added to SQL INSERT column and VALUES lists |
+| `src/base/cics/cobol/CRECUST.cbl` | `HV-CUSTOMER-EMAIL` host variable added; `MOVE COMM-EMAIL` to HV before INSERT; `CUSTOMER_EMAIL` / `:HV-CUSTOMER-EMAIL` added to SQL INSERT column and VALUES lists. **⚠️ Post-deployment fix (`ab395ed`)**: `WS-CHILD-EMAIL PIC X(50)` added to `WS-CHILD-DATA` inline struct — see "Post-Implementation Bug Fixes" below. |
 | `src/base/cics/cobol/INQCUST.cbl` | `HV-CUSTOMER-EMAIL` host variable added; `CUSTOMER_EMAIL` / `:HV-CUSTOMER-EMAIL` added to SQL SELECT in `READ-CUSTOMER-DB2`; `MOVE HV-CUSTOMER-EMAIL TO CUSTOMER-EMAIL`; `MOVE CUSTOMER-EMAIL TO INQCUST-EMAIL` in COMMAREA populate block |
 | `src/base/cics/cobol/UPDCUST.cbl` | `HV-CUSTOMER-EMAIL` host variable added; `MOVE COMM-EMAIL` to HV before UPDATE; `CUSTOMER_EMAIL = :HV-CUSTOMER-EMAIL` added to SQL UPDATE SET clause; `MOVE HV-CUSTOMER-EMAIL TO COMM-EMAIL` in success path |
 | `src/base/cics/cobol/BNK1CCS.cbl` | `SUBPGM-EMAIL PIC X(50)` added to `SUBPGM-PARMS`; `MOVE SPACES TO EMAILI` added in RECEIVE-MAP initialisation; `MOVE EMAILI OF BNK1CCI TO SUBPGM-EMAIL` added in `CRE-CUST-DATA`; `MOVE SPACES TO SUBPGM-EMAIL` on `INITIALIZE SUBPGM-PARMS` |
@@ -82,14 +82,13 @@ After deployment it was discovered that all four z/OS Connect provider file sets
 
 ### F4–F8 — Mapping YAMLs + OpenAPI
 
-
 | File | Change |
 |---|---|
 | `src/api/src/main/operations/%2Fcustomers/post/request.yaml` | `COMM-EMAIL` mapping added with `$exists($body.email)` null guard |
 | `src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/get/response_200.yaml` | `email` response field mapped from `INQCUST-EMAIL` |
 | `src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/put/request.yaml` | `COMM-EMAIL` mapping added from `$body.email` |
 | `src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/put/response_200.yaml` | `email` response field mapped from `COMM-EMAIL` |
-| `src/api/src/main/api/openapi.yaml` | `email` field (optional, nullable, `maxLength: 50`) added to `Customer` and `CustomerUpdate` schemas |
+| `src/api/src/main/api/openapi.yaml` | `email` field (optional, nullable, `maxLength: 50`) added to `Customer` and `CustomerUpdate` schemas. **Post-deployment fix (`183edf0`)**: `email` also added to `CreateCustomerRequest` schema — it was missing from this schema, causing z/OS Connect to not forward the field to the request mapping engine. |
 
 ---
 
@@ -105,7 +104,7 @@ After deployment it was discovered that all four z/OS Connect provider file sets
 
 ## Post-Implementation Bug Fixes
 
-Two bugs were discovered during the first compile attempt on z/OS and fixed in additional commits:
+Six bugs were discovered across compile, deployment, and runtime testing. They are listed in chronological order.
 
 ### Fix 1 — `BANKDATA.cbl`: Replace string literal with host variable (`477c3b7`)
 
@@ -129,6 +128,61 @@ Two bugs were discovered during the first compile attempt on z/OS and fixed in a
 **Fix**: Added `CUSTOMER_EMAIL CHAR(50)` as the last column in the `CREATE TABLE` statement.
 
 > **Note**: This fix applies to fresh installs only. Existing installations still require the manual `ALTER TABLE` below.
+
+### Fix 4 — z/OS Connect provider files + `DELCUS.cpy` (`f962ace`)
+
+**Problem**: All z/OS Connect provider file sets (CRECUST, INQCUST, UPDCUST, DELCUS) had stale `gen/` copybooks, `.dai` descriptors, and JSON schemas that did not include the email field. This caused COMMAREA size mismatches resulting in HTTP 500 on all four customer API operations. Additionally, `DELCUS.cpy` itself was missing `COMM-EMAIL`.
+
+**Fix**: Manually corrected all 26 affected provider files across four programs and updated `DELCUS.cpy`. See the Workstream F section for the full file inventory.
+
+### Fix 5 — `openapi.yaml`: Add `email` to `CreateCustomerRequest` schema (`183edf0`)
+
+**Problem**: The `email` field was present in the `Customer` and `CustomerUpdate` OpenAPI schemas but was missing from `CreateCustomerRequest`. When the web UI sent `email` in the POST body, z/OS Connect's request processing did not forward it through the mapping engine, meaning `$body.email` was undefined and `COMM-EMAIL` received an empty string.
+
+**Fix**: Added `email: {type: string, maxLength: 50, nullable: true}` to the `CreateCustomerRequest` schema in `src/api/src/main/api/openapi.yaml`.
+
+### Fix 6 — `CRECUST.cbl`: Add `WS-CHILD-EMAIL` to `WS-CHILD-DATA` inline struct (`ab395ed`) ⚠️ Critical
+
+**Problem**: `CRECUST.cbl` contains an inline manual copy of the customer structure called `WS-CHILD-DATA` (WORKING-STORAGE, lines ~260–292). It is used to GET the result containers written back by the five async credit agency stubs (CRDTAGY1–5) after they complete their credit scoring. Because this struct has no `COPY` statement, it does **not** inherit the email field automatically when `CUSTOMER.cpy` is updated.
+
+Root cause chain:
+1. CRECUST PUT CONTAINERs the 453-byte DFHCOMMAREA to each credit agency child task
+2. Each CRDTAGY stub GETs the container into `WS-CONT-IN` (= `COPY CUSTOMER` = 447 bytes, correctly updated)
+3. The stub writes a random credit score and PUTs 447 bytes back to the container
+4. CRECUST GETs the returned container into `WS-CHILD-DATA` with `FLENGTH(LENGTH OF WS-CHILD-DATA)`
+5. Before fix: `WS-CHILD-DATA` was 397 bytes (no email field) — 50 bytes shorter than the container
+6. CICS GET CONTAINER returns **LENGERR** when FLENGTH is less than the container length
+7. CRECUST checks `IF WS-CICS-RESP NOT = DFHRESP(NORMAL)` → sets `COMM-FAIL-CODE = 'E'`, `COMM-SUCCESS = 'N'`
+8. z/OS Connect maps `COMM-SUCCESS = 'N'` → HTTP 400 "Invalid request parameters"
+9. `messages.log` showed nothing unusual because z/OS Connect received a well-formed COMMAREA response — the failure was internal to CRECUST after the CICS link completed
+
+**Fix**: Added `05 WS-CHILD-EMAIL PIC X(50).` immediately after `WS-CHILD-CS-REVIEW-YEAR` and before `WS-CHILD-SUCCESS` in `WS-CHILD-DATA`. `WS-CHILD-DATA` is now 447 bytes, matching the CRDTAGY container size. CRDTAGY1–5 did **not** need recompilation.
+
+```cobol
+*  Before (397 bytes — missing email):
+              05 WS-CHILD-CS-REVIEW-YEAR PIC 9999 DISPLAY.
+              05 WS-CHILD-SUCCESS           PIC X.
+
+*  After (447 bytes — matches CUSTOMER.cpy):
+              05 WS-CHILD-CS-REVIEW-YEAR PIC 9999 DISPLAY.
+              05 WS-CHILD-EMAIL             PIC X(50).
+              05 WS-CHILD-SUCCESS           PIC X.
+```
+
+---
+
+## ✅ Completed: All Source Fixes
+
+All source code fixes are committed and pushed to `origin/demo-start`:
+
+| Commit | Fix |
+|---|---|
+| `477c3b7` | `BANKDATA.cbl` — host variable for email in SQL VALUES |
+| `f0da907` | `CUSTDB2.cpy` — restore `END-EXEC.` to Area B |
+| `399a02e` | `Db2-create.j2` — add `CUSTOMER_EMAIL` to `CREATE TABLE` |
+| `f962ace` | All z/OS Connect provider files + `DELCUS.cpy` |
+| `183edf0` | `openapi.yaml` — add `email` to `CreateCustomerRequest` |
+| `ab395ed` | **`CRECUST.cbl` — add `WS-CHILD-EMAIL` to `WS-CHILD-DATA`** |
 
 ---
 
@@ -179,4 +233,4 @@ Remaining steps:
 
 **Reference**: [`implementation-plan.md`](./implementation-plan.md)
 **Impact analysis**: [`bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`](../../impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md)
-**Last Updated**: 2026-07-29 (z/OS Connect provider files manually fixed; DELCUS.cpy email field added)
+**Last Updated**: 2026-07-29 (CRECUST.cbl WS-CHILD-DATA fix `ab395ed`; openapi.yaml CreateCustomerRequest fix `183edf0`)
