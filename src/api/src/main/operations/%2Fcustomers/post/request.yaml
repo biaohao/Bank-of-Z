@@ -18,11 +18,11 @@ mappings:
             - COMM-FIRST-NAME:
                 required: false
                 nullable: false
-                template: "{{$exists($body.firstName) ? $body.firstName : \"\"}}"
+                template: "{{$exists(body.firstName) ? $body.firstName : \"\"}}"
             - COMM-LAST-NAME:
                 required: false
                 nullable: false
-                template: "{{$exists($body.lastName) ? $body.lastName : \"\"}}"
+                template: "{{$exists(body.lastName) ? $body.lastName : \"\"}}"
         - COMM-DOB:
             required: false
             nullable: false
