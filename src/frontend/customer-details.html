@@ -311,11 +311,7 @@
                 }
             }
 
-            // Sanitise email — strip any non-email characters that can appear when
-            // the COBOL COMMAREA byte offset is misaligned (e.g. numeric garbage
-            // appended after the real email value).
-            const rawEmail = (customer.email || '').trim();
-            const displayEmail = rawEmail.replace(/[^a-zA-Z0-9._%+\-@]/g, '');
+            const displayEmail = (customer.email || '').trim();
 
             // Restore the proper HTML structure
             detailsSection.innerHTML = `
