@@ -265,23 +265,26 @@ Add after `CUSTOMER_CS_REVIEW_DATE INTEGER )`:
 ---
 
 #### 3. `src/base/cics/copy/CUSTOMER.cpy` — COBOL struct
-**Impact**: Add one field after `CUSTOMER-CS-REVIEW-DATE` group:
+**Impact**: Add one field **after `CUSTOMER-PHONE`** (before `CUSTOMER-ADDRESS`):
 ```cobol
                05 CUSTOMER-EMAIL                       PIC X(50).
 ```
 
+> ⚠️ **Required position**: email must sit immediately after `CUSTOMER-PHONE PIC X(20)` so that the field order matches all COMMAREA copybooks and the DB2 column order in the SQL INSERT/SELECT statements.
+
 ---
 
 #### 4. `src/base/cics/copy/CRECUST.cpy` — Create customer COMMAREA
-**Impact**: Add after `COMM-CS-REVIEW-DATE` group (before `COMM-SUCCESS`):
+**Impact**: Add after `COMM-PHONE` (before `COMM-ADDR`):
 ```cobol
            03 COMM-EMAIL                      PIC X(50).
 ```
+This places email at byte offset 159 (immediately after `COMM-PHONE` which ends at byte 158). The address block, status, dates, credit score, and success flag all shift down by 50 bytes, but the total COMMAREA length remains **453 bytes** (email moves from the end to mid-structure; `COMM-SUCCESS` stays at byte 448).
 
 ---
 
 #### 5. `src/base/cics/copy/INQCUSTZ.cpy` — Inquire customer COMMAREA
-**Impact**: Add after `INQCUST-CS-REVIEW-DT` group (before `INQCUST-INQ-SUCCESS`):
+**Impact**: Add after `INQCUST-PHONE` (before the address group):
 ```cobol
            03 INQCUST-EMAIL                   PIC X(50).
 ```
@@ -289,7 +292,7 @@ Add after `CUSTOMER_CS_REVIEW_DATE INTEGER )`:
 ---
 
 #### 6. `src/base/cics/copy/UPDCUST.cpy` — Update customer COMMAREA
-**Impact**: Add after `COMM-CS-REVIEW-DATE` group (before `COMM-UPD-SUCCESS`):
+**Impact**: Add after `COMM-PHONE` (before `COMM-ADDR`):
 ```cobol
            03 COMM-EMAIL                      PIC X(50).
 ```
@@ -431,8 +434,26 @@ Add `email` to **three** component schemas: `Customer`, `CustomerUpdate`, and `C
 
 ### Application-Level Impact
 
-#### COMMAREA size change
-Each of the three COMMAREA copybooks (`CRECUST.cpy`, `INQCUSTZ.cpy`, `UPDCUST.cpy`) grows by 50 bytes. CICS COMMAREA length is specified in the `EXEC CICS LINK` / `EXEC CICS RETURN` calls in the calling programs (`BNK1CCS`, `BNK1DCS`, `BNK1CRA` etc.). Review `DFHCOMMAREA` length values in the presentation-layer programs to confirm they use `LENGTH OF DFHCOMMAREA` dynamically (common pattern) rather than hard-coded lengths. If hard-coded, those values must be updated too.
+#### COMMAREA size change and field position
+Each of the three COMMAREA copybooks (`CRECUST.cpy`, `INQCUSTZ.cpy`, `UPDCUST.cpy`) grows by 50 bytes. Email is placed **after `COMM-PHONE`** (byte 159), shifting the address block and all subsequent fields by 50 bytes. `COMM-SUCCESS` and `COMM-FAIL-CODE` remain at bytes 448–449 (unchanged final position). CICS COMMAREA length is specified in `EXEC CICS LINK` / `EXEC CICS RETURN` calls in the calling programs — confirm they use `LENGTH OF DFHCOMMAREA` dynamically rather than hard-coded lengths.
+
+**CRECUST COMMAREA byte layout (453 bytes total) with email after phone:**
+
+| Field | Start | Len |
+|---|---|---|
+| `COMM-EYECATCHER` | 1 | 4 |
+| `COMM-KEY` (SORTCODE + NUMBER) | 5 | 16 |
+| `COMM-NAME` (TITLE + FIRST + LAST) | 21 | 110 |
+| `COMM-DOB` (DAY + MONTH + YEAR) | 131 | 8 |
+| `COMM-PHONE` | 139 | 20 |
+| **`COMM-EMAIL`** ← new | **159** | **50** |
+| `COMM-ADDR` (LINE1+LINE2+CITY+POSTCODE+COUNTRY) | 209 | 210 |
+| `COMM-STATUS` | 419 | 10 |
+| `COMM-CREATED-DATE` | 429 | 8 |
+| `COMM-CREDIT-SCORE` | 437 | 3 |
+| `COMM-CS-REVIEW-DATE` | 440 | 8 |
+| `COMM-SUCCESS` | 448 | 1 |
+| `COMM-FAIL-CODE` | 449 | 1 |
 
 #### 15. Web UI — `src/frontend/` (3 files)
 
@@ -614,10 +635,10 @@ The presentation-layer programs `BNK1CCS.cbl` (create customer) and `BNK1DCS.cbl
 1. **Verify COMMAREA lengths** in `BNK1CCS.cbl` and `BNK1DCS.cbl` (Risk R1 — highest priority gate)
 2. **Create implementation plan** using the component list in Section 5 as the work breakdown
 3. **Execute DB2 DDL** in non-production first; verify existing programs still run with new nullable column
-4. **Implement copybook changes** in the order: `CUSTDB2.cpy` → `CUSTOMER.cpy` → COMMAREA copybooks
-5. **Implement COBOL program changes** for `CRECUST`, `INQCUST`, `UPDCUST`, `BANKDATA`
-6. **Run DBB impact build** — the `impactQueryPatterns` in `dbb-app.yaml` will automatically detect all programs affected by the copybook changes
-7. **Regenerate z/OS Connect provider `.cpy` files** — do not hand-edit
+4. **Implement copybook changes** in the order: `CUSTDB2.cpy` → `CUSTOMER.cpy` → COMMAREA copybooks — place `CUSTOMER-EMAIL` / `COMM-EMAIL` **after the phone field** in every copybook
+5. **Implement COBOL program changes** for `CRECUST`, `INQCUST`, `UPDCUST`, `BANKDATA` — SQL INSERT/SELECT column order must match the DB2 table column order
+6. **Update all `gen/` provider files in source control** — adjust `startPos` values for all fields that follow `COMM-EMAIL` in each `.dai` and `_0.cpy` file; do this before building the WAR
+7. **Run DBB impact build** — the `impactQueryPatterns` in `dbb-app.yaml` will automatically detect all programs affected by the copybook changes
 8. **Update mapping YAMLs and OpenAPI spec**
 9. **Deploy in sequence** per Section 6 deployment order
 
