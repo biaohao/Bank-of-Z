@@ -18,11 +18,11 @@ All source changes for the customer email field have been committed and pushed t
 | File | Change |
 |---|---|
 | `src/base/cics/copy/CUSTDB2.cpy` | Added `CUSTOMER_EMAIL CHAR(50)` to `EXEC SQL DECLARE CUSTOMER TABLE` |
-| `src/base/cics/copy/CUSTOMER.cpy` | Added `05 CUSTOMER-EMAIL PIC X(50)` after `CUSTOMER-CS-REVIEW-DATE` group |
-| `src/base/cics/copy/CRECUST.cpy` | Added `03 COMM-EMAIL PIC X(50)` before `COMM-SUCCESS` |
-| `src/base/cics/copy/INQCUSTZ.cpy` | Added `03 INQCUST-EMAIL PIC X(50)` before `INQCUST-INQ-SUCCESS` |
-| `src/base/cics/copy/UPDCUST.cpy` | Added `03 COMM-EMAIL PIC X(50)` before `COMM-UPD-SUCCESS` |
-| `src/base/cics/copy/DELCUS.cpy` | Added `03 COMM-EMAIL PIC X(50)` before `COMM-DEL-SUCCESS` |
+| `src/base/cics/copy/CUSTOMER.cpy` | Added `05 CUSTOMER-EMAIL PIC X(50)` after `CUSTOMER-CS-REVIEW-DATE` group. **Post-deployment fix (`900778c`)**: Moved to after `CUSTOMER-PHONE` (before `CUSTOMER-ADDRESS`). |
+| `src/base/cics/copy/CRECUST.cpy` | Added `03 COMM-EMAIL PIC X(50)` before `COMM-SUCCESS`. **Post-deployment fix (`900778c`)**: Moved to after `COMM-PHONE` (byte 159, before `COMM-ADDR`). |
+| `src/base/cics/copy/INQCUSTZ.cpy` | Added `03 INQCUST-EMAIL PIC X(50)` before `INQCUST-INQ-SUCCESS`. **Post-deployment fix (`900778c`)**: Moved to after `INQCUST-PHONE`. |
+| `src/base/cics/copy/UPDCUST.cpy` | Added `03 COMM-EMAIL PIC X(50)` before `COMM-UPD-SUCCESS`. **Post-deployment fix (`900778c`)**: Moved to after `COMM-PHONE`. |
+| `src/base/cics/copy/DELCUS.cpy` | Added `03 COMM-EMAIL PIC X(50)` before `COMM-DEL-SUCCESS`. **Post-deployment fix (`900778c`)**: Moved to after `COMM-PHONE`. |
 
 ---
 
@@ -42,8 +42,8 @@ All source changes for the customer email field have been committed and pushed t
 | `src/base/cics/cobol/CRECUST.cbl` | `HV-CUSTOMER-EMAIL` host variable added; `MOVE COMM-EMAIL` to HV before INSERT; `CUSTOMER_EMAIL` / `:HV-CUSTOMER-EMAIL` added to SQL INSERT column and VALUES lists. **⚠️ Post-deployment fix (`ab395ed`)**: `WS-CHILD-EMAIL PIC X(50)` added to `WS-CHILD-DATA` inline struct — see "Post-Implementation Bug Fixes" below. |
 | `src/base/cics/cobol/INQCUST.cbl` | `HV-CUSTOMER-EMAIL` host variable added; `CUSTOMER_EMAIL` / `:HV-CUSTOMER-EMAIL` added to SQL SELECT in `READ-CUSTOMER-DB2`; `MOVE HV-CUSTOMER-EMAIL TO CUSTOMER-EMAIL`; `MOVE CUSTOMER-EMAIL TO INQCUST-EMAIL` in COMMAREA populate block |
 | `src/base/cics/cobol/UPDCUST.cbl` | `HV-CUSTOMER-EMAIL` host variable added; `MOVE COMM-EMAIL` to HV before UPDATE; `CUSTOMER_EMAIL = :HV-CUSTOMER-EMAIL` added to SQL UPDATE SET clause; `MOVE HV-CUSTOMER-EMAIL TO COMM-EMAIL` in success path |
-| `src/base/cics/cobol/BNK1CCS.cbl` | `SUBPGM-EMAIL PIC X(50)` added to `SUBPGM-PARMS`; `MOVE SPACES TO EMAILI` added in RECEIVE-MAP initialisation; `MOVE EMAILI OF BNK1CCI TO SUBPGM-EMAIL` added in `CRE-CUST-DATA`; `MOVE SPACES TO SUBPGM-EMAIL` on `INITIALIZE SUBPGM-PARMS` |
-| `src/base/cics/cobol/BNK1DCS.cbl` | ⚠️ **4 inline edits** (no COPY statement — manual sync required): `WS-COMM-EMAIL PIC X(50)` added to `WS-COMM-AREA`; `COMM-EMAIL PIC X(50)` added to inline `DFHCOMMAREA` LINKAGE SECTION; `MOVE COMM-EMAIL OF DFHCOMMAREA TO WS-COMM-EMAIL` added in COMMAREA copy-out block; display path: `MOVE INQCUST-EMAIL OF INQCUST-COMMAREA TO CUSTEMLO OF BNK1DCO`; update path: `MOVE WS-COMM-EMAIL TO COMM-EMAIL OF UPDCUST-COMMAREA` |
+| `src/base/cics/cobol/BNK1CCS.cbl` | `SUBPGM-EMAIL PIC X(50)` added to `SUBPGM-PARMS` after `SUBPGM-CS-REVIEW-DATE`. **Post-deployment fix (`900778c`)**: Moved to after `SUBPGM-PHONE` (before `SUBPGM-ADDR`). `MOVE SPACES TO EMAILI` added in RECEIVE-MAP initialisation; `MOVE EMAILI OF BNK1CCI TO SUBPGM-EMAIL` added in `CRE-CUST-DATA`; `MOVE SPACES TO SUBPGM-EMAIL` on `INITIALIZE SUBPGM-PARMS`. |
+| `src/base/cics/cobol/BNK1DCS.cbl` | ⚠️ **4 inline edits** (no COPY statement — manual sync required): `WS-COMM-EMAIL PIC X(50)` added to `WS-COMM-AREA` after `WS-COMM-CS-REVIEW-DATE`; `COMM-EMAIL PIC X(50)` added to inline `DFHCOMMAREA` LINKAGE after `COMM-CS-REVIEW-DATE`; display and update PROCEDURE paths. **Post-deployment fix (`900778c`)**: Both `WS-COMM-EMAIL` and `COMM-EMAIL` moved to after their respective phone fields (before address fields). |
 | `src/base/cics/cobol/BANKDATA.cbl` | `HV-CUSTOMER-EMAIL PIC X(50)` host variable added; `MOVE SPACES / MOVE test-value TO HV-CUSTOMER-EMAIL` before INSERT; `CUSTOMER_EMAIL` / `:HV-CUSTOMER-EMAIL` added to SQL INSERT column and VALUES lists (initial implementation used a string literal — fixed in post-implementation bug fix) |
 
 ---
@@ -61,19 +61,19 @@ After deployment it was discovered that all four z/OS Connect provider file sets
 | `CRECUST/providerFiles/COMMAREA.cpy` | Added `COMM-EMAIL PIC X(50)` — the hand-authored source-of-truth |
 | `CRECUST/providerFiles/gen/CRECUST_request_0.cpy` | Added `COMM-EMAIL` field; COMMAREA bytes 403 → 453 |
 | `CRECUST/providerFiles/gen/CRECUST_response_0.cpy` | Same |
-| `CRECUST/providerFiles/request.dai` + `response.dai` | `COMM-EMAIL` at startPos 398 (50 B); `COMM-SUCCESS` → 448; `COMM-FAIL-CODE` → 449; total 403 → 453 |
+| `CRECUST/providerFiles/request.dai` + `response.dai` | `COMM-EMAIL` at startPos 398 (50 B); `COMM-SUCCESS` → 448; `COMM-FAIL-CODE` → 449; total 403 → 453. **Post-deployment fix (`900778c`)**: `COMM-EMAIL` moved to startPos 159; addr and all subsequent field startPos values shifted +50 (addr→209, status→419, created→429, credit→437, cs-review→440); success/fail unchanged at 448/449. |
 | `CRECUST/providerFiles/gen/requestSchema.json` + `responseSchema.json` | Added `COMM-EMAIL` property |
 | `INQCUST/providerFiles/gen/INQCUSTZ_request_0.cpy` | Added `INQCUST-EMAIL` field; COMMAREA bytes 403 → 457 |
 | `INQCUST/providerFiles/gen/INQCUSTZ_response_0.cpy` | Same |
-| `INQCUST/providerFiles/request.dai` + `response.dai` | `INQCUST-EMAIL` at startPos 398 (50 B); `INQ-SUCCESS` → 448; `INQ-FAIL-CD` → 449; `PCB-POINTER` → 450; total 403 → 457 |
+| `INQCUST/providerFiles/request.dai` + `response.dai` | `INQCUST-EMAIL` at startPos 398 (50 B); `INQ-SUCCESS` → 448; `INQ-FAIL-CD` → 449; `PCB-POINTER` → 450; total 403 → 457. **Post-deployment fix (`900778c`)**: `INQCUST-EMAIL` moved to startPos 159; addr and all subsequent fields shifted +50; success/fail/PCB unchanged. |
 | `INQCUST/providerFiles/gen/requestSchema.json` + `responseSchema.json` | Added `INQCUST-EMAIL` property |
 | `UPDCUST/providerFiles/gen/UPDCUST_request_0.cpy` | Added `COMM-EMAIL` field; COMMAREA bytes 399 → 449 |
 | `UPDCUST/providerFiles/gen/UPDCUST_response_0.cpy` | Same |
-| `UPDCUST/providerFiles/request.dai` + `response.dai` | `COMM-EMAIL` at startPos 398 (50 B); `UPD-SUCCESS` → 448; `UPD-FAIL-CD` → 449; total 399 → 449 |
+| `UPDCUST/providerFiles/request.dai` + `response.dai` | `COMM-EMAIL` at startPos 398 (50 B); `UPD-SUCCESS` → 448; `UPD-FAIL-CD` → 449; total 399 → 449. **Post-deployment fix (`900778c`)**: `COMM-EMAIL` moved to startPos 159; addr and all subsequent fields shifted +50. |
 | `UPDCUST/providerFiles/gen/requestSchema.json` + `responseSchema.json` | Added `COMM-EMAIL` property |
 | `DELCUS/providerFiles/gen/DELCUS_request_0.cpy` | Added `COMM-EMAIL` field; COMMAREA bytes 399 → 449 |
 | `DELCUS/providerFiles/gen/DELCUS_response_0.cpy` | Same |
-| `DELCUS/providerFiles/request.dai` + `response.dai` | `COMM-EMAIL` at startPos 398 (50 B); `DEL-SUCCESS` → 448; `DEL-FAIL-CD` → 449; total 399 → 449 |
+| `DELCUS/providerFiles/request.dai` + `response.dai` | `COMM-EMAIL` at startPos 398 (50 B); `DEL-SUCCESS` → 448; `DEL-FAIL-CD` → 449; total 399 → 449. **Post-deployment fix (`900778c`)**: `COMM-EMAIL` moved to startPos 159; addr and all subsequent fields shifted +50. |
 | `DELCUS/providerFiles/gen/requestSchema.json` + `responseSchema.json` | Added `COMM-EMAIL` property |
 
 > **Note**: `DELCUS.cpy` itself was also missing `COMM-EMAIL` (the other three COMMAREA copybooks had been updated in Workstream B; DELCUS was missed). This was also fixed in commit `f962ace`.
@@ -104,7 +104,7 @@ After deployment it was discovered that all four z/OS Connect provider file sets
 
 ## Post-Implementation Bug Fixes
 
-Six bugs were discovered across compile, deployment, and runtime testing. They are listed in chronological order.
+Seven bugs were discovered across compile, deployment, and runtime testing. They are listed in chronological order.
 
 ### Fix 1 — `BANKDATA.cbl`: Replace string literal with host variable (`477c3b7`)
 
@@ -163,11 +163,54 @@ Root cause chain:
               05 WS-CHILD-CS-REVIEW-YEAR PIC 9999 DISPLAY.
               05 WS-CHILD-SUCCESS           PIC X.
 
-*  After (447 bytes — matches CUSTOMER.cpy):
+*  After (447 bytes — matches CUSTOMER.cpy at old layout):
               05 WS-CHILD-CS-REVIEW-YEAR PIC 9999 DISPLAY.
               05 WS-CHILD-EMAIL             PIC X(50).
               05 WS-CHILD-SUCCESS           PIC X.
 ```
+
+> ⚠️ **Note**: commit `900778c` (Fix 7 below) subsequently moved `WS-CHILD-EMAIL` from after `WS-CHILD-CS-REVIEW-YEAR` to after `WS-CHILD-PHONE` (before the address fields), to match the corrected COMMAREA layout. The net effect is still 447 bytes.
+
+---
+
+### Fix 7 — Email field position: move from end of COMMAREA to after phone (`900778c`) ⚠️ Critical
+
+**Problem**: The `COMM-EMAIL` / `INQCUST-EMAIL` / `CUSTOMER-EMAIL` field was inserted at the **end** of each COMMAREA (before success/fail flags) in the initial implementation. The authoritative COMMAREA layout requires email immediately **after the phone field** (byte 159 in CRECUST), with address and all subsequent fields shifted +50 bytes. This mismatch caused z/OS Connect to read customer data fields from the wrong byte offsets, producing garbled address/status data and server errors on the Create Customer API call.
+
+**Root cause**: The `.dai` provider files were partially updated in commit `f962ace` (email added at end) but the COBOL structs and the `.dai` addr-field startPos values were not consistent with the intended layout. The correct layout per the implementation plan places email at byte 159 (right after phone, 20 bytes, which ends at byte 158).
+
+**Files changed** (25 files, commit `900778c`):
+
+*COBOL copybooks* — `COMM-EMAIL` / `INQCUST-EMAIL` / `CUSTOMER-EMAIL` moved from after CS-REVIEW-DATE to after PHONE:
+- `src/base/cics/copy/CRECUST.cpy`
+- `src/base/cics/copy/INQCUSTZ.cpy`
+- `src/base/cics/copy/UPDCUST.cpy`
+- `src/base/cics/copy/DELCUS.cpy`
+- `src/base/cics/copy/CUSTOMER.cpy`
+
+*COBOL inline structs* (no COPY — required manual repositioning):
+- `src/base/cics/cobol/CRECUST.cbl` — `WS-CHILD-EMAIL` in `WS-CHILD-DATA` moved from after `WS-CHILD-CS-REVIEW-YEAR` to after `WS-CHILD-PHONE`
+- `src/base/cics/cobol/BNK1CCS.cbl` — `SUBPGM-EMAIL` in `SUBPGM-PARMS` moved from after `SUBPGM-CS-REVIEW-DATE` to after `SUBPGM-PHONE`
+- `src/base/cics/cobol/BNK1DCS.cbl` — `WS-COMM-EMAIL` and `COMM-EMAIL` moved to after their respective phone fields in both `WS-COMM-AREA` and `DFHCOMMAREA` LINKAGE
+
+*z/OS Connect provider files* — email field moved to startPos 159; addr through cs-review-date shifted +50:
+
+| Field | Old startPos | New startPos |
+|---|---|---|
+| `COMM-EMAIL` / `INQCUST-EMAIL` | 398 | **159** |
+| `COMM-ADDR` / `INQCUST-ADDR` | 159 | **209** |
+| `COMM-ADDR-LINE1` | 159 | **209** |
+| `COMM-ADDR-LINE2` | 209 | **259** |
+| `COMM-CITY` | 259 | **309** |
+| `COMM-POSTCODE` | 309 | **359** |
+| `COMM-COUNTRY` | 319 | **369** |
+| `COMM-STATUS` | 369 | **419** |
+| `COMM-CREATED-DATE` | 379 | **429** |
+| `COMM-CREDIT-SCORE` | 387 | **437** |
+| `COMM-CS-REVIEW-DATE` | 390 | **440** |
+| `COMM-SUCCESS` / `COMM-UPD-SUCCESS` / etc. | 448 | **448 (unchanged)** |
+
+Files: `CRECUST/providerFiles/COMMAREA.cpy`, `CRECUST/gen/CRECUST_request_0.cpy`, `CRECUST/gen/CRECUST_response_0.cpy`, `CRECUST/request.dai`, `CRECUST/response.dai`, and equivalent files for INQCUST, UPDCUST, and DELCUS.
 
 ---
 
@@ -183,6 +226,7 @@ All source code fixes are committed and pushed to `origin/demo-start`:
 | `f962ace` | All z/OS Connect provider files + `DELCUS.cpy` |
 | `183edf0` | `openapi.yaml` — add `email` to `CreateCustomerRequest` |
 | `ab395ed` | **`CRECUST.cbl` — add `WS-CHILD-EMAIL` to `WS-CHILD-DATA`** |
+| `900778c` | **Email field repositioned to after phone (byte 159) — 25 files: 5 COBOL copybooks, 3 inline structs (`CRECUST.cbl`, `BNK1CCS.cbl`, `BNK1DCS.cbl`), 16 z/OS Connect provider files** |
 
 ---
 
@@ -233,4 +277,4 @@ Remaining steps:
 
 **Reference**: [`implementation-plan.md`](./implementation-plan.md)
 **Impact analysis**: [`bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`](../../impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md)
-**Last Updated**: 2026-07-29 (CRECUST.cbl WS-CHILD-DATA fix `ab395ed`; openapi.yaml CreateCustomerRequest fix `183edf0`)
+**Last Updated**: 2026-07-30 (Fix 7: email field repositioned to after-phone byte offset — 25 files, commit `900778c`)
