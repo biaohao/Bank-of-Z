@@ -147,7 +147,7 @@ the DBB impact scanner to automatically pick up all downstream COBOL recompiles.
 | B3 | Add to Create COMMAREA | `src/base/cics/copy/CRECUST.cpy` | Add `03 COMM-EMAIL PIC X(50)` after `COMM-CS-REVIEW-DATE` group (before `COMM-SUCCESS`) |
 | B4 | Add to Inquire COMMAREA | `src/base/cics/copy/INQCUSTZ.cpy` | Add `03 INQCUST-EMAIL PIC X(50)` after `INQCUST-CS-REVIEW-DT` group (before `INQCUST-INQ-SUCCESS`) |
 | B5 | Add to Update COMMAREA | `src/base/cics/copy/UPDCUST.cpy` | Add `03 COMM-EMAIL PIC X(50)` after `COMM-CS-REVIEW-DATE` group (before `COMM-UPD-SUCCESS`) |
-| B6 | No change needed | `src/base/cics/copy/DELCUS.cpy` | Delete uses customer number only — skip |
+| B6 | Add to Delete COMMAREA | `src/base/cics/copy/DELCUS.cpy` | Add `03 COMM-EMAIL PIC X(50)` after `COMM-CS-REVIEW-DATE` group (before `COMM-DEL-SUCCESS`) — initially assessed as skip; corrected post-deployment |
 
 **Dependency**: B1–B5 can be done in parallel. Must complete before Workstream D.
 
@@ -284,14 +284,14 @@ VALUES (..., :HV-CUSTOMER-EMAIL)
 ### Workstream F — z/OS Connect API Layer (6 provider CPY files + 4 mapping YAMLs + OpenAPI)
 **Purpose**: Expose the new email field through the REST API.
 
-> ⚠️ Provider `.cpy` files under `src/api/src/main/zosAssets/*/providerFiles/gen/` are
-> **auto-generated** — regenerate via z/OS Connect CLI after E3. Never hand-edit.
+> ✅ **F1–F3 and F-DELCUS are complete** — provider `.cpy`, `.dai`, and schema JSON files were manually corrected for CRECUST, INQCUST, UPDCUST, and DELCUS in commit `f962ace` (see Appendix B). Regeneration via CLI is recommended after z/OS deploy to produce the authoritative version.
 
-| Step | Task | File |
-|---|---|---|
-| F1 | Regenerate CRECUST provider CPYs | `CRECUST/providerFiles/gen/CRECUST_request_0.cpy` + `CRECUST_response_0.cpy` |
-| F2 | Regenerate INQCUST provider CPYs | `INQCUST/providerFiles/gen/INQCUSTZ_request_0.cpy` + `INQCUSTZ_response_0.cpy` |
-| F3 | Regenerate UPDCUST provider CPYs | `UPDCUST/providerFiles/gen/UPDCUST_request_0.cpy` + `UPDCUST_response_0.cpy` |
+| Step | Task | File | Status |
+|---|---|---|---|
+| F1 | Fix/regenerate CRECUST provider files | `CRECUST/providerFiles/gen/` + `COMMAREA.cpy` + DAI files | ✅ Manually fixed |
+| F2 | Fix/regenerate INQCUST provider files | `INQCUST/providerFiles/gen/` + DAI files | ✅ Manually fixed |
+| F3 | Fix/regenerate UPDCUST provider files | `UPDCUST/providerFiles/gen/` + DAI files | ✅ Manually fixed |
+| F-DELCUS | Fix DELCUS provider files + DELCUS.cpy | `DELCUS/providerFiles/gen/` + DAI files + `DELCUS.cpy` | ✅ Manually fixed |
 | F4 | Update POST /customers request mapping | `src/api/src/main/operations/%2Fcustomers/post/request.yaml` |
 | F5 | Update GET /customers/{id} response mapping | `src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/get/response_200.yaml` |
 | F6 | Update PUT /customers/{id} request mapping | `src/api/src/main/operations/%2Fcustomers%2F%7BcustomerId%7D/put/request.yaml` |
@@ -600,6 +600,9 @@ INQCUSTZ.cpy — after INQCUST-CS-REVIEW-DT group (line 33), before INQCUST-INQ-
 
 UPDCUST.cpy — after COMM-CS-REVIEW-DATE group (line 34), before COMM-UPD-SUCCESS (line 35):
   03 COMM-EMAIL                           PIC X(50).
+
+DELCUS.cpy — after COMM-CS-REVIEW-DATE group (line 34), before COMM-DEL-SUCCESS (line 35):
+  03 COMM-EMAIL                           PIC X(50).
 ```
 
 ### BNK1DCS.cbl inline struct insertions
@@ -623,8 +626,9 @@ WS-COMM-AREA — after WS-COMM-CS-REVIEW-DATE PIC 9(8) (line ~146),
 | `477c3b7` | `src/base/cics/cobol/BANKDATA.cbl` | String literal `'test@bankofz.example.com'` in SQL VALUES triggered `detect-secrets` RC=8 | Replaced with host variable `HV-CUSTOMER-EMAIL` |
 | `f0da907` | `src/base/cics/copy/CUSTDB2.cpy` | `END-EXEC.` shifted to Area A (col 11) during email column addition — RC=8 in all 4 including programs | Restored to Area B (col 12) |
 | `399a02e` | `.setup/jcl/cics/Db2-create.j2` | `CREATE TABLE` DDL missing `CUSTOMER_EMAIL` column — fresh installs create table without it | Added `CUSTOMER_EMAIL CHAR(50)` as last column |
+| `f962ace` | All z/OS Connect provider files (CRECUST, INQCUST, UPDCUST, DELCUS) | `gen/` copybooks, `.dai` descriptors, and JSON schemas not updated — COMMAREA size mismatch caused HTTP 500 on all customer API calls | Manually added email field and corrected byte offsets in all 26 affected provider files; also fixed missing `COMM-EMAIL` in `DELCUS.cpy` |
 
 ---
 
-**Last Updated**: 2026-07-28 (Appendix B added post-initial-commit)
+**Last Updated**: 2026-07-29 (Appendix B updated — z/OS Connect provider file fixes; DELCUS.cpy correction)
 **Reference**: `bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`

@@ -22,6 +22,7 @@ All source changes for the customer email field have been committed and pushed t
 | `src/base/cics/copy/CRECUST.cpy` | Added `03 COMM-EMAIL PIC X(50)` before `COMM-SUCCESS` |
 | `src/base/cics/copy/INQCUSTZ.cpy` | Added `03 INQCUST-EMAIL PIC X(50)` before `INQCUST-INQ-SUCCESS` |
 | `src/base/cics/copy/UPDCUST.cpy` | Added `03 COMM-EMAIL PIC X(50)` before `COMM-UPD-SUCCESS` |
+| `src/base/cics/copy/DELCUS.cpy` | Added `03 COMM-EMAIL PIC X(50)` before `COMM-DEL-SUCCESS` |
 
 ---
 
@@ -47,7 +48,40 @@ All source changes for the customer email field have been committed and pushed t
 
 ---
 
-## Workstream F — z/OS Connect Mapping YAMLs + OpenAPI (5 files, steps F4–F8)
+## Workstream F — z/OS Connect Provider Files + Mapping YAMLs + OpenAPI
+
+### F1–F3, F-DELCUS — Provider file manual fix (post-deployment bug fix)
+
+After deployment it was discovered that all four z/OS Connect provider file sets had not been updated to match the extended COMMAREs. Rather than regenerating via the z/OS Connect CLI (which requires the COBOL programs to already be deployed on z/OS), the files were manually corrected in commit `f962ace`.
+
+**Files fixed across CRECUST, INQCUST, UPDCUST, and DELCUS:**
+
+| Asset | Change |
+|---|---|
+| `CRECUST/providerFiles/COMMAREA.cpy` | Added `COMM-EMAIL PIC X(50)` — the hand-authored source-of-truth |
+| `CRECUST/providerFiles/gen/CRECUST_request_0.cpy` | Added `COMM-EMAIL` field; COMMAREA bytes 403 → 453 |
+| `CRECUST/providerFiles/gen/CRECUST_response_0.cpy` | Same |
+| `CRECUST/providerFiles/request.dai` + `response.dai` | `COMM-EMAIL` at startPos 398 (50 B); `COMM-SUCCESS` → 448; `COMM-FAIL-CODE` → 449; total 403 → 453 |
+| `CRECUST/providerFiles/gen/requestSchema.json` + `responseSchema.json` | Added `COMM-EMAIL` property |
+| `INQCUST/providerFiles/gen/INQCUSTZ_request_0.cpy` | Added `INQCUST-EMAIL` field; COMMAREA bytes 403 → 457 |
+| `INQCUST/providerFiles/gen/INQCUSTZ_response_0.cpy` | Same |
+| `INQCUST/providerFiles/request.dai` + `response.dai` | `INQCUST-EMAIL` at startPos 398 (50 B); `INQ-SUCCESS` → 448; `INQ-FAIL-CD` → 449; `PCB-POINTER` → 450; total 403 → 457 |
+| `INQCUST/providerFiles/gen/requestSchema.json` + `responseSchema.json` | Added `INQCUST-EMAIL` property |
+| `UPDCUST/providerFiles/gen/UPDCUST_request_0.cpy` | Added `COMM-EMAIL` field; COMMAREA bytes 399 → 449 |
+| `UPDCUST/providerFiles/gen/UPDCUST_response_0.cpy` | Same |
+| `UPDCUST/providerFiles/request.dai` + `response.dai` | `COMM-EMAIL` at startPos 398 (50 B); `UPD-SUCCESS` → 448; `UPD-FAIL-CD` → 449; total 399 → 449 |
+| `UPDCUST/providerFiles/gen/requestSchema.json` + `responseSchema.json` | Added `COMM-EMAIL` property |
+| `DELCUS/providerFiles/gen/DELCUS_request_0.cpy` | Added `COMM-EMAIL` field; COMMAREA bytes 399 → 449 |
+| `DELCUS/providerFiles/gen/DELCUS_response_0.cpy` | Same |
+| `DELCUS/providerFiles/request.dai` + `response.dai` | `COMM-EMAIL` at startPos 398 (50 B); `DEL-SUCCESS` → 448; `DEL-FAIL-CD` → 449; total 399 → 449 |
+| `DELCUS/providerFiles/gen/requestSchema.json` + `responseSchema.json` | Added `COMM-EMAIL` property |
+
+> **Note**: `DELCUS.cpy` itself was also missing `COMM-EMAIL` (the other three COMMAREA copybooks had been updated in Workstream B; DELCUS was missed). This was also fixed in commit `f962ace`.
+
+> **Recommended**: After COBOL programs are fully deployed and z/OS Connect CLI access is available, regenerate the `gen/` files officially to ensure they exactly match the deployed COMMAREA layout. The manual fixes are byte-accurate but the CLI regeneration is the authoritative process.
+
+### F4–F8 — Mapping YAMLs + OpenAPI
+
 
 | File | Change |
 |---|---|
@@ -118,17 +152,15 @@ ALTER TABLE CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(50);
    - `BNK1CCM`: email input field visible at row 21
    - `BNK1DCM`: email display field visible at row 20
 
-### Workstream F (steps F1–F3) — Provider CPY Regeneration
-After E3 (COBOL deployed), regenerate the z/OS Connect provider `.cpy` files via z/OS Connect CLI:
-- `src/api/src/main/zosAssets/CRECUST/providerFiles/gen/` — regenerate
-- `src/api/src/main/zosAssets/INQCUST/providerFiles/gen/` — regenerate
-- `src/api/src/main/zosAssets/UPDCUST/providerFiles/gen/` — regenerate
+### Workstream F — z/OS Connect API ✅ Complete (manual fix applied)
 
-> ⚠️ Do **not** hand-edit these files. Always regenerate via CLI.
+The provider `.cpy`, `.dai`, and schema JSON files for CRECUST, INQCUST, UPDCUST, and DELCUS have been manually corrected and pushed in commit `f962ace`. See the **Workstream F** section above for the full file inventory.
 
-Then:
+Remaining steps:
 - **F9** — `dbb build impact` for z/OS Connect API project
 - **F10** — Wazi Deploy — deploy updated z/OS Connect API artifact
+
+> **Optional**: After z/OS deploy, regenerate `gen/` files via z/OS Connect CLI to produce the authoritative version.
 
 ---
 
@@ -147,4 +179,4 @@ Then:
 
 **Reference**: [`implementation-plan.md`](./implementation-plan.md)
 **Impact analysis**: [`bobz/impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md`](../../impact-analysis/customer-email-field-20260727T225450/IMPACT-ANALYSIS.md)
-**Last Updated**: 2026-07-28 (bug fixes added post-initial-commit)
+**Last Updated**: 2026-07-29 (z/OS Connect provider files manually fixed; DELCUS.cpy email field added)

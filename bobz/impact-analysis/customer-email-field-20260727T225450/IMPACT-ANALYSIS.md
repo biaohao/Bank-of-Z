@@ -333,18 +333,26 @@ Add `CUSTOMER_EMAIL` / `:HV-CUSTOMER-EMAIL` to the INSERT column and VALUES list
 ---
 
 #### 11. `src/base/cics/cobol/DELCUS.cbl` — Delete customer program
-**Impact**: Recompile only. `DELCUS` uses `COPY CUSTOMER` and `COPY CUSTDB2` but only operates by customer number. No logic change needed.
+**Impact**: Recompile only. `DELCUS` uses `COPY CUSTOMER` and `COPY CUSTDB2` but only operates by customer number. No logic change needed to the program itself.
+
+> ⚠️ **Post-implementation correction**: `DELCUS.cpy` (the delete COMMAREA copybook) was also missing `COMM-EMAIL`. Although the DELETE operation does not use the email value, the deployed COBOL program uses the full COMMAREA layout — omitting the field caused a 50-byte size mismatch between CICS and z/OS Connect. `DELCUS.cpy` was corrected in commit `f962ace`.
 
 ---
 
-#### 12. z/OS Connect provider `.cpy` files — Regenerate (do NOT hand-edit)
-The files under `src/api/src/main/zosAssets/*/providerFiles/gen/` are **auto-generated** from the COMMAREA copybooks by the z/OS Connect CLI. After the COMMAREA copybooks are updated and programs are rebuilt on z/OS, regenerate these files using the z/OS Connect tooling. Files affected:
-- `CRECUST/providerFiles/gen/CRECUST_request_0.cpy`
-- `CRECUST/providerFiles/gen/CRECUST_response_0.cpy`
-- `INQCUST/providerFiles/gen/INQCUSTZ_request_0.cpy`
-- `INQCUST/providerFiles/gen/INQCUSTZ_response_0.cpy`
-- `UPDCUST/providerFiles/gen/UPDCUST_request_0.cpy`
-- `UPDCUST/providerFiles/gen/UPDCUST_response_0.cpy`
+#### 12. z/OS Connect provider files — ✅ Manually fixed (commit `f962ace`)
+
+The files under `src/api/src/main/zosAssets/*/providerFiles/gen/` describe the COMMAREA layout to z/OS Connect. All four provider file sets (CRECUST, INQCUST, UPDCUST, DELCUS) were missing the email field, causing COMMAREA size mismatches that resulted in HTTP 500 errors on every customer operation. These were manually corrected rather than regenerated via CLI.
+
+Files fixed per program:
+
+| Program | Files fixed | Bytes before → after |
+|---|---|---|
+| CRECUST | `COMMAREA.cpy`, `gen/*_request_0.cpy`, `gen/*_response_0.cpy`, `request.dai`, `response.dai`, `gen/requestSchema.json`, `gen/responseSchema.json` | 403 → 453 |
+| INQCUST | `gen/*_request_0.cpy`, `gen/*_response_0.cpy`, `request.dai`, `response.dai`, `gen/requestSchema.json`, `gen/responseSchema.json` | 403 → 457 |
+| UPDCUST | `gen/*_request_0.cpy`, `gen/*_response_0.cpy`, `request.dai`, `response.dai`, `gen/requestSchema.json`, `gen/responseSchema.json` | 399 → 449 |
+| DELCUS | `gen/*_request_0.cpy`, `gen/*_response_0.cpy`, `request.dai`, `response.dai`, `gen/requestSchema.json`, `gen/responseSchema.json` | 399 → 449 |
+
+> **Recommended**: After z/OS deploy, regenerate `gen/` files via z/OS Connect CLI to produce the authoritative version. The manual fixes are byte-accurate but CLI regeneration is the canonical process.
 
 ---
 
@@ -428,7 +436,7 @@ Each of the three COMMAREA copybooks (`CRECUST.cpy`, `INQCUSTZ.cpy`, `UPDCUST.cp
 | `INQCUST.cbl` | ✅ Yes | SQL SELECT + COMMAREA |
 | `UPDCUST.cbl` | ✅ Yes | SQL UPDATE + COMMAREA |
 | `BANKDATA.cbl` | ✅ Yes | Test data INSERT (use host variable — not literal) |
-| `DELCUS.cbl` | ❌ Recompile only | Uses `COPY CUSTDB2` |
+| `DELCUS.cbl` | ❌ Recompile only | Uses `COPY CUSTDB2` — `DELCUS.cpy` COMMAREA also required email field (post-deployment correction) |
 | `BNK1CCS.cbl` | ✅ Yes | Reads `EMAILI` from BMS map; wires to SUBPGM-EMAIL |
 | `BNK1DCS.cbl` | ✅ Yes ⚠️ | Inline LINKAGE + WS-COMM-AREA extended; display + update paths wired |
 
@@ -600,3 +608,4 @@ Three issues were discovered during the first compile and populate attempt on z/
 | F1 | `detect-secrets` blocked commit — RC=8 on `BANKDATA.cbl` | String literal `'test@bankofz.example.com'` in SQL VALUES clause flagged as potential credential | Use host variable `HV-CUSTOMER-EMAIL` instead of literal | `477c3b7` |
 | F2 | RC=8 compile on `CRECUST`, `INQCUST`, `UPDCUST`, `DELCUS` | `END-EXEC.` in `CUSTDB2.cpy` shifted to COBOL Area A (col 11) during edit — syntax error in all programs that INCLUDE CUSTDB2 | Restore `END-EXEC.` to column 12 (Area B) | `f0da907` |
 | F3 | SQLCODE -206 ("column does not exist") running `BANKDATA` after populate | `.setup/jcl/cics/Db2-create.j2` `CREATE TABLE` statement did not include `CUSTOMER_EMAIL` — existing install required `ALTER TABLE`; fresh install would create table without column | Added `CUSTOMER_EMAIL CHAR(50)` to `CREATE TABLE` in `Db2-create.j2`; existing installs still need `ALTER TABLE CUSTOMER ADD COLUMN CUSTOMER_EMAIL CHAR(50)` | `399a02e` |
+| F4 | HTTP 500 on all customer API calls (Create, Display, Update, Delete) | All z/OS Connect provider file sets (`gen/` copybooks, `.dai` descriptors, JSON schemas) were missing the email field — COMMAREA size mismatch between z/OS Connect (stale, pre-email size) and deployed CICS programs (email-aware size) | Manually corrected all 26 affected files across CRECUST, INQCUST, UPDCUST, DELCUS; also corrected missing `COMM-EMAIL` in `DELCUS.cpy` | `f962ace` |
