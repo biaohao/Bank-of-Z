@@ -228,6 +228,14 @@
                 }
               }
             },
+            "INQCUST-EMAIL" : {
+              "maxLength" : 50,
+              "type" : "string",
+              "x-ibm-zcon-metadata" : {
+                "type" : "03 INQCUST-EMAIL PIC X(50) USAGE DISPLAY.",
+                "name" : "INQCUST-EMAIL"
+              }
+            },
             "INQCUST-INQ-SUCCESS" : {
               "maxLength" : 1,
               "type" : "string",

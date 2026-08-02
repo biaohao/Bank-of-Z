@@ -237,6 +237,14 @@
                 }
               }
             },
+            "COMM-EMAIL" : {
+              "maxLength" : 50,
+              "type" : "string",
+              "x-ibm-zcon-metadata" : {
+                "type" : "03 COMM-EMAIL PIC X(50) USAGE DISPLAY.",
+                "name" : "COMM-EMAIL"
+              }
+            },
             "COMM-SUCCESS" : {
               "maxLength" : 1,
               "type" : "string",

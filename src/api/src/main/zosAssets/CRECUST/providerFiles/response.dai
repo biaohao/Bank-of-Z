@@ -4,8 +4,8 @@
         <segment id="1">
             <field name="CRECUSTZ" originalName="CRECUSTZ" included="Y" path="CRECUSTZ" fileName="CRECUST.cpy" structureIndex="0" structSrcFileName="CRECUST_response_0.cpy" srcLine="01 CRECUSTZ.">
                 <startPos>1</startPos>
-                <bytes>403</bytes>
-                <maxBytes>403</maxBytes>
+                <bytes>453</bytes>
+                <maxBytes>453</maxBytes>
                 <applicationDatatype datatype="STRUCT"/>
                 <field name="COMM-EYECATCHER" originalName="COMM-EYECATCHER" included="Y" path="CRECUSTZ.COMM-EYECATCHER" srcLine="03 COMM-EYECATCHER PIC X(4) USAGE DISPLAY.">
                     <startPos>1</startPos>
@@ -217,14 +217,20 @@
                         <applicationDatatype datatype="DECIMAL" precision="4" scale="0"/>
                     </field>
                 </field>
-                <field name="COMM-SUCCESS" originalName="COMM-SUCCESS" included="Y" path="CRECUSTZ.COMM-SUCCESS" srcLine="03 COMM-SUCCESS PIC X USAGE DISPLAY.">
+                <field name="COMM-EMAIL" originalName="COMM-EMAIL" included="Y" path="CRECUSTZ.COMM-EMAIL" srcLine="03 COMM-EMAIL PIC X(50) USAGE DISPLAY.">
                     <startPos>398</startPos>
+                    <bytes>50</bytes>
+                    <maxBytes>50</maxBytes>
+                    <applicationDatatype datatype="CHAR"/>
+                </field>
+                <field name="COMM-SUCCESS" originalName="COMM-SUCCESS" included="Y" path="CRECUSTZ.COMM-SUCCESS" srcLine="03 COMM-SUCCESS PIC X USAGE DISPLAY.">
+                    <startPos>448</startPos>
                     <bytes>1</bytes>
                     <maxBytes>1</maxBytes>
                     <applicationDatatype datatype="CHAR"/>
                 </field>
                 <field name="COMM-FAIL-CODE" originalName="COMM-FAIL-CODE" included="Y" path="CRECUSTZ.COMM-FAIL-CODE" srcLine="03 COMM-FAIL-CODE PIC X USAGE DISPLAY.">
-                    <startPos>399</startPos>
+                    <startPos>449</startPos>
                     <bytes>1</bytes>
                     <maxBytes>1</maxBytes>
                     <applicationDatatype datatype="CHAR"/>

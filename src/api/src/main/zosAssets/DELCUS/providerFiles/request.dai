@@ -4,8 +4,8 @@
         <segment id="1">
             <field name="DELCUSZ" originalName="DELCUSZ" included="Y" path="DELCUSZ" fileName="DELCUS.cpy" structureIndex="0" structSrcFileName="DELCUS_request_0.cpy" srcLine="01 DELCUSZ.">
                 <startPos>1</startPos>
-                <bytes>399</bytes>
-                <maxBytes>399</maxBytes>
+                <bytes>449</bytes>
+                <maxBytes>449</maxBytes>
                 <applicationDatatype datatype="STRUCT"/>
                 <field name="COMM-EYE" originalName="COMM-EYE" included="Y" path="DELCUSZ.COMM-EYE" srcLine="03 COMM-EYE PIC X(4) USAGE DISPLAY.">
                     <startPos>1</startPos>
@@ -205,14 +205,20 @@
                         <applicationDatatype datatype="DECIMAL" precision="4" scale="0"/>
                     </field>
                 </field>
-                <field name="COMM-DEL-SUCCESS" originalName="COMM-DEL-SUCCESS" included="Y" path="DELCUSZ.COMM-DEL-SUCCESS" srcLine="03 COMM-DEL-SUCCESS PIC X USAGE DISPLAY.">
+                <field name="COMM-EMAIL" originalName="COMM-EMAIL" included="Y" path="DELCUSZ.COMM-EMAIL" srcLine="03 COMM-EMAIL PIC X(50) USAGE DISPLAY.">
                     <startPos>398</startPos>
+                    <bytes>50</bytes>
+                    <maxBytes>50</maxBytes>
+                    <applicationDatatype datatype="CHAR"/>
+                </field>
+                <field name="COMM-DEL-SUCCESS" originalName="COMM-DEL-SUCCESS" included="Y" path="DELCUSZ.COMM-DEL-SUCCESS" srcLine="03 COMM-DEL-SUCCESS PIC X USAGE DISPLAY.">
+                    <startPos>448</startPos>
                     <bytes>1</bytes>
                     <maxBytes>1</maxBytes>
                     <applicationDatatype datatype="CHAR"/>
                 </field>
                 <field name="COMM-DEL-FAIL-CD" originalName="COMM-DEL-FAIL-CD" included="Y" path="DELCUSZ.COMM-DEL-FAIL-CD" srcLine="03 COMM-DEL-FAIL-CD PIC X USAGE DISPLAY.">
-                    <startPos>399</startPos>
+                    <startPos>449</startPos>
                     <bytes>1</bytes>
                     <maxBytes>1</maxBytes>
                     <applicationDatatype datatype="CHAR"/>

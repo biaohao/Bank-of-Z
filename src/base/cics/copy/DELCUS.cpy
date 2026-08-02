@@ -32,5 +32,6 @@
              05 COMM-CS-REVIEW-DAY     PIC 99 DISPLAY.
              05 COMM-CS-REVIEW-MONTH   PIC 99 DISPLAY.
              05 COMM-CS-REVIEW-YEAR    PIC 9999 DISPLAY.
+          03 COMM-EMAIL                PIC X(50).
           03 COMM-DEL-SUCCESS          PIC X.
           03 COMM-DEL-FAIL-CD          PIC X.
